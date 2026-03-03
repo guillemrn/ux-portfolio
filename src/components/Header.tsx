@@ -13,7 +13,7 @@ export const Header: React.FC = () => {
                 <div className="flex items-center gap-6 md:gap-8 px-5 py-2.5 backdrop-blur-xl bg-white/70 border border-brand-dark/5 rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.04)]">
                     <Link to="/" className="flex items-center group transition-transform hover:scale-105 active:scale-95">
                         <img
-                            src="/Logo.svg"
+                            src="/logo.svg"
                             alt="Guillermo Moreno Logo"
                             className="w-7 h-7 md:w-8 md:h-8 object-contain"
                         />

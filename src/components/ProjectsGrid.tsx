@@ -36,7 +36,7 @@ const PROJECTS: ProjectData[] = [
 export const ProjectsGrid: React.FC = () => {
     return (
         <section
-            className="w-full pt-32 pb-40 px-6 md:px-12 bg-brand-cream relative"
+            className="w-full pt-32 pb-40 px-6 md:px-12 lg:px-20 bg-brand-cream relative"
             id="work"
         >
             <div className="max-w-5xl mx-auto">

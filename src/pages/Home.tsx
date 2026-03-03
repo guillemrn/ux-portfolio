@@ -1,6 +1,6 @@
-import React from 'react';
 import { Hero } from '../components/Hero';
 import { ProjectsGrid } from '../components/ProjectsGrid';
+import { UIArchive } from '../components/UIArchive';
 import { motion } from 'framer-motion';
 
 export const Home: React.FC = () => {
@@ -13,6 +13,7 @@ export const Home: React.FC = () => {
         >
             <Hero />
             <ProjectsGrid />
+            <UIArchive />
         </motion.div>
     );
 };
