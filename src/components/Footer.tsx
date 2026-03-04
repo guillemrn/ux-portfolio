@@ -15,7 +15,7 @@ export const Footer: React.FC = () => {
                     <div className="flex flex-col gap-6">
                         <span className="text-white/30 text-[10px]">Conecta</span>
                         <div className="flex gap-12">
-                            <a href="mailto:hola@guillermo.design" className="hover:text-brand-accent transition-colors duration-300">Email</a>
+                            <a href="mailto:hola@guillermoml.com" className="hover:text-brand-accent transition-colors duration-300">Email</a>
                             <a href="#" className="hover:text-brand-accent transition-colors duration-300">LinkedIn</a>
                             <a href="#" className="hover:text-brand-accent transition-colors duration-300">Resume</a>
                         </div>

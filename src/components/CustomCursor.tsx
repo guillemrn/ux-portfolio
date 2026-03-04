@@ -21,7 +21,8 @@ export const CustomCursor: React.FC = () => {
                 target.tagName === 'BUTTON' ||
                 target.classList.contains('cursor-pointer') ||
                 target.closest('a') ||
-                target.closest('button')
+                target.closest('button') ||
+                target.closest('.cursor-pointer')
             ) {
                 setCursorSize(80);
                 setIsHovering(true);
