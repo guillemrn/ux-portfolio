@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { PillButton } from '../components/PillButton';
 import { ArrowLeft } from 'lucide-react';
 import { CaseStudy, PROJECTS_DATA } from '../components/CaseStudy';
 
@@ -20,47 +19,41 @@ export const ProjectDetail: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] }}
-            className="pt-24 pb-32 bg-white min-h-screen relative z-10 w-full"
+            className="pt-16 pb-32 bg-brand-cream min-h-screen relative z-10 w-full"
         >
-            {/* Top Navigation Bar */}
-            <div className="w-full px-6 md:px-12 flex items-center justify-between mb-24 relative border-b border-brand-dark/5 pb-10">
+            {/* Top Navigation - Sutil Back Button */}
+            <div className="w-full px-6 md:px-12 flex items-center justify-start mb-16 md:mb-24 relative">
+                <Link to="/#work" className="group flex items-center gap-2 text-brand-dark hover:text-brand-accent transition-colors duration-300 no-underline">
+                    <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform duration-300" />
+                    <span className="font-sans text-xs uppercase tracking-widest font-bold">Volver</span>
+                </Link>
+            </div>
 
-                {/* Left: Back Button with PillButton */}
-                <div className="flex-1 flex justify-start z-10">
-                    <Link to="/#work">
-                        <PillButton
-                            variant="ghost"
-                            iconLeft={<ArrowLeft size={14} />}
-                            className="text-[10px] uppercase tracking-[0.2em] font-black border-brand-dark/10"
-                        >
-                            Back
-                        </PillButton>
-                    </Link>
+            {/* Immersive Hero Header */}
+            <div className="w-full px-6 md:px-12 max-w-5xl mx-auto mb-16 md:mb-24 flex flex-col items-start gap-8">
+                {/* H1 Gigante */}
+                <h1 className="font-serif text-5xl md:text-7xl lg:text-[5.5rem] text-brand-dark leading-[1.05] tracking-tighter max-w-5xl">
+                    {project.title}.
+                </h1>
+
+                {/* Metadata Row */}
+                <div className="flex flex-wrap items-center gap-4 text-brand-dark/70 font-sans text-sm md:text-base">
+                    <span><strong>Rol:</strong> {project.metadata["My Role"]}</span>
+                    <span className="text-brand-dark/20">|</span>
+                    <span><strong>Entregables:</strong> {project.metadata["Deliverables"]}</span>
+                    <span className="text-brand-dark/20">|</span>
+                    <span><strong>Industria:</strong> {project.metadata["Industry"]}</span>
                 </div>
+            </div>
 
-                {/* Center: Metadata (Information Architecture from Image) */}
-                <div className="flex-2 flex items-center justify-center gap-4 lg:gap-8 whitespace-nowrap px-4 text-center">
-                    <span className="font-sans text-[10px] uppercase tracking-[0.2em] font-black text-brand-dark/40">
-                        Case 0{projectId}
-                    </span>
-                    <div className="flex flex-col items-center">
-                        <h1 className="font-serif italic text-xl md:text-2xl lg:text-3xl text-brand-dark leading-none">
-                            {project.title}
-                        </h1>
-                        <span className="font-sans text-[9px] uppercase tracking-[0.2em] font-black text-brand-dark/20 mt-1">
-                            {project.subtitle}
-                        </span>
-                    </div>
-                    <span className="font-sans text-[10px] uppercase tracking-[0.2em] font-black text-brand-dark/40 hidden md:block">
-                        {project.metadata["Industry"]}
-                    </span>
-                </div>
-
-                {/* Right: Decorative Circle to balance and match reference */}
-                <div className="flex-1 flex justify-end items-center pr-4">
-                    <div className="w-8 h-8 rounded-full border border-brand-dark/10 flex items-center justify-center">
-                        <div className="w-1.5 h-1.5 rounded-full bg-brand-dark/20 animate-pulse"></div>
-                    </div>
+            {/* Full-width Image Placeholder / Hero Image */}
+            <div className="w-full px-6 md:px-12 mb-24 md:mb-40">
+                <div className="w-full max-w-5xl mx-auto aspect-video md:aspect-21/9 bg-brand-dark/5 rounded-3xl overflow-hidden relative">
+                    <img
+                        src={project.heroImage}
+                        alt={`${project.title} Preview`}
+                        className="w-full h-full object-cover"
+                    />
                 </div>
             </div>
 

@@ -40,7 +40,12 @@ export const ProjectsGrid: React.FC = () => {
             id="work"
         >
             <div className="max-w-5xl mx-auto">
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-16 mb-16">
+                {/* Section Title */}
+                <h2 className="text-4xl md:text-5xl font-serif text-brand-dark mb-16">
+                    Selected Work
+                </h2>
+
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8 mb-16">
                     {PROJECTS.map((project, index) => (
                         <ProjectCard
                             key={project.id}
