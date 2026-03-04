@@ -37,7 +37,7 @@ export const PillButton: React.FC<PillButtonProps> = ({
                 <motion.span
                     initial={false}
                     whileHover={{ x: -2 }}
-                    className="flex items-center justify-center"
+                    className="hidden md:flex items-center justify-center"
                 >
                     {iconLeft}
                 </motion.span>
@@ -53,7 +53,7 @@ export const PillButton: React.FC<PillButtonProps> = ({
                     animate={variant === 'accent' ? { y: [0, 4, 0] } : {}}
                     transition={variant === 'accent' ? { duration: 2, repeat: Infinity, ease: "easeInOut" } : {}}
                     whileHover={{ x: 2, y: 2 }}
-                    className="flex items-center justify-center"
+                    className="hidden md:flex items-center justify-center"
                 >
                     {iconRight}
                 </motion.span>

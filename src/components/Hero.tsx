@@ -26,7 +26,7 @@ export const Hero: React.FC = () => {
                                 variant="primary"
                                 onClick={() => document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })}
                                 iconLeft={<ArrowDown size={20} strokeWidth={3} />}
-                                className="text-sm uppercase tracking-widest font-black py-5 px-10"
+                                className="w-full md:w-fit text-sm uppercase tracking-widest font-black py-5 px-10"
                             >
                                 Ver Proyectos
                             </PillButton>
@@ -35,7 +35,7 @@ export const Hero: React.FC = () => {
                                 variant="ghost"
                                 onClick={() => window.open('/cv-guillermo-moreno.pdf', '_blank')}
                                 iconLeft={<FileText size={20} />}
-                                className="text-sm uppercase tracking-widest font-black py-5 px-8"
+                                className="w-full md:w-fit text-sm uppercase tracking-widest font-black py-5 px-8"
                             >
                                 Descargar CV
                             </PillButton>
