@@ -15,7 +15,7 @@ const ARCHIVE_ITEMS: ArchiveItem[] = [
     { id: 2, title: 'Crypto Wallet', category: 'Fintech', span: 'md:col-span-4 md:row-span-1', image: '/UI/crypto-app-2.webp' },
     { id: 3, title: 'Health Analytics', category: 'Healthcare', span: 'md:col-span-4 md:row-span-2', image: '/UI/dashboard-health-light.webp' },
     { id: 4, title: 'Health Analytics', category: 'Healthcare', span: 'md:col-span-4 md:row-span-1', image: '/UI/dashboard-health-dark.webp' },
-    { id: 5, title: 'Branding UX', category: 'Portfolio', span: 'md:col-span-4 md:row-span-1', image: '/UI/Web.png' },
+    { id: 5, title: 'Branding UX', category: '+Portfolio', span: 'md:col-span-4 md:row-span-1', image: '/UI/Web.png' },
 ];
 
 export const UIArchive: React.FC = () => {
