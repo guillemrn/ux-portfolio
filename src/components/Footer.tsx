@@ -14,14 +14,14 @@ export const Footer: React.FC = () => {
                             Abierto a nuevas oportunidades
                         </span>
                         <h2 className="text-4xl md:text-5xl lg:text-7xl leading-[1.1] tracking-tighter font-serif text-white w-full animate-fade-in-up">
-                            Iniciemos la conversación.
+                            ¿Hablamos de tu próximo reto de negocio?
                         </h2>
                     </div>
 
                     {/* Right Column - Conversion and Contact */}
                     <div className="w-full lg:w-1/2 flex flex-col items-start lg:pt-8">
                         <p className="font-sans text-brand-cream-dark text-lg md:text-xl font-light leading-relaxed mb-10 max-w-lg">
-                            Ya sea que busques escalar tu producto digital con UX estratégico o necesites un Product Designer con habilidades Frontend para tu siguiente gran proyecto B2B/SaaS.
+                            Si buscas escalar tu producto digital con UX estratégico, o necesitas un Product Designer con habilidades Frontend para tu próximo proyecto B2B/SaaS, hablemos.
                         </p>
 
                         <div className="flex flex-col items-start w-full">
