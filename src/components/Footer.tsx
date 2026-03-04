@@ -2,7 +2,7 @@ import React from 'react';
 
 export const Footer: React.FC = () => {
     return (
-        <footer className="w-full bg-brand-dark text-white py-32 px-6 md:px-12 flex flex-col justify-end min-h-[70vh] relative" id="contact">
+        <footer data-theme="dark" className="w-full bg-brand-dark text-white py-32 px-6 md:px-12 flex flex-col justify-end min-h-[70vh] relative" id="contact">
             <div className="max-w-7xl mx-auto w-full flex flex-col grow justify-between">
 
                 {/* Main Content Area: Split 50/50 Desktop, Stack Mobile */}
@@ -26,7 +26,7 @@ export const Footer: React.FC = () => {
 
                         <div className="flex flex-col items-start w-full">
                             <a
-                                href="#"
+                                href="https://calendar.app.google/XMitpYAAxeGATFc28"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="w-fit bg-brand-accent text-brand-dark px-10 py-5 rounded-full font-sans text-sm uppercase tracking-widest font-black inline-flex items-center gap-3 hover:bg-brand-cream hover:scale-[1.02] transition-all duration-300 no-underline shadow-xl shadow-brand-accent/20"

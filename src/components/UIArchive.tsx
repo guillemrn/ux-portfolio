@@ -15,14 +15,14 @@ const ARCHIVE_ITEMS: ArchiveItem[] = [
     { id: 2, title: 'Crypto Wallet', category: 'Fintech', span: 'md:col-span-4 md:row-span-1', image: '/UI/crypto-app-2.webp' },
     { id: 3, title: 'Health Analytics', category: 'Healthcare', span: 'md:col-span-4 md:row-span-2', image: '/UI/dashboard-health-light.webp' },
     { id: 4, title: 'Health Analytics', category: 'Healthcare', span: 'md:col-span-4 md:row-span-1', image: '/UI/dashboard-health-dark.webp' },
-    { id: 5, title: 'Branding UX', category: '+Portfolio', span: 'md:col-span-4 md:row-span-1', image: '/UI/Web.png' },
+    { id: 5, title: 'Branding UX', category: 'Portfolio', span: 'md:col-span-4 md:row-span-1', image: '/UI/Web.png' },
 ];
 
 export const UIArchive: React.FC = () => {
     const [selectedItem, setSelectedItem] = useState<ArchiveItem | null>(null);
 
     return (
-        <section className="w-full py-32 px-6 md:px-12 lg:px-20 bg-white" id="archive">
+        <section data-theme="light" className="w-full py-32 px-6 md:px-12 lg:px-20 bg-white" id="archive">
             <div className="max-w-5xl mx-auto">
                 {/* Section Header */}
                 <div className="mb-20">

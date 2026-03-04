@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { motion, useSpring } from 'framer-motion';
+import { motion, useSpring, AnimatePresence } from 'framer-motion';
 
 export const CustomCursor: React.FC = () => {
     const [cursorSize, setCursorSize] = useState(20);
     const [isHovering, setIsHovering] = useState(false);
+    const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
     const mouseX = useSpring(0, { stiffness: 500, damping: 28 });
     const mouseY = useSpring(0, { stiffness: 500, damping: 28 });
@@ -16,6 +17,15 @@ export const CustomCursor: React.FC = () => {
 
         const handleMouseOver = (e: MouseEvent) => {
             const target = e.target as HTMLElement;
+
+            // Theme detection
+            const themedParent = target.closest('[data-theme]') as HTMLElement;
+            if (themedParent) {
+                const newTheme = themedParent.getAttribute('data-theme') as 'light' | 'dark';
+                setTheme(newTheme);
+            }
+
+            // Hover interaction (Ver)
             if (
                 target.tagName === 'A' ||
                 target.tagName === 'BUTTON' ||
@@ -41,9 +51,23 @@ export const CustomCursor: React.FC = () => {
         };
     }, [mouseX, mouseY]);
 
+    // Border and Background logic
+    // Light bg -> Dark Green cursor
+    // Dark bg -> Cream cursor
+    // Hover -> Neon Border & Bg
+    const getBorderColor = () => {
+        if (isHovering) return 'var(--color-brand-accent)';
+        return theme === 'light' ? '#052e1c' : '#f7f2e8';
+    };
+
+    const getBgColor = () => {
+        if (isHovering) return 'rgba(41, 208, 103, 0.7)'; // Brand accent with opacity
+        return 'transparent';
+    };
+
     return (
         <motion.div
-            className="fixed top-0 left-0 rounded-full border border-brand-dark/20 pointer-events-none z-9999 hidden md:flex items-center justify-center transition-colors duration-300"
+            className="fixed top-0 left-0 rounded-full border pointer-events-none z-9999 hidden md:flex items-center justify-center"
             style={{
                 width: cursorSize,
                 height: cursorSize,
@@ -51,9 +75,11 @@ export const CustomCursor: React.FC = () => {
                 y: mouseY,
                 left: -cursorSize / 2,
                 top: -cursorSize / 2,
-                borderColor: isHovering ? 'var(--color-brand-accent)' : 'rgba(5, 46, 28, 0.2)'
+                borderColor: getBorderColor(),
+                backgroundColor: getBgColor(),
+                borderWidth: isHovering ? 0 : 1.5,
+                transition: 'border-color 0.3s ease, background-color 0.3s ease, border-width 0.3s ease'
             }}
-            transition={{ type: 'spring', stiffness: 500, damping: 28, mass: 0.5 }}
         >
             <AnimatePresence>
                 {isHovering && (
@@ -61,7 +87,7 @@ export const CustomCursor: React.FC = () => {
                         initial={{ opacity: 0, scale: 0 }}
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0 }}
-                        className="text-[10px] font-sans font-black uppercase text-brand-accent tracking-tighter"
+                        className="text-[10px] font-sans font-black uppercase text-brand-dark tracking-tighter"
                     >
                         Ver
                     </motion.span>
@@ -70,6 +96,3 @@ export const CustomCursor: React.FC = () => {
         </motion.div>
     );
 };
-
-// Need to import AnimatePresence inside the component's file or use it from framer-motion
-import { AnimatePresence } from 'framer-motion';

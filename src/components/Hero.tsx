@@ -5,7 +5,7 @@ import { ArrowDown, FileText } from 'lucide-react';
 
 export const Hero: React.FC = () => {
     return (
-        <section className="relative min-h-[90vh] flex items-center px-6 pt-32 pb-20 md:px-12 lg:px-20 overflow-hidden">
+        <section data-theme="light" className="relative min-h-[90vh] flex items-center px-6 pt-32 pb-20 md:px-12 lg:px-20 overflow-hidden">
             <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
                 {/* Left Side: Content */}
