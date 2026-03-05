@@ -3,7 +3,7 @@ import { ProjectCard, type ProjectData } from './ProjectCard';
 // import { PillButton } from './PillButton';
 // import { ArrowRight } from 'lucide-react';
 
-const PROJECTS: ProjectData[] = [
+export const PROJECTS: ProjectData[] = [
     {
         id: '1',
         category: 'B2B & CRO',

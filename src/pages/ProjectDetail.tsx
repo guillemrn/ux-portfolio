@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, ArrowUpRight } from 'lucide-react';
 import { PillButton } from '../components/PillButton';
 import { CaseStudy, PROJECTS_DATA } from '../components/CaseStudy';
+import { NextProjects } from '../components/NextProjects';
 
 export const ProjectDetail: React.FC = () => {
     const { id } = useParams<{ id: string }>();
@@ -20,7 +21,7 @@ export const ProjectDetail: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] }}
-            className="pt-16 pb-32 bg-brand-cream min-h-screen relative z-10 w-full"
+            className="pt-16 bg-white min-h-screen relative z-10 w-full flex flex-col"
         >
             {/* Top Navigation - Sutil Back Button */}
             <div className="w-full px-6 md:px-12 flex items-center justify-start mb-16 md:mb-24 relative">
@@ -37,9 +38,8 @@ export const ProjectDetail: React.FC = () => {
                     {project.title}.
                 </h1>
 
-                {/* Info & CTA Rows - Stacked Layout */}
-                <div className="w-full border-t border-brand-dark/10 pt-10 flex flex-col gap-12">
-
+                {/* Info & CTA Block - Wrapped in Cream Container */}
+                <div className="w-full bg-brand-cream p-8 md:p-12 rounded-[2.5rem] flex flex-col gap-8">
                     {/* Row 1: Metadata Grid */}
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-x-12 gap-y-10 w-full">
                         <div className="flex flex-col gap-2">
@@ -58,7 +58,7 @@ export const ProjectDetail: React.FC = () => {
 
                     {/* Row 2: Live URL CTA - Left Aligned */}
                     {project.liveUrl && (
-                        <div className="w-full flex justify-start">
+                        <div className="w-full flex justify-start border-t border-brand-dark/5 pt-8">
                             <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="block w-full sm:w-fit">
                                 <PillButton
                                     variant="accent"
@@ -86,6 +86,9 @@ export const ProjectDetail: React.FC = () => {
 
             {/* Main Content Component */}
             <CaseStudy id={projectId} />
+
+            {/* Siguientes Casos Navigation */}
+            <NextProjects currentProjectId={projectId} />
 
         </motion.div>
     );

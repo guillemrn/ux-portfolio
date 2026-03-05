@@ -402,23 +402,23 @@ export const CaseStudy: React.FC<{ id: string }> = ({ id }) => {
                 </div>
             </div>
 
-            {/* 4. Testimonial & Footer */}
+            {/* 4. Testimonial & Footer - Wrapped in Cream Container */}
             <motion.section
                 data-theme="light"
                 variants={scaleIn}
                 initial="initial"
                 whileInView="animate"
                 viewport={{ once: true }}
-                className="w-full max-w-5xl mx-auto flex flex-col items-center text-center mt-32 md:mt-48 gap-8"
+                className="w-full max-w-5xl mx-auto bg-brand-cream p-12 md:p-20 rounded-[3rem] flex flex-col items-center text-center mt-32 md:mt-48 gap-12"
             >
-                <h3 className="font-serif text-3xl md:text-5xl lg:text-6xl text-brand-dark leading-[1.2] tracking-tight italic">
+                <h3 className="font-serif text-xl md:text-3xl lg:text-4xl text-brand-dark leading-[1.3] tracking-tight italic max-w-4xl">
                     "{project.testimonial.text.replace(/"/g, '')}"
                 </h3>
-                <div className="flex flex-col items-center gap-1 mt-8">
-                    <span className="font-sans text-brand-dark text-sm tracking-widest uppercase font-bold">
+                <div className="flex flex-col items-center gap-2">
+                    <span className="font-sans text-brand-dark text-sm tracking-[0.2em] uppercase font-black">
                         {project.testimonial.author}
                     </span>
-                    <span className="font-serif text-brand-dark/60 text-lg italic">
+                    <span className="font-serif text-brand-dark/50 text-xl italic mt-1">
                         {project.testimonial.company}
                     </span>
                 </div>
