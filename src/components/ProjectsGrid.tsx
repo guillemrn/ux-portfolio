@@ -7,28 +7,28 @@ const PROJECTS: ProjectData[] = [
     {
         id: '1',
         category: 'B2B & CRO',
-        title: 'Optimizando la Conversión B2B: +45% en Leads',
-        description: 'Rediseño estratégico enfocado en transformar un catálogo industrial complejo en una herramienta fluida de generación de leads cualificados.',
+        title: 'Ecovis México: Optimizando la Conversión B2B',
+        description: 'Rediseño estratégico enfocado en transformar un catálogo industrial en una herramienta de generación de leads.',
         imageUrl: '/projects/b2b-leads.png',
-        tags: ['UX Audit', 'Lead Gen', 'SEO Técnico'],
+        tags: ['UX Audit', 'CRO', 'SEO'],
         layout: 'horizontal'
     },
     {
         id: '2',
         category: 'UX Research & Social',
-        title: 'De App de Donaciones a Ecosistema de Apoyo',
-        description: 'Pivote estratégico basado en investigación cualitativa para resolver el sentimiento de soledad en la maternidad.',
+        title: 'Maternar: Diseñando una Red de Apoyo para Madres',
+        description: 'Pivote estratégico de una app de donaciones a un ecosistema de apoyo para resolver la soledad materna.',
         imageUrl: '/projects/maternar.png',
-        tags: ['Research', 'Prototipado', 'Figma'],
+        tags: ['UX Strategy', 'Research', 'Figma'],
         layout: 'vertical'
     },
     {
         id: '3',
         category: 'SaaS & Mobile',
-        title: 'Productizando la Gestión de Eventos: SaaS DFY',
-        description: 'Eliminando la fricción logística de la industria de eventos mediante un modelo asíncrono y validación por QR.',
+        title: 'Invitaciones Digitales: Productizando la Gestión de Eventos',
+        description: 'Eliminando la fricción logística mediante un modelo "Done-For-You" y validación por QR en puerta.',
         imageUrl: '/projects/events-saas.png',
-        tags: ['Product Strategy', 'UI', 'Mobile-First'],
+        tags: ['Product', 'Mobile-First'],
         layout: 'vertical'
     }
 ];
