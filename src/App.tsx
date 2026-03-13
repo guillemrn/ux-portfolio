@@ -27,7 +27,7 @@ function App() {
       <div data-theme="light" className="min-h-screen bg-white text-brand-dark font-sans font-normal selection:bg-brand-accent selection:text-brand-dark">
         <CustomCursor />
         <Header />
-        <main className="mb-32 md:mb-48">
+        <main>
           <AnimatedRoutes />
         </main>
         <Footer />

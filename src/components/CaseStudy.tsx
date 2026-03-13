@@ -82,7 +82,7 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
         problem: "un lenguaje excesivamente técnico y una navegación inconsistente que generaban fricción y no lograban convertir el tráfico B2B en prospectos reales.",
         metadata: {
             Industry: "Industrial / Energía",
-            "My Role": "Lead Product Designer",
+            "My Role": "Product Designer",
             Deliverables: "UX Audit, Arquitectura de Información, UI/UX, CRO, SEO Técnico",
             Timeline: "Sprint Ágil"
         },
@@ -270,7 +270,7 @@ export const CaseStudy: React.FC<{ id: string }> = ({ id }) => {
             >
                 <motion.div variants={fadeInUp} className="flex flex-col gap-8">
                     <h2 className="font-serif text-3xl md:text-5xl text-brand-dark leading-tight tracking-tighter">
-                        El Reto y la Situación.
+                        El Reto y la Situación
                     </h2>
                     <p className="font-sans text-brand-dark/80 text-xl md:text-2xl leading-relaxed">
                         {project.overview} <span className="text-brand-dark font-medium">{project.problem}</span>
@@ -293,7 +293,7 @@ export const CaseStudy: React.FC<{ id: string }> = ({ id }) => {
                             User Personas
                         </span>
                         <h2 className="font-serif text-4xl md:text-6xl text-brand-cream tracking-tighter">
-                            Entendiendo la Necesidad.
+                            Entendiendo la Necesidad
                         </h2>
                     </div>
 

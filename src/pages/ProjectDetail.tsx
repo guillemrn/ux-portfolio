@@ -35,7 +35,7 @@ export const ProjectDetail: React.FC = () => {
             <div className="w-full px-6 md:px-12 max-w-5xl mx-auto mb-16 md:mb-24 flex flex-col items-start gap-12">
                 {/* H1 Gigante */}
                 <h1 className="font-serif text-5xl md:text-7xl lg:text-[6rem] text-brand-dark leading-[1.05] tracking-tighter max-w-5xl">
-                    {project.title}.
+                    {project.title}
                 </h1>
 
                 {/* Info & CTA Block - Wrapped in Cream Container */}

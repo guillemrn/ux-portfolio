@@ -16,7 +16,7 @@ export const NextProjects: React.FC<{ currentProjectId: string }> = ({ currentPr
         >
             <div className="max-w-5xl mx-auto px-6 md:px-12">
                 <h3 className="font-serif text-3xl md:text-5xl text-brand-dark mb-12 md:mb-16 tracking-tighter">
-                    Sigue explorando.
+                    Sigue explorando
                 </h3>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
@@ -27,7 +27,7 @@ export const NextProjects: React.FC<{ currentProjectId: string }> = ({ currentPr
                             className="group flex flex-col gap-6 no-underline"
                         >
                             {/* Image Container with subtle hover scale */}
-                            <div className="w-full aspect-video bg-brand-dark/5 rounded-2xl overflow-hidden relative">
+                            <div className="w-full aspect-video bg-brand-dark/5 rounded-2xl overflow-hidden relative border border-brand-dark/10">
                                 <img
                                     src={project.imageUrl}
                                     alt={project.title}
