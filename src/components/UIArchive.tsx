@@ -33,7 +33,7 @@ export const UIArchive: React.FC = () => {
                         transition={{ duration: 0.8 }}
                         className="font-serif text-4xl md:text-5xl text-brand-dark mb-6 tracking-tight leading-none"
                     >
-                        UI Archive & Explorations.
+                        UI Archive & Explorations
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
@@ -42,7 +42,7 @@ export const UIArchive: React.FC = () => {
                         transition={{ duration: 0.8, delay: 0.1 }}
                         className="font-sans text-brand-dark/70 text-md md:text-lg max-w-sm leading-relaxed"
                     >
-                        Una selección curada de interfaces, sistemas de diseño y experimentación visual enfocada en la estética funcional.
+                        Interfaces limpias, prototipos y experimentación visual enfocada en la estética funcional.
                     </motion.p>
                 </div>
 
