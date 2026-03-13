@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 import {
     Target,
@@ -9,7 +9,8 @@ import {
     Search,
     Layout,
     Zap,
-    BarChart
+    BarChart,
+    X
 } from 'lucide-react';
 
 // Animation Variants
@@ -58,6 +59,8 @@ interface ProjectData {
         icon: React.ReactNode;
         title: string;
         desc: string;
+        image?: string;
+        visual?: React.ReactNode;
     }[];
     outcomes: {
         text: string;
@@ -77,7 +80,7 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
     "1": {
         title: "Ecovis México: Optimizando la Conversión B2B",
         subtitle: "Sector Industrial",
-        heroImage: "/projects/b2b-leads.png",
+        heroImage: "/projects/ecovis/b2b-leads.png",
         overview: "Ecovis México, empresa especializada en el diseño y manufactura de soluciones energéticas industriales, me contactó inicialmente para una mejora táctica en su blog. Tras realizar una Auditoría UX profunda, identifiqué que el sitio enfrentaba un reto mayor:",
         problem: "un lenguaje excesivamente técnico y una navegación inconsistente que generaban fricción y no lograban convertir el tráfico B2B en prospectos reales.",
         metadata: {
@@ -98,22 +101,26 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
             {
                 icon: <Search size={20} />,
                 title: "01 User Persona",
-                desc: "Trabajamos en definir al cliente ideal industrial para alinear el lenguaje y diseño, comunicando valor (eficiencia energética, seguridad) en los primeros segundos."
+                desc: "Trabajamos en definir al cliente ideal industrial para alinear el lenguaje y diseño, comunicando valor (eficiencia energética, seguridad) en los primeros segundos.",
+                image: "/projects/ecovis/ecovis-hero.png"
             },
             {
                 icon: <Layout size={20} />,
                 title: "02 Arquitectura de Información y Navegación",
-                desc: "Diseñé un flujo global intuitivo que guía al usuario corporativo sin confusiones hacia la toma de contacto."
+                desc: "Diseñé un flujo global intuitivo que guía al usuario corporativo sin confusiones hacia la toma de contacto.",
+                image: "/projects/ecovis/navbar.png"
             },
             {
                 icon: <Zap size={20} />,
                 title: "03 Optimización de CTAs y Conversión",
-                desc: "Reemplazamos botones genéricos por micro-copy persuasivo diseñado para capturar la intención de compra del sector B2B."
+                desc: "Reemplazamos botones genéricos por micro-copy persuasivo diseñado para capturar la intención de compra del sector B2B.",
+                image: "/projects/ecovis/contact-footer.png"
             },
             {
                 icon: <BarChart size={20} />,
                 title: "04 SEO y Rendimiento",
-                desc: "Estructuración técnica para asegurar el posicionamiento orgánico en un nicho altamente competitivo."
+                desc: "Estructuración técnica para asegurar el posicionamiento orgánico en un nicho altamente competitivo.",
+                image: "/projects/ecovis/seo.png"
             }
         ],
         outcomes: [
@@ -255,175 +262,238 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
 
 export const CaseStudy: React.FC<{ id: string }> = ({ id }) => {
     const project = PROJECTS_DATA[id] || PROJECTS_DATA["1"];
+    const [selectedImage, setSelectedImage] = useState<{ src: string; title: string } | null>(null);
 
     return (
-        <article className="w-full max-w-5xl mx-auto px-6 md:px-12 flex flex-col gap-32 md:gap-48 pb-40">
+        <>
+            <article className="w-full max-w-5xl mx-auto px-6 md:px-12 flex flex-col gap-32 md:gap-48 pb-40">
 
-            {/* 1. The Context */}
-            <motion.section
-                data-theme="light"
-                variants={staggerContainer}
-                initial="initial"
-                whileInView="animate"
-                viewport={{ once: true }}
-                className="w-full max-w-4xl"
-            >
-                <motion.div variants={fadeInUp} className="flex flex-col gap-8">
-                    <h2 className="font-serif text-3xl md:text-5xl text-brand-dark leading-tight tracking-tighter">
-                        El Reto y la Situación
-                    </h2>
-                    <p className="font-sans text-brand-dark/80 text-xl md:text-2xl leading-relaxed">
-                        {project.overview} <span className="text-brand-dark font-medium">{project.problem}</span>
-                    </p>
-                </motion.div>
-            </motion.section>
-
-            {/* 1.5 The User Persona (Dark Section) */}
-            <motion.section
-                data-theme="dark"
-                variants={staggerContainer}
-                initial="initial"
-                whileInView="animate"
-                viewport={{ once: true }}
-                className="w-screen relative left-1/2 ml-[-50vw] bg-brand-dark py-24 md:py-32 px-6"
-            >
-                <div className="max-w-5xl mx-auto flex flex-col gap-24">
-                    <div className="flex flex-col gap-4 text-center">
-                        <span className="font-sans text-brand-accent text-sm tracking-[0.2em] font-black uppercase">
-                            User Personas
-                        </span>
-                        <h2 className="font-serif text-4xl md:text-6xl text-brand-cream tracking-tighter">
-                            Entendiendo la Necesidad
+                {/* 1. The Context */}
+                <motion.section
+                    data-theme="light"
+                    variants={staggerContainer}
+                    initial="initial"
+                    whileInView="animate"
+                    viewport={{ once: true }}
+                    className="w-full max-w-4xl"
+                >
+                    <motion.div variants={fadeInUp} className="flex flex-col gap-8">
+                        <h2 className="font-serif text-3xl md:text-5xl text-brand-dark leading-tight tracking-tighter">
+                            El Reto y la Situación
                         </h2>
-                    </div>
+                        <p className="font-sans text-brand-dark/80 text-xl md:text-2xl leading-relaxed">
+                            {project.overview} <span className="text-brand-dark font-medium">{project.problem}</span>
+                        </p>
+                    </motion.div>
+                </motion.section>
 
-                    <div className={`grid grid-cols-1 ${project.personas.length > 1 ? 'lg:grid-cols-2' : ''} gap-12 md:gap-16`}>
-                        {project.personas.map((persona, idx) => (
-                            <motion.div
-                                key={idx}
-                                variants={fadeInUp}
-                                className="bg-white/5 rounded-[2.5rem] p-10 md:p-14 flex flex-col gap-10 border border-white/10 hover:border-brand-accent/30 transition-colors duration-500"
-                            >
-                                <div className="flex flex-col gap-6">
-                                    <h3 className="font-serif text-3xl md:text-4xl text-brand-cream leading-tight">
-                                        {persona.name}
-                                    </h3>
-                                    <p className="font-sans text-brand-accent text-base uppercase tracking-widest font-bold">
-                                        {persona.role}
-                                    </p>
-                                    {persona.phrase && (
-                                        <p className="font-sans text-xl md:text-2xl text-brand-cream/80 italic leading-relaxed">
-                                            "{persona.phrase}"
+                {/* 1.5 The User Persona (Dark Section) */}
+                <motion.section
+                    data-theme="dark"
+                    variants={staggerContainer}
+                    initial="initial"
+                    whileInView="animate"
+                    viewport={{ once: true }}
+                    className="w-screen relative left-1/2 ml-[-50vw] bg-brand-dark py-24 md:py-32 px-6"
+                >
+                    <div className="max-w-5xl mx-auto flex flex-col gap-24">
+                        <div className="flex flex-col gap-4 text-center">
+                            <span className="font-sans text-brand-accent text-sm tracking-[0.2em] font-black uppercase">
+                                User Personas
+                            </span>
+                            <h2 className="font-serif text-4xl md:text-6xl text-brand-cream tracking-tighter">
+                                Entendiendo la Necesidad
+                            </h2>
+                        </div>
+
+                        <div className={`grid grid-cols-1 ${project.personas.length > 1 ? 'lg:grid-cols-2' : ''} gap-12 md:gap-16`}>
+                            {project.personas.map((persona, idx) => (
+                                <motion.div
+                                    key={idx}
+                                    variants={fadeInUp}
+                                    className="bg-white/5 rounded-[2.5rem] p-10 md:p-14 flex flex-col gap-10 border border-white/10 hover:border-brand-accent/30 transition-colors duration-500"
+                                >
+                                    <div className="flex flex-col gap-6">
+                                        <h3 className="font-serif text-3xl md:text-4xl text-brand-cream leading-tight">
+                                            {persona.name}
+                                        </h3>
+                                        <p className="font-sans text-brand-accent text-base uppercase tracking-widest font-bold">
+                                            {persona.role}
                                         </p>
+                                        {persona.phrase && (
+                                            <p className="font-sans text-xl md:text-2xl text-brand-cream/80 italic leading-relaxed">
+                                                "{persona.phrase}"
+                                            </p>
+                                        )}
+                                    </div>
+
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 border-t border-white/10 pt-10 mt-auto">
+                                        <div className="flex flex-col gap-4">
+                                            <span className="font-sans text-brand-cream/30 text-xs tracking-[0.2em] font-bold uppercase relative pl-4 before:content-[''] before:absolute before:left-0 before:top-0 before:h-full before:w-[2px] before:bg-brand-accent">
+                                                Objetivos
+                                            </span>
+                                            <p className="font-sans text-brand-cream/90 text-sm md:text-base leading-relaxed">
+                                                {persona.goals}
+                                            </p>
+                                        </div>
+                                        <div className="flex flex-col gap-4">
+                                            <span className="font-sans text-brand-cream/30 text-xs tracking-[0.2em] font-bold uppercase relative pl-4 before:content-[''] before:absolute before:left-0 before:top-0 before:h-full before:w-[2px] before:bg-[#ff4d4d]">
+                                                Frustraciones
+                                            </span>
+                                            <p className="font-sans text-brand-cream/90 text-sm md:text-base leading-relaxed">
+                                                {persona.frustrations}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </motion.section>
+
+
+
+                {/* 2. The Process (Alternating Layout) */}
+                <motion.section
+                    data-theme="light"
+                    variants={staggerContainer}
+                    initial="initial"
+                    whileInView="animate"
+                    viewport={{ once: true }}
+                    className="w-full max-w-5xl mx-auto flex flex-col gap-32 my-32"
+                >
+                    {project.process.map((step, idx) => {
+                        const isEven = idx % 2 === 0;
+                        return (
+                            <motion.div key={idx} variants={fadeInUp} className={`grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center`}>
+                                {/* Text Content */}
+                                <div className={`flex flex-col gap-6 w-full ${isEven ? 'md:order-1 text-left' : 'md:order-2 md:text-right text-left'}`}>
+                                    <div className={`w-14 h-14 rounded-full bg-brand-dark/5 flex items-center justify-center text-brand-dark shadow-sm ${isEven ? '' : 'md:ml-auto'}`}>
+                                        {step.icon}
+                                    </div>
+                                    <h3 className="font-serif text-3xl md:text-4xl text-brand-dark leading-tight">
+                                        {step.title}
+                                    </h3>
+                                    <p className="font-sans text-brand-dark/80 text-lg md:text-xl leading-relaxed">
+                                        {step.desc}
+                                    </p>
+                                </div>
+
+                                {/* Image Placeholder or Visual Component */}
+                                <div
+                                    className={`w-full aspect-square md:aspect-4/3 bg-white rounded-3xl overflow-hidden border border-brand-dark/5 shadow-2xl shadow-brand-dark/5 ${isEven ? 'md:order-2' : 'md:order-1'} flex items-center justify-center p-6 md:p-12 ${step.image ? 'cursor-pointer group' : ''}`}
+                                    onClick={() => step.image && setSelectedImage({ src: step.image, title: step.title })}
+                                >
+                                    {step.visual ? (
+                                        step.visual
+                                    ) : step.image ? (
+                                        <div className="relative w-full h-full overflow-hidden">
+                                            <motion.img
+                                                layoutId={`image-${step.image}`}
+                                                src={step.image}
+                                                alt={step.title}
+                                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                            />
+                                            <div className="absolute inset-0 bg-brand-dark/0 group-hover:bg-brand-dark/10 transition-colors duration-500" />
+                                        </div>
+                                    ) : (
+                                        <div className="w-full h-full flex items-center justify-center text-brand-dark/20 font-sans text-sm tracking-[0.2em] uppercase font-bold">
+                                            Strategic Visual {idx + 1}
+                                        </div>
                                     )}
                                 </div>
-
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 border-t border-white/10 pt-10 mt-auto">
-                                    <div className="flex flex-col gap-4">
-                                        <span className="font-sans text-brand-cream/30 text-xs tracking-[0.2em] font-bold uppercase relative pl-4 before:content-[''] before:absolute before:left-0 before:top-0 before:h-full before:w-[2px] before:bg-brand-accent">
-                                            Objetivos
-                                        </span>
-                                        <p className="font-sans text-brand-cream/90 text-sm md:text-base leading-relaxed">
-                                            {persona.goals}
-                                        </p>
-                                    </div>
-                                    <div className="flex flex-col gap-4">
-                                        <span className="font-sans text-brand-cream/30 text-xs tracking-[0.2em] font-bold uppercase relative pl-4 before:content-[''] before:absolute before:left-0 before:top-0 before:h-full before:w-[2px] before:bg-[#ff4d4d]">
-                                            Frustraciones
-                                        </span>
-                                        <p className="font-sans text-brand-cream/90 text-sm md:text-base leading-relaxed">
-                                            {persona.frustrations}
-                                        </p>
-                                    </div>
-                                </div>
                             </motion.div>
-                        ))}
+                        );
+                    })}
+                </motion.section>
+
+                {/* 3. The Impact (Dark Section Full-Width) */}
+                <div data-theme="dark" className="w-screen relative left-1/2 ml-[-50vw] bg-brand-dark py-32 md:py-48 px-6">
+                    <div className="max-w-5xl mx-auto flex flex-col items-center">
+                        <h2 className="font-serif text-4xl md:text-6xl text-brand-cream tracking-tighter mb-20 text-center">
+                            Resultados Clave
+                        </h2>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-24 text-center">
+                            {project.outcomes.map((outcome, idx) => (
+                                <motion.div key={idx} variants={fadeInUp} initial="initial" whileInView="animate" viewport={{ once: true }} className="flex flex-col items-center gap-6">
+                                    <div className="text-brand-accent w-24 h-24 rounded-full bg-brand-accent/10 flex items-center justify-center mb-4">
+                                        {React.cloneElement(outcome.icon as React.ReactElement<any>, { size: 48, strokeWidth: 1.5 })}
+                                    </div>
+                                    <span className="font-sans text-brand-cream text-lg md:text-xl leading-relaxed font-medium">
+                                        {outcome.text}
+                                    </span>
+                                </motion.div>
+                            ))}
+                        </div>
                     </div>
                 </div>
-            </motion.section>
 
+                {/* 4. Testimonial & Footer - Wrapped in Cream Container */}
+                <motion.section
+                    data-theme="light"
+                    variants={scaleIn}
+                    initial="initial"
+                    whileInView="animate"
+                    viewport={{ once: true }}
+                    className="w-full max-w-5xl mx-auto bg-brand-cream p-12 md:p-20 rounded-[3rem] flex flex-col items-center text-center mt-32 md:mt-48 gap-12"
+                >
+                    <h3 className="font-serif text-xl md:text-3xl lg:text-4xl text-brand-dark leading-[1.3] tracking-tight italic max-w-4xl">
+                        "{project.testimonial.text.replace(/"/g, '')}"
+                    </h3>
+                    <div className="flex flex-col items-center gap-2">
+                        <span className="font-sans text-brand-dark text-sm tracking-[0.2em] uppercase font-black">
+                            {project.testimonial.author}
+                        </span>
+                        <span className="font-serif text-brand-dark/50 text-xl italic mt-1">
+                            {project.testimonial.company}
+                        </span>
+                    </div>
+                </motion.section>
+            </article>
 
+            {/* Full-screen Image Viewer */}
+            <AnimatePresence>
+                {selectedImage && (
+                    <div className="fixed inset-0 z-100 flex items-center justify-center p-6 md:p-12 lg:p-20">
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            onClick={() => setSelectedImage(null)}
+                            className="absolute inset-0 bg-brand-dark/95 backdrop-blur-md cursor-zoom-out"
+                        />
 
-            {/* 2. The Process (Alternating Layout) */}
-            <motion.section
-                data-theme="light"
-                variants={staggerContainer}
-                initial="initial"
-                whileInView="animate"
-                viewport={{ once: true }}
-                className="w-full max-w-5xl mx-auto flex flex-col gap-32 my-32"
-            >
-                {project.process.map((step, idx) => {
-                    const isEven = idx % 2 === 0;
-                    return (
-                        <motion.div key={idx} variants={fadeInUp} className={`grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center`}>
-                            {/* Text Content */}
-                            <div className={`flex flex-col gap-6 w-full ${isEven ? 'md:order-1 text-left' : 'md:order-2 md:text-right text-left'}`}>
-                                <div className={`w-14 h-14 rounded-full bg-brand-dark/5 flex items-center justify-center text-brand-dark shadow-sm ${isEven ? '' : 'md:ml-auto'}`}>
-                                    {step.icon}
-                                </div>
-                                <h3 className="font-serif text-3xl md:text-4xl text-brand-dark leading-tight">
-                                    {step.title}
+                        <motion.button
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 0.8 }}
+                            onClick={() => setSelectedImage(null)}
+                            className="absolute top-8 right-8 text-white/50 hover:text-white transition-colors z-110"
+                        >
+                            <X size={32} />
+                        </motion.button>
+
+                        <motion.div className="relative z-105 flex flex-col items-center justify-center p-4 max-w-7xl w-full pointer-events-none">
+                            <motion.img
+                                layoutId={`image-${selectedImage.src}`}
+                                src={selectedImage.src}
+                                alt={selectedImage.title}
+                                className="h-auto max-h-[80vh] w-auto max-w-full rounded-2xl shadow-2xl pointer-events-auto"
+                            />
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: 20 }}
+                                className="mt-8 text-center"
+                            >
+                                <h3 className="font-serif text-2xl text-brand-cream tracking-tight">
+                                    {selectedImage.title}
                                 </h3>
-                                <p className="font-sans text-brand-dark/80 text-lg md:text-xl leading-relaxed">
-                                    {step.desc}
-                                </p>
-                            </div>
-
-                            {/* Image Placeholder */}
-                            <div className={`w-full aspect-square md:aspect-4/3 bg-white rounded-3xl overflow-hidden border border-brand-dark/5 shadow-2xl shadow-brand-dark/5 ${isEven ? 'md:order-2' : 'md:order-1'}`}>
-                                <div className="w-full h-full flex items-center justify-center text-brand-dark/20 font-sans text-sm tracking-[0.2em] uppercase font-bold">
-                                    Strategic Visual {idx + 1}
-                                </div>
-                            </div>
-                        </motion.div>
-                    );
-                })}
-            </motion.section>
-
-            {/* 3. The Impact (Dark Section Full-Width) */}
-            <div data-theme="dark" className="w-screen relative left-1/2 ml-[-50vw] bg-brand-dark py-32 md:py-48 px-6">
-                <div className="max-w-5xl mx-auto flex flex-col items-center">
-                    <h2 className="font-serif text-4xl md:text-6xl text-brand-cream tracking-tighter mb-20 text-center">
-                        Resultados Clave
-                    </h2>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-24 text-center">
-                        {project.outcomes.map((outcome, idx) => (
-                            <motion.div key={idx} variants={fadeInUp} initial="initial" whileInView="animate" viewport={{ once: true }} className="flex flex-col items-center gap-6">
-                                <div className="text-brand-accent w-24 h-24 rounded-full bg-brand-accent/10 flex items-center justify-center mb-4">
-                                    {React.cloneElement(outcome.icon as React.ReactElement<any>, { size: 48, strokeWidth: 1.5 })}
-                                </div>
-                                <span className="font-sans text-brand-cream text-lg md:text-xl leading-relaxed font-medium">
-                                    {outcome.text}
-                                </span>
                             </motion.div>
-                        ))}
+                        </motion.div>
                     </div>
-                </div>
-            </div>
-
-            {/* 4. Testimonial & Footer - Wrapped in Cream Container */}
-            <motion.section
-                data-theme="light"
-                variants={scaleIn}
-                initial="initial"
-                whileInView="animate"
-                viewport={{ once: true }}
-                className="w-full max-w-5xl mx-auto bg-brand-cream p-12 md:p-20 rounded-[3rem] flex flex-col items-center text-center mt-32 md:mt-48 gap-12"
-            >
-                <h3 className="font-serif text-xl md:text-3xl lg:text-4xl text-brand-dark leading-[1.3] tracking-tight italic max-w-4xl">
-                    "{project.testimonial.text.replace(/"/g, '')}"
-                </h3>
-                <div className="flex flex-col items-center gap-2">
-                    <span className="font-sans text-brand-dark text-sm tracking-[0.2em] uppercase font-black">
-                        {project.testimonial.author}
-                    </span>
-                    <span className="font-serif text-brand-dark/50 text-xl italic mt-1">
-                        {project.testimonial.company}
-                    </span>
-                </div>
-            </motion.section>
-
-        </article>
+                )}
+            </AnimatePresence>
+        </>
     );
 };
