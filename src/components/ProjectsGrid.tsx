@@ -9,7 +9,7 @@ export const PROJECTS: ProjectData[] = [
         category: 'B2B & CRO',
         title: 'Ecovis México: Optimizando la Conversión B2B',
         description: 'Rediseño estratégico enfocado en transformar un catálogo industrial en una herramienta de generación de leads.',
-        imageUrl: '/projects/b2b-leads.png',
+        imageUrl: '/projects/ecovis/b2b-leads.png',
         tags: ['UX Audit', 'CRO', 'SEO'],
         layout: 'horizontal'
     },
