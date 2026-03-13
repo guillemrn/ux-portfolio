@@ -11,8 +11,8 @@ export const Hero: React.FC = () => {
                 {/* Left Side: Content */}
                 <div className="animate-fade-in-up flex flex-col items-start gap-4 z-10">
                     {/* Refined Typography - H1 Serif */}
-                    <h1 className="text-4xl md:text-5xl lg:text-5xl leading-[1.1] tracking-tighter text-brand-dark font-serif pb-8 w-full">
-                        Diseño productos que las personas entienden y los negocios necesitan.
+                    <h1 className="text-5xl md:text-6xl lg:text-6xl leading-[1.1] tracking-tighter text-brand-dark font-serif pb-8 w-full">
+                        Transformo problemas complejos en productos digitales viables.
                     </h1>
 
                     {/* Subtitle - Sans-Serif */}

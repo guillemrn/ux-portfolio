@@ -31,7 +31,7 @@ export const UIArchive: React.FC = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
-                        className="font-serif text-4xl md:text-5xl lg:text-6xl text-brand-dark mb-6 tracking-tight leading-none"
+                        className="font-serif text-4xl md:text-5xl text-brand-dark mb-6 tracking-tight leading-none"
                     >
                         UI Archive & Explorations.
                     </motion.h2>
@@ -40,7 +40,7 @@ export const UIArchive: React.FC = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8, delay: 0.1 }}
-                        className="font-sans text-brand-dark/70 text-sm md:text-base max-w-sm leading-relaxed"
+                        className="font-sans text-brand-dark/70 text-md md:text-lg max-w-sm leading-relaxed"
                     >
                         Una selección curada de interfaces, sistemas de diseño y experimentación visual enfocada en la estética funcional.
                     </motion.p>
