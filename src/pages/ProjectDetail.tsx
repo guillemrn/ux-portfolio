@@ -74,7 +74,7 @@ export const ProjectDetail: React.FC = () => {
             </div>
 
             {/* Full-width Image Placeholder / Hero Image */}
-            <div className="w-full px-6 md:px-12 mb-24 md:mb-40">
+            {/* <div className="w-full px-6 md:px-12 mb-24 md:mb-40">
                 <div className="w-full max-w-5xl mx-auto aspect-video md:aspect-21/9 bg-brand-dark/5 rounded-3xl overflow-hidden relative">
                     <img
                         src={project.heroImage}
@@ -82,7 +82,7 @@ export const ProjectDetail: React.FC = () => {
                         className="w-full h-full object-cover"
                     />
                 </div>
-            </div>
+            </div> */}
 
             {/* Main Content Component */}
             <CaseStudy id={projectId} />

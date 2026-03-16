@@ -1,4 +1,5 @@
 import React from 'react';
+import { ArrowUpRight } from 'lucide-react';
 
 export const Footer: React.FC = () => {
     return (
@@ -31,7 +32,7 @@ export const Footer: React.FC = () => {
                                 rel="noopener noreferrer"
                                 className="w-full md:w-fit bg-brand-accent text-brand-dark px-10 py-5 rounded-full font-sans text-sm uppercase tracking-widest font-black inline-flex items-center justify-center gap-3 hover:bg-brand-cream hover:scale-[1.02] transition-all duration-300 no-underline shadow-xl shadow-brand-accent/20"
                             >
-                                Agendar Consulta Estratégica <span className="hidden md:inline">↗</span>
+                                Agendar una videollamada <ArrowUpRight className="hidden md:inline w-5 h-5" />
                             </a>
 
                             <p className="font-sans text-brand-cream-dark/80 text-sm md:text-base mt-6 text-center md:text-left w-full">
