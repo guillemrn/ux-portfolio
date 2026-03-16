@@ -15,7 +15,7 @@ export const Footer: React.FC = () => {
                             Abierto a nuevas oportunidades
                         </span>
                         <h2 className="text-4xl md:text-5xl lg:text-7xl leading-[1.1] tracking-tighter font-serif text-white w-full animate-fade-in-up">
-                            ¿Hablamos de tu próximo reto de negocio?
+                            ¿Hablamos de tu próximo reto de producto?
                         </h2>
                     </div>
 
