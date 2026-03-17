@@ -3,7 +3,7 @@ import { ArrowUpRight } from 'lucide-react';
 
 export const Footer: React.FC = () => {
     return (
-        <footer data-theme="dark" className="w-full bg-brand-dark text-white py-32 px-6 md:px-12 flex flex-col justify-end min-h-[70vh] relative" id="contact">
+        <footer data-theme="dark" className="w-full bg-brand-dark text-white py-32 px-6 md:px-12 flex flex-col justify-center min-h-[70vh] relative" id="contact">
             <div className="max-w-7xl mx-auto w-full flex flex-col grow justify-between">
 
                 {/* Main Content Area: Split 50/50 Desktop, Stack Mobile */}

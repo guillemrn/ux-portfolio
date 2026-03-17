@@ -266,7 +266,7 @@ export const CaseStudy: React.FC<{ id: string }> = ({ id }) => {
 
     return (
         <>
-            <article className="w-full max-w-5xl mx-auto px-6 md:px-12 flex flex-col gap-32 md:gap-48 pb-40">
+            <article className="w-full max-w-5xl mx-auto px-6 md:px-12 flex flex-col gap-24 md:gap-32 pb-40">
 
                 {/* 1. The Context */}
                 <motion.section
@@ -435,7 +435,7 @@ export const CaseStudy: React.FC<{ id: string }> = ({ id }) => {
                     initial="initial"
                     whileInView="animate"
                     viewport={{ once: true }}
-                    className="w-full max-w-5xl mx-auto bg-brand-cream p-12 md:p-20 rounded-[3rem] flex flex-col items-center text-center mt-32 md:mt-48 gap-12"
+                    className="w-full max-w-5xl mx-auto bg-brand-cream p-12 md:p-20 rounded-4xl flex flex-col items-center text-center gap-12"
                 >
                     <h3 className="font-serif text-xl md:text-3xl lg:text-4xl text-brand-dark leading-[1.3] tracking-tight italic max-w-4xl">
                         "{project.testimonial.text.replace(/"/g, '')}"
