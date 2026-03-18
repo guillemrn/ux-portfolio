@@ -37,8 +37,10 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
                     <div className={`${isHorizontal ? 'lg:w-[45%] aspect-4/3 lg:aspect-auto' : 'w-full aspect-square'} relative overflow-hidden bg-brand-cream/10 rounded-3xl md:rounded-4xl`}>
                         <motion.img
                             src={project.imageUrl}
-                            alt={project.title}
-                            className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                            alt={`Thumbnail for ${project.title}`}
+                            loading={index === 0 ? "eager" : "lazy"}
+                            {...(index === 0 ? { fetchpriority: "high" } : {})}
+                            className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                         />
                         {/* Subtle overlay */}
                         <div className="absolute inset-0 bg-brand-dark/0 group-hover:bg-brand-dark/5 transition-colors duration-500" />
@@ -47,7 +49,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
                     {/* Content Section */}
                     <div className={`flex flex-col py-4 md:py-6 ${isHorizontal ? 'lg:w-[55%] lg:justify-center pr-4 md:pr-6' : 'grow px-2 md:px-4 pb-4'}`}>
                         {/* Meta Category */}
-                        <span className="font-sans text-[10px] uppercase tracking-[0.2em] font-black text-brand-dark/40 mb-3 block">
+                        <span className="font-sans text-[10px] uppercase tracking-[0.2em] font-black text-brand-dark/70 mb-3 block">
                             {project.category}
                         </span>
 

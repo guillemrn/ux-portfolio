@@ -31,6 +31,7 @@ export const NextProjects: React.FC<{ currentProjectId: string }> = ({ currentPr
                                 <img
                                     src={project.imageUrl}
                                     alt={project.title}
+                                    loading="lazy"
                                     className="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.33,1,0.68,1)] group-hover:scale-105"
                                 />
                                 <div className="absolute inset-0 bg-brand-dark/0 transition-colors duration-500 group-hover:bg-brand-dark/5 pointer-events-none" />
@@ -49,7 +50,7 @@ export const NextProjects: React.FC<{ currentProjectId: string }> = ({ currentPr
                                 </h4>
 
                                 {/* Link Prompt */}
-                                <div className="flex items-center gap-2 mt-2 text-brand-dark/60 font-sans text-sm tracking-widest uppercase font-bold group-hover:text-brand-dark transition-colors duration-300">
+                                <div className="flex items-center gap-2 mt-2 text-brand-dark/70 font-sans text-sm tracking-widest uppercase font-bold group-hover:text-brand-dark transition-colors duration-300">
                                     <span>Leer caso completo</span>
                                     <ArrowUpRight size={14} className="group-hover:translate-x-1 transition-transform duration-300" strokeWidth={3} />
                                 </div>

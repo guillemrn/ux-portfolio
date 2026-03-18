@@ -16,14 +16,14 @@ export const PillButton: React.FC<PillButtonProps> = ({
     className = '',
     ...props
 }) => {
-    const baseStyles = 'inline-flex items-center justify-center px-6 py-3 rounded-full font-sans font-bold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-accent cursor-pointer gap-2 select-none';
+    const baseStyles = 'inline-flex items-center justify-center px-6 py-3 rounded-full font-sans font-bold transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-accent cursor-pointer gap-2 select-none';
 
     const variants = {
         primary: 'bg-brand-dark text-white hover:bg-brand-dark/90',
         secondary: 'bg-brand-cream text-brand-dark hover:bg-brand-cream/80',
         outline: 'bg-transparent border border-brand-dark text-brand-dark hover:bg-brand-dark/5',
         accent: 'bg-brand-accent text-brand-dark shadow-lg shadow-brand-accent/20',
-        ghost: 'bg-transparent text-brand-dark/60 hover:text-brand-dark hover:bg-brand-dark/5 border border-transparent'
+        ghost: 'bg-transparent text-brand-dark/70 hover:text-brand-dark hover:bg-brand-dark/5 border border-transparent'
     };
 
     return (

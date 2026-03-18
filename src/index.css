@@ -36,6 +36,9 @@
   .animate-fade-in-up {
     animation: fade-in-up 0.8s ease-out forwards;
   }
+  .animate-spin-slow {
+    animation: spin 8s linear infinite;
+  }
 }
 
 @keyframes fade-in-up {
@@ -47,5 +50,43 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  body {
+    cursor: none;
+  }
+
+  /* Ensure interactive elements also hide their default cursors when custom cursor is active */
+  a, button, [role="button"], input, select, textarea, .cursor-pointer {
+    cursor: none;
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Hide native cursor on hover-capable pointer devices — replaced by CustomCursor */
+@media (hover: hover) and (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
+}
+
+/* Disable CSS animations when user prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-up,
+  .animate-spin-slow {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
   }
 }

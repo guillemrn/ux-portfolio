@@ -3,6 +3,7 @@ import { ProjectCard, type ProjectData } from './ProjectCard';
 // import { PillButton } from './PillButton';
 // import { ArrowRight } from 'lucide-react';
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const PROJECTS: ProjectData[] = [
     {
         id: '1',
@@ -18,7 +19,7 @@ export const PROJECTS: ProjectData[] = [
         category: 'UX Research & Social',
         title: 'Maternar: Diseñando una Red de Apoyo para Madres',
         description: 'Pivote estratégico de una app de donaciones a un ecosistema de apoyo para resolver la soledad materna.',
-        imageUrl: '/projects/maternar.png',
+        imageUrl: '/projects/maternar/maternar.png',
         tags: ['UX Strategy', 'Research', 'Figma'],
         layout: 'vertical'
     },

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 import {
@@ -76,6 +76,7 @@ interface ProjectData {
     liveUrl?: string;
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const PROJECTS_DATA: Record<string, ProjectData> = {
     "1": {
         title: "Ecovis México: Optimizando la Conversión B2B",
@@ -264,6 +265,16 @@ export const CaseStudy: React.FC<{ id: string }> = ({ id }) => {
     const project = PROJECTS_DATA[id] || PROJECTS_DATA["1"];
     const [selectedImage, setSelectedImage] = useState<{ src: string; title: string } | null>(null);
 
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') setSelectedImage(null);
+        };
+        if (selectedImage) {
+            window.addEventListener('keydown', handleKeyDown);
+        }
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [selectedImage]);
+
     return (
         <>
             <article className="w-full max-w-5xl mx-auto px-6 md:px-12 flex flex-col gap-24 md:gap-32 pb-40">
@@ -381,21 +392,25 @@ export const CaseStudy: React.FC<{ id: string }> = ({ id }) => {
 
                                 {/* Image Placeholder or Visual Component */}
                                 <div
-                                    className={`w-full aspect-square md:aspect-4/3 bg-white rounded-3xl overflow-hidden border border-brand-dark/5 shadow-2xl shadow-brand-dark/5 ${isEven ? 'md:order-2' : 'md:order-1'} flex items-center justify-center p-6 md:p-12 ${step.image ? 'cursor-pointer group' : ''}`}
-                                    onClick={() => step.image && setSelectedImage({ src: step.image, title: step.title })}
+                                    className={`w-full aspect-square md:aspect-4/3 bg-white rounded-3xl overflow-hidden border border-brand-dark/5 shadow-2xl shadow-brand-dark/5 ${isEven ? 'md:order-2' : 'md:order-1'} flex items-center justify-center p-6 md:p-12 ${step.image ? 'group' : ''}`}
                                 >
                                     {step.visual ? (
                                         step.visual
                                     ) : step.image ? (
-                                        <div className="relative w-full h-full overflow-hidden">
+                                        <button 
+                                            className="relative block w-full h-full overflow-hidden outline-none focus-visible:ring-2 focus-visible:ring-brand-accent cursor-none"
+                                            onClick={() => setSelectedImage({ src: step.image as string, title: step.title })}
+                                            aria-label={`View larger image of ${step.title}`}
+                                        >
                                             <motion.img
                                                 layoutId={`image-${step.image}`}
                                                 src={step.image}
                                                 alt={step.title}
+                                                loading="lazy"
                                                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                                             />
                                             <div className="absolute inset-0 bg-brand-dark/0 group-hover:bg-brand-dark/10 transition-colors duration-500" />
-                                        </div>
+                                        </button>
                                     ) : (
                                         <div className="w-full h-full flex items-center justify-center text-brand-dark/20 font-sans text-sm tracking-[0.2em] uppercase font-bold">
                                             Strategic Visual {idx + 1}
@@ -415,9 +430,9 @@ export const CaseStudy: React.FC<{ id: string }> = ({ id }) => {
                         </h2>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-24 text-center">
                             {project.outcomes.map((outcome, idx) => (
-                                <motion.div key={idx} variants={fadeInUp} initial="initial" whileInView="animate" viewport={{ once: true }} className="flex flex-col items-center gap-6">
-                                    <div className="text-brand-accent w-24 h-24 rounded-full bg-brand-accent/10 flex items-center justify-center mb-4">
-                                        {React.cloneElement(outcome.icon as React.ReactElement<any>, { size: 48, strokeWidth: 1.5 })}
+                                <motion.div key={idx} variants={fadeInUp} initial="initial" whileInView="animate" viewport={{ once: true }} className="flex flex-col items-start text-left gap-4 md:gap-5">
+                                    <div className="text-brand-accent">
+                                        {React.isValidElement(outcome.icon) ? React.cloneElement(outcome.icon as React.ReactElement<{size?: number, strokeWidth?: number}>, { size: 40, strokeWidth: 1.5 }) : outcome.icon}
                                     </div>
                                     <span className="font-sans text-brand-cream text-lg md:text-xl leading-relaxed font-medium">
                                         {outcome.text}
@@ -454,7 +469,12 @@ export const CaseStudy: React.FC<{ id: string }> = ({ id }) => {
             {/* Full-screen Image Viewer */}
             <AnimatePresence>
                 {selectedImage && (
-                    <div className="fixed inset-0 z-100 flex items-center justify-center p-6 md:p-12 lg:p-20">
+                    <div 
+                        className="fixed inset-0 z-100 flex items-center justify-center p-6 md:p-12 lg:p-20"
+                        role="dialog"
+                        aria-modal="true"
+                        aria-label="Image viewer"
+                    >
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
@@ -468,7 +488,8 @@ export const CaseStudy: React.FC<{ id: string }> = ({ id }) => {
                             animate={{ opacity: 1, scale: 1 }}
                             exit={{ opacity: 0, scale: 0.8 }}
                             onClick={() => setSelectedImage(null)}
-                            className="absolute top-8 right-8 text-white/50 hover:text-white transition-colors z-110"
+                            className="absolute top-8 right-8 text-white/50 hover:text-white transition-colors z-110 cursor-none"
+                            aria-label="Cerrar"
                         >
                             <X size={32} />
                         </motion.button>

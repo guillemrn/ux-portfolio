@@ -24,13 +24,13 @@ export const Header: React.FC = () => {
                     <nav className="flex items-center gap-6">
                         <a
                             href="#work"
-                            className="text-[9px] md:text-[10px] font-sans uppercase tracking-[0.2em] font-black text-brand-dark/60 hover:text-brand-dark transition-colors duration-300"
+                            className="text-xs font-sans uppercase tracking-[0.2em] font-black text-brand-dark/70 hover:text-brand-dark transition-colors duration-300"
                         >
                             Proyectos
                         </a>
                         <a
                             href="#contact"
-                            className="text-[9px] md:text-[10px] font-sans uppercase tracking-[0.2em] font-black text-brand-dark/60 hover:text-brand-dark transition-colors duration-300"
+                            className="text-xs font-sans uppercase tracking-[0.2em] font-black text-brand-dark/70 hover:text-brand-dark transition-colors duration-300"
                         >
                             Contacto
                         </a>

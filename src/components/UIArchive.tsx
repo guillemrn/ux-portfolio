@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 
@@ -21,6 +21,16 @@ const ARCHIVE_ITEMS: ArchiveItem[] = [
 export const UIArchive: React.FC = () => {
     const [selectedItem, setSelectedItem] = useState<ArchiveItem | null>(null);
 
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') setSelectedItem(null);
+        };
+        if (selectedItem) {
+            window.addEventListener('keydown', handleKeyDown);
+        }
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [selectedItem]);
+
     return (
         <section data-theme="light" className="w-full py-32 px-6 md:px-12 lg:px-20 bg-white" id="archive">
             <div className="max-w-5xl mx-auto">
@@ -40,7 +50,7 @@ export const UIArchive: React.FC = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8, delay: 0.1 }}
-                        className="font-sans text-brand-dark/70 text-md md:text-lg max-w-sm leading-relaxed"
+                        className="font-sans text-brand-dark/70 text-base md:text-lg max-w-sm leading-relaxed"
                     >
                         Interfaces limpias, prototipos y experimentación visual enfocada en la estética funcional.
                     </motion.p>
@@ -49,14 +59,15 @@ export const UIArchive: React.FC = () => {
                 {/* Gallery Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-12 auto-rows-[300px] gap-6 md:gap-8">
                     {ARCHIVE_ITEMS.map((item, index) => (
-                        <motion.div
+                        <motion.button
                             key={item.id}
                             initial={{ opacity: 0, scale: 0.95 }}
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.6, delay: index * 0.1 }}
-                            className={`${item.span || 'md:col-span-4'} relative rounded-2xl overflow-hidden group cursor-pointer border border-brand-dark/10`}
+                            className={`${item.span || 'md:col-span-4'} relative rounded-2xl overflow-hidden group cursor-none border border-brand-dark/10 w-full text-left`}
                             onClick={() => setSelectedItem(item)}
+                            aria-label={`View full project: ${item.title}`}
                         >
                             {/* Project Image */}
                             <div className="absolute inset-0 bg-brand-cream-dark/30 flex items-center justify-center overflow-hidden">
@@ -65,6 +76,7 @@ export const UIArchive: React.FC = () => {
                                         layoutId={`image-${item.id}`}
                                         src={item.image}
                                         alt={item.title}
+                                        loading="lazy"
                                         className="w-full h-full object-cover"
                                         whileHover={{ scale: 1.05 }}
                                         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
@@ -82,7 +94,7 @@ export const UIArchive: React.FC = () => {
                                     </span>
                                 </div>
                             </div>
-                        </motion.div>
+                        </motion.button>
                     ))}
                 </div>
             </div>
@@ -90,8 +102,12 @@ export const UIArchive: React.FC = () => {
             {/* Modal Image Viewer */}
             <AnimatePresence>
                 {selectedItem && (
-                    <div className="fixed inset-0 z-100 flex items-center justify-center p-6 md:p-12 lg:p-20">
-                        {/* Backdrop */}
+                    <div 
+                        className="fixed inset-0 z-100 flex items-center justify-center p-6 md:p-12 lg:p-20"
+                        role="dialog"
+                        aria-modal="true"
+                        aria-label="Image viewer"
+                    >
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
@@ -100,13 +116,13 @@ export const UIArchive: React.FC = () => {
                             className="absolute inset-0 bg-brand-dark/90 backdrop-blur-sm cursor-none"
                         />
 
-                        {/* Close Button */}
                         <motion.button
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={{ opacity: 1, scale: 1 }}
                             exit={{ opacity: 0, scale: 0.8 }}
                             onClick={() => setSelectedItem(null)}
-                            className="absolute top-8 right-8 text-white/50 hover:text-white transition-colors z-110"
+                            className="absolute top-8 right-8 text-white/50 hover:text-white transition-colors z-110 cursor-none"
+                            aria-label="Cerrar"
                         >
                             <X size={32} />
                         </motion.button>

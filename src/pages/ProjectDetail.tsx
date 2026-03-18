@@ -42,16 +42,16 @@ export const ProjectDetail: React.FC = () => {
                 <div className="w-full bg-brand-cream p-8 md:p-12 rounded-[2.5rem] flex flex-col gap-8">
                     {/* Row 1: Metadata Grid */}
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-x-12 gap-y-10 w-full">
-                        <div className="flex flex-col gap-2">
-                            <span className="font-sans text-[10px] uppercase tracking-[0.2em] font-black text-brand-dark/40">Rol</span>
+                        <div className="flex flex-col gap-1">
+                            <span className="font-sans text-[10px] uppercase tracking-[0.2em] font-black text-brand-dark/70">Rol</span>
                             <span className="font-sans text-brand-dark text-base md:text-lg font-medium">{project.metadata["My Role"]}</span>
                         </div>
-                        <div className="flex flex-col gap-2">
-                            <span className="font-sans text-[10px] uppercase tracking-[0.2em] font-black text-brand-dark/40">Industria</span>
+                        <div className="flex flex-col gap-1">
+                            <span className="font-sans text-[10px] uppercase tracking-[0.2em] font-black text-brand-dark/70">Industria</span>
                             <span className="font-sans text-brand-dark text-base md:text-lg font-medium">{project.metadata["Industry"]}</span>
                         </div>
-                        <div className="flex flex-col gap-2 col-span-2 md:col-span-1">
-                            <span className="font-sans text-[10px] uppercase tracking-[0.2em] font-black text-brand-dark/40">Entregables</span>
+                        <div className="flex flex-col gap-1">
+                            <span className="font-sans text-[10px] uppercase tracking-[0.2em] font-black text-brand-dark/70">Entregables</span>
                             <span className="font-sans text-brand-dark text-base md:text-lg font-medium leading-relaxed">{project.metadata["Deliverables"]}</span>
                         </div>
                     </div>

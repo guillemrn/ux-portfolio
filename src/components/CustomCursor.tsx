@@ -57,7 +57,7 @@ export const CustomCursor: React.FC = () => {
     // Hover -> Neon Border & Bg
     const getBorderColor = () => {
         if (isHovering) return 'var(--color-brand-accent)';
-        return theme === 'light' ? '#052e1c' : '#f7f2e8';
+        return theme === 'light' ? 'var(--color-brand-dark)' : 'var(--color-brand-cream)';
     };
 
     const getBgColor = () => {
