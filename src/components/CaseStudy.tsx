@@ -170,22 +170,26 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
             {
                 icon: <Search size={20} />,
                 title: "01 Investigación y Descubrimiento",
-                desc: "Inicié una fase de investigación cualitativa con entrevistas a profundidad para entender las necesidades emocionales reales más allá de lo material."
+                desc: "Inicié una fase de investigación cualitativa con entrevistas a profundidad para entender las necesidades emocionales reales más allá de lo material.",
+                image: "/projects/maternar/insight-maternar.png"
             },
             {
                 icon: <Target size={20} />,
                 title: "02 Insight Clave y Redefinición",
-                desc: "Descubrí que la mayor necesidad no era recibir artículos, sino pertenecer a una comunidad de apoyo que las entendiera y fortaleciera emocionalmente."
+                desc: "Descubrí que la mayor necesidad no era recibir artículos, sino pertenecer a una comunidad de apoyo que las entendiera y fortaleciera emocionalmente.",
+                image: "/projects/maternar/insight-clave.png"
             },
             {
                 icon: <Zap size={20} />,
                 title: "03 Pivote: Ecosistema de Apoyo",
-                desc: "La visión evolucionó a un ecosistema basado en tres pilares: apoyo material (donaciones), apoyo emocional (comunidad) y apoyo profesional (independencia financiera)."
+                desc: "La visión evolucionó a un ecosistema basado en tres pilares: apoyo material (donaciones), apoyo emocional (comunidad) y apoyo profesional (independencia financiera).",
+                image: "/projects/maternar/pivote.png"
             },
             {
                 icon: <Layout size={20} />,
                 title: "04 Diseño y Prototipado Figma",
-                desc: "Diseñé dos perfiles flexibles permitiendo a cada madre donar, recibir, conectar y ofrecer servicios, eliminando estigmas y fomentando el empoderamiento."
+                desc: "Diseñé dos perfiles flexibles permitiendo a cada madre donar, recibir, conectar y ofrecer servicios, eliminando estigmas y fomentando el empoderamiento.",
+                image: "/projects/maternar/maternar-design.png"
             }
         ],
         outcomes: [
@@ -195,7 +199,7 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
         ],
         testimonial: {
             title: "Impacto Social",
-            text: "\"Logramos entender que la maternidad no debe vivirse en soledad. Maternar es ahora un puente entre la necesidad material y el soporte emocional que toda madre necesita.\"",
+            text: "\"La maternidad no se diseñó para vivirse en aislamiento. Maternar evolucionó para ser el ecosistema donde el apoyo material y la contención emocional por fin se encuentran.\"",
             author: "Comunidad Maternar",
             authorInitials: "M",
             company: "Fundación Maternar"
@@ -397,7 +401,7 @@ export const CaseStudy: React.FC<{ id: string }> = ({ id }) => {
                                     {step.visual ? (
                                         step.visual
                                     ) : step.image ? (
-                                        <button 
+                                        <button
                                             className="relative block w-full h-full overflow-hidden outline-none focus-visible:ring-2 focus-visible:ring-brand-accent cursor-none"
                                             onClick={() => setSelectedImage({ src: step.image as string, title: step.title })}
                                             aria-label={`View larger image of ${step.title}`}
@@ -432,7 +436,7 @@ export const CaseStudy: React.FC<{ id: string }> = ({ id }) => {
                             {project.outcomes.map((outcome, idx) => (
                                 <motion.div key={idx} variants={fadeInUp} initial="initial" whileInView="animate" viewport={{ once: true }} className="flex flex-col items-start text-left gap-4 md:gap-5">
                                     <div className="text-brand-accent">
-                                        {React.isValidElement(outcome.icon) ? React.cloneElement(outcome.icon as React.ReactElement<{size?: number, strokeWidth?: number}>, { size: 40, strokeWidth: 1.5 }) : outcome.icon}
+                                        {React.isValidElement(outcome.icon) ? React.cloneElement(outcome.icon as React.ReactElement<{ size?: number, strokeWidth?: number }>, { size: 40, strokeWidth: 1.5 }) : outcome.icon}
                                     </div>
                                     <span className="font-sans text-brand-cream text-lg md:text-xl leading-relaxed font-medium">
                                         {outcome.text}
@@ -469,7 +473,7 @@ export const CaseStudy: React.FC<{ id: string }> = ({ id }) => {
             {/* Full-screen Image Viewer */}
             <AnimatePresence>
                 {selectedImage && (
-                    <div 
+                    <div
                         className="fixed inset-0 z-100 flex items-center justify-center p-6 md:p-12 lg:p-20"
                         role="dialog"
                         aria-modal="true"
