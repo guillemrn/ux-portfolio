@@ -78,7 +78,7 @@ interface ProjectData {
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const PROJECTS_DATA: Record<string, ProjectData> = {
-    "1": {
+    "ecovis": {
         title: "Ecovis México: Optimizando la Conversión B2B",
         subtitle: "Sector Industrial",
         heroImage: "/projects/ecovis/b2b-leads.png",
@@ -138,7 +138,7 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
         },
         liveUrl: "https://ecovismexico.com"
     },
-    "2": {
+    "maternar": {
         title: "Maternar: Diseñando una Red de Apoyo para Madres",
         subtitle: "UX Research & Estrategia de Producto",
         heroImage: "/projects/maternar-hero.png",
@@ -206,7 +206,7 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
         },
         liveUrl: "https://www.behance.net/gallery/maternar-ux-research"
     },
-    "3": {
+    "invitaciones-digitales": {
         title: "Invitaciones Digitales: Productizando la Gestión de Eventos",
         subtitle: "SaaS DFY & Mobile-First Design",
         heroImage: "/projects/events-saas.png",
@@ -266,7 +266,7 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
 };
 
 export const CaseStudy: React.FC<{ id: string }> = ({ id }) => {
-    const project = PROJECTS_DATA[id] || PROJECTS_DATA["1"];
+    const project = PROJECTS_DATA[id] || PROJECTS_DATA["ecovis"];
     const [selectedImage, setSelectedImage] = useState<{ src: string; title: string } | null>(null);
 
     useEffect(() => {

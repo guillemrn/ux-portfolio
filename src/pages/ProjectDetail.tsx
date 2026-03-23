@@ -8,8 +8,8 @@ import { NextProjects } from '../components/NextProjects';
 
 export const ProjectDetail: React.FC = () => {
     const { id } = useParams<{ id: string }>();
-    const projectId = id || "1";
-    const project = PROJECTS_DATA[projectId] || PROJECTS_DATA["1"];
+    const projectId = id || "ecovis";
+    const project = PROJECTS_DATA[projectId] || PROJECTS_DATA["ecovis"];
 
     useEffect(() => {
         window.scrollTo(0, 0);

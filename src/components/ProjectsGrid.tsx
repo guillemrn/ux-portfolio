@@ -6,7 +6,7 @@ import { ProjectCard, type ProjectData } from './ProjectCard';
 // eslint-disable-next-line react-refresh/only-export-components
 export const PROJECTS: ProjectData[] = [
     {
-        id: '1',
+        id: 'ecovis',
         category: 'B2B & CRO',
         title: 'Ecovis México: Optimizando la Conversión B2B',
         description: 'Rediseño estratégico enfocado en transformar un catálogo industrial en una herramienta de generación de leads.',
@@ -15,7 +15,7 @@ export const PROJECTS: ProjectData[] = [
         layout: 'horizontal'
     },
     {
-        id: '2',
+        id: 'maternar',
         category: 'UX Research & Social',
         title: 'Maternar: Diseñando una Red de Apoyo para Madres',
         description: 'Pivote estratégico de una app de donaciones a un ecosistema de apoyo para resolver la soledad materna.',
@@ -24,7 +24,7 @@ export const PROJECTS: ProjectData[] = [
         layout: 'vertical'
     },
     {
-        id: '3',
+        id: 'invitaciones-digitales',
         category: 'SaaS & Mobile',
         title: 'Invitaciones Digitales: Productizando la Gestión de Eventos',
         description: 'Eliminando la fricción logística mediante un modelo "Done-For-You" y validación por QR en puerta.',
