@@ -291,8 +291,8 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
             },
             {
                 icon: <Layout size={20} />,
-                title: "02 El \"Abogado de Bolsillo\"",
-                desc: "Diseñando la extensión de Chrome bajo la restricción técnica de 400x600px; resumiendo jerga legal en alertas visuales (🚨/⚠️), un Trust Score y un Dashboard de Ahorro.",
+                title: "02 Tu escudo digital ante la letra chiquita",
+                desc: "Diseñando la extensión de Chrome bajo la restricción técnica de 400x600px; transformando cláusulas abusivas y riesgos de IP en alertas críticas (🚨/⚠️), un Trust Score y un Dashboard de Ahorro.",
                 image: "/projects/trustlens/extension.png"
             },
             {
