@@ -202,8 +202,7 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
             author: "Comunidad Maternar",
             authorInitials: "M",
             company: "Fundación Maternar"
-        },
-        liveUrl: "https://www.behance.net/gallery/maternar-ux-research"
+        }
     },
     "invitaciones-digitales": {
         title: "Invitaciones Digitales: Productizando la Gestión de Eventos",
@@ -271,7 +270,7 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
         metadata: {
             Industry: "LegalTech / AI SaaS",
             "My Role": "Product Designer & Builder",
-            Deliverables: "AI Engineering, Chrome Extension, UI, Next.js Landing",
+            Deliverables: "AI Engineering, Chrome Extension",
             Timeline: "MVP (Build in Public)"
         },
         personas: [
