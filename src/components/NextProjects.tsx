@@ -33,6 +33,10 @@ export const NextProjects: React.FC<{ currentProjectId: string }> = ({ currentPr
                                     alt={project.title}
                                     loading="lazy"
                                     className="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.33,1,0.68,1)] group-hover:scale-105"
+                                    onError={(e) => {
+                                        const target = e.target as HTMLImageElement;
+                                        target.src = `https://placehold.co/1280x720/1a1a1b/e9e3d5?text=${encodeURIComponent('En construcción...')}`;
+                                    }}
                                 />
                                 <div className="absolute inset-0 bg-brand-dark/0 transition-colors duration-500 group-hover:bg-brand-dark/5 pointer-events-none" />
                             </div>

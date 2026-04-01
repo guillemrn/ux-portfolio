@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 import {
     Target,
@@ -9,8 +9,7 @@ import {
     Search,
     Layout,
     Zap,
-    BarChart,
-    X
+    BarChart
 } from 'lucide-react';
 
 // Animation Variants
@@ -141,7 +140,7 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
     "maternar": {
         title: "Maternar: Diseñando una Red de Apoyo para Madres",
         subtitle: "UX Research & Estrategia de Producto",
-        heroImage: "/projects/maternar-hero.png",
+        heroImage: "/projects/maternar/maternar.png",
         overview: "Identifiqué una doble oportunidad en la experiencia de las madres primerizas: por un lado, la acumulación de artículos de bebé y, por otro, la falta de canales seguros y dignos para donarlos o recibirlos.",
         problem: "Mi hipótesis inicial era una plataforma de donaciones. Sin embargo, la investigación reveló un problema mucho más profundo: un abrumador sentimiento de soledad y la pérdida de identidad individual tras la maternidad.",
         metadata: {
@@ -262,22 +261,75 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
             company: "Founder & Lead Designer"
         },
         liveUrl: "https://events-saas-demo.com"
+    },
+    "trustlens": {
+        title: "TrustLens: De \"punto ciego\" legal a escudo financiero con IA",
+        subtitle: "Extensión de Chrome & AI Builder",
+        heroImage: "/projects/trustlens/hero.png",
+        overview: "Millones de usuarios aceptan Términos de Servicio (ToS) de 50 páginas sin leerlos. A los usuarios no les asusta el uso de datos en apps famosas, les aterra el \"Salvaje Oeste\" del internet (nuevas apps de IA, SaaS independientes)",
+        problem: "donde exponen su dinero (renovaciones automáticas ocultas) y su propiedad intelectual (derechos sobre su trabajo) sin saberlo.",
+        metadata: {
+            Industry: "LegalTech / AI SaaS",
+            "My Role": "Product Designer & Builder",
+            Deliverables: "AI Engineering, Chrome Extension, UI, Next.js Landing",
+            Timeline: "MVP (Build in Public)"
+        },
+        personas: [
+            {
+                name: "El Usuario de Plataformas Creativas y SaaS",
+                role: "Early Adopter / Trabajador Digital",
+                phrase: "Pruebo nuevas herramientas de IA y SaaS constantemente, pero nunca leo los ToS. Temo perder mi dinero por suscripciones trampa o que la plataforma se apropie de mis diseños.",
+                goals: "Proteger el capital contra suscripciones abusivas u ocultas. Asegurar la propiedad intelectual y el copyright del trabajo que sube a herramientas de terceros.",
+                frustrations: "Términos y condiciones incomprensibles de 50 páginas. Falta de tiempo. Miedo a perder derechos intelectuales por un engaño escondido en la jerga."
+            }
+        ],
+        process: [
+            {
+                icon: <Search size={20} />,
+                title: "01 Pivot: De Privacidad a Protección de Activos",
+                desc: "Originalmente enfocado en la privacidad contra las Big Tech, descubrí que el dolor real radica en las 'Trampas Financieras' y el 'Robo de IP' al probar nuevas apps.",
+                image: "/projects/trustlens/pivot.png"
+            },
+            {
+                icon: <Layout size={20} />,
+                title: "02 El \"Abogado de Bolsillo\"",
+                desc: "Diseñando la extensión de Chrome bajo la restricción técnica de 400x600px; resumiendo jerga legal en alertas visuales (🚨/⚠️), un Trust Score y un Dashboard de Ahorro.",
+                image: "/projects/trustlens/extension.png"
+            },
+            {
+                icon: <Zap size={20} />,
+                title: "03 El Motor Detrás de la Magia",
+                desc: "Para lograr procesar miles de palabras sin congelar la futura extensión, estoy implementando una arquitectura por fragmentos con resultados almacenados en Supabase. Esto evitará llamadas innecesarias a la IA, asegurando que el usuario reciba su Trust Score al instante y sin tiempos de carga frustrantes.",
+                image: "/projects/trustlens/architecture.png"
+            },
+            {
+                icon: <Users size={20} />,
+                title: "04 Validación #BuildInPublic",
+                desc: "Lanzamiento y validación temprana en comunidades tech. Creación de landing page con Next.js + Tailwind enfocada en captar leads y recolectar feedback de early adopters.",
+                image: "/projects/trustlens/landing.png"
+            }
+        ],
+        outcomes: [
+            { text: "Lanzamiento y validación del MVP con la comunidad.", icon: <CheckCircle size={24} /> },
+            { text: "Arquitectura híbrida escalable, determinista JSON.", icon: <Zap size={24} /> },
+            { text: "Reducción radical de la fricción al aceptar ToS.", icon: <TrendingUp size={24} /> }
+        ],
+        testimonial: {
+            title: "Visión del Founder",
+            text: "\"TrustLens demuestra cómo la IA puede devolverle el poder al usuario. Mi objetivo fue transformar documentos diseñados para confundir en herramientas de protección financiera y creativa, probando que viabilidad técnica y ética van de la mano.\"",
+            author: "Guillermo Moreno",
+            authorInitials: "GM",
+            company: "Product Builder"
+        },
+        liveUrl: "https://www.gettrustlens.com/"
     }
 };
 
-export const CaseStudy: React.FC<{ id: string }> = ({ id }) => {
+export const CaseStudy: React.FC<{
+    id: string;
+    onImageClick: (image: { src: string; title: string }) => void;
+}> = ({ id, onImageClick }) => {
     const project = PROJECTS_DATA[id] || PROJECTS_DATA["ecovis"];
-    const [selectedImage, setSelectedImage] = useState<{ src: string; title: string } | null>(null);
-
-    useEffect(() => {
-        const handleKeyDown = (e: KeyboardEvent) => {
-            if (e.key === 'Escape') setSelectedImage(null);
-        };
-        if (selectedImage) {
-            window.addEventListener('keydown', handleKeyDown);
-        }
-        return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [selectedImage]);
 
     return (
         <>
@@ -403,7 +455,7 @@ export const CaseStudy: React.FC<{ id: string }> = ({ id }) => {
                                     ) : step.image ? (
                                         <button
                                             className="relative block w-full h-full overflow-hidden outline-none focus-visible:ring-2 focus-visible:ring-brand-accent cursor-none"
-                                            onClick={() => setSelectedImage({ src: step.image as string, title: step.title })}
+                                            onClick={() => onImageClick({ src: step.image as string, title: step.title })}
                                             aria-label={`View larger image of ${step.title}`}
                                         >
                                             <motion.img
@@ -412,6 +464,10 @@ export const CaseStudy: React.FC<{ id: string }> = ({ id }) => {
                                                 alt={step.title}
                                                 loading="lazy"
                                                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                                onError={(e) => {
+                                                    const target = e.target as HTMLImageElement;
+                                                    target.src = `https://placehold.co/1280x720/1a1a1b/e9e3d5?text=${encodeURIComponent('En construcción...')}`;
+                                                }}
                                             />
                                             <div className="absolute inset-0 bg-brand-dark/0 group-hover:bg-brand-dark/10 transition-colors duration-500" />
                                         </button>
@@ -469,56 +525,6 @@ export const CaseStudy: React.FC<{ id: string }> = ({ id }) => {
                     </div>
                 </motion.section>
             </article>
-
-            {/* Full-screen Image Viewer */}
-            <AnimatePresence>
-                {selectedImage && (
-                    <div
-                        className="fixed inset-0 z-100 flex items-center justify-center p-6 md:p-12 lg:p-20"
-                        role="dialog"
-                        aria-modal="true"
-                        aria-label="Image viewer"
-                    >
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            onClick={() => setSelectedImage(null)}
-                            className="absolute inset-0 bg-brand-dark/95 backdrop-blur-md cursor-zoom-out"
-                        />
-
-                        <motion.button
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            exit={{ opacity: 0, scale: 0.8 }}
-                            onClick={() => setSelectedImage(null)}
-                            className="absolute top-8 right-8 text-white/50 hover:text-white transition-colors z-110 cursor-none"
-                            aria-label="Cerrar"
-                        >
-                            <X size={32} />
-                        </motion.button>
-
-                        <motion.div className="relative z-105 flex flex-col items-center justify-center p-4 max-w-7xl w-full pointer-events-none">
-                            <motion.img
-                                layoutId={`image-${selectedImage.src}`}
-                                src={selectedImage.src}
-                                alt={selectedImage.title}
-                                className="h-auto max-h-[80vh] w-auto max-w-full rounded-2xl shadow-2xl pointer-events-auto"
-                            />
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: 20 }}
-                                className="mt-8 text-center"
-                            >
-                                <h3 className="font-serif text-2xl text-brand-cream tracking-tight">
-                                    {selectedImage.title}
-                                </h3>
-                            </motion.div>
-                        </motion.div>
-                    </div>
-                )}
-            </AnimatePresence>
         </>
     );
 };

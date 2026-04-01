@@ -80,6 +80,10 @@ export const UIArchive: React.FC = () => {
                                         className="w-full h-full object-cover"
                                         whileHover={{ scale: 1.05 }}
                                         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                                        onError={(e) => {
+                                            const target = e.target as HTMLImageElement;
+                                            target.src = `https://placehold.co/800x600/1a1a1b/e9e3d5?text=${encodeURIComponent('En construcción...')}`;
+                                        }}
                                     />
                                 ) : (
                                     <div className="w-full h-full bg-linear-to-br from-brand-dark/5 to-brand-accent/5" />
@@ -134,6 +138,10 @@ export const UIArchive: React.FC = () => {
                                 src={selectedItem.image}
                                 alt={selectedItem.title}
                                 className="h-auto max-h-[85vh] w-auto max-w-full rounded-2xl shadow-[0_32px_64px_-16px_rgba(0,0,0,0.5)] pointer-events-auto"
+                                onError={(e) => {
+                                    const target = e.target as HTMLImageElement;
+                                    target.src = `https://placehold.co/1280x720/1a1a1b/e9e3d5?text=${encodeURIComponent('En construcción...')}`;
+                                }}
                             />
 
                             <motion.div

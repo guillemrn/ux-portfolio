@@ -41,6 +41,10 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
                             loading={index === 0 ? "eager" : "lazy"}
                             {...(index === 0 ? { fetchpriority: "high" } : {})}
                             className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                            onError={(e) => {
+                                const target = e.target as HTMLImageElement;
+                                target.src = `https://placehold.co/1280x720/1a1a1b/e9e3d5?text=${encodeURIComponent('En construcción...')}`;
+                            }}
                         />
                         {/* Subtle overlay */}
                         <div className="absolute inset-0 bg-brand-dark/0 group-hover:bg-brand-dark/5 transition-colors duration-500" />

@@ -23,13 +23,22 @@ export const PROJECTS: ProjectData[] = [
         tags: ['UX Strategy', 'Research', 'Figma'],
         layout: 'vertical'
     },
+    // {
+    //     id: 'invitaciones-digitales',
+    //     category: 'SaaS & Mobile',
+    //     title: 'Invitaciones Digitales: Productizando la Gestión de Eventos',
+    //     description: 'Eliminando la fricción logística mediante un modelo "Done-For-You" y validación por QR en puerta.',
+    //     imageUrl: '/projects/events-saas.png',
+    //     tags: ['Product', 'Mobile-First'],
+    //     layout: 'vertical'
+    // },
     {
-        id: 'invitaciones-digitales',
-        category: 'SaaS & Mobile',
-        title: 'Invitaciones Digitales: Productizando la Gestión de Eventos',
-        description: 'Eliminando la fricción logística mediante un modelo "Done-For-You" y validación por QR en puerta.',
-        imageUrl: '/projects/events-saas.png',
-        tags: ['Product', 'Mobile-First'],
+        id: 'trustlens',
+        category: 'AI & SaaS',
+        title: 'TrustLens: De "punto ciego" legal a escudo financiero con IA',
+        description: 'Extensión de Chrome impulsada por IA que traduce términos de servicio complejos en insights claros para proteger el capital y la IP.',
+        imageUrl: '/projects/trustlens/hero.png',
+        tags: ['AI Product', 'UX/UI', 'Extension'],
         layout: 'vertical'
     }
 ];
