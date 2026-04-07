@@ -6,13 +6,22 @@ import { ProjectCard, type ProjectData } from './ProjectCard';
 // eslint-disable-next-line react-refresh/only-export-components
 export const PROJECTS: ProjectData[] = [
     {
+        id: 'trustlens',
+        category: 'AI & SaaS',
+        title: 'TrustLens: De "punto ciego" legal a escudo financiero con IA',
+        description: 'Extensión de Chrome impulsada por IA que traduce términos de servicio complejos en insights claros para proteger el capital y la IP.',
+        imageUrl: '/projects/trustlens/hero.png',
+        tags: ['AI Product', 'UX/UI', 'Extension'],
+        layout: 'horizontal'
+    },
+    {
         id: 'ecovis',
         category: 'B2B & CRO',
         title: 'Ecovis México: Optimizando la Conversión B2B',
         description: 'Rediseño estratégico enfocado en transformar un catálogo industrial en una herramienta de generación de leads.',
         imageUrl: '/projects/ecovis/b2b-leads.png',
         tags: ['UX Audit', 'CRO', 'SEO'],
-        layout: 'horizontal'
+        layout: 'vertical'
     },
     {
         id: 'maternar',
@@ -32,15 +41,6 @@ export const PROJECTS: ProjectData[] = [
     //     tags: ['Product', 'Mobile-First'],
     //     layout: 'vertical'
     // },
-    {
-        id: 'trustlens',
-        category: 'AI & SaaS',
-        title: 'TrustLens: De "punto ciego" legal a escudo financiero con IA',
-        description: 'Extensión de Chrome impulsada por IA que traduce términos de servicio complejos en insights claros para proteger el capital y la IP.',
-        imageUrl: '/projects/trustlens/hero.png',
-        tags: ['AI Product', 'UX/UI', 'Extension'],
-        layout: 'vertical'
-    }
 ];
 
 export const ProjectsGrid: React.FC = () => {
