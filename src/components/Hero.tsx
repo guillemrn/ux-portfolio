@@ -12,7 +12,7 @@ export const Hero: React.FC = () => {
                 <div className="animate-fade-in-up flex flex-col items-start gap-4 z-10">
                     {/* Refined Typography - H1 Serif */}
                     <h1 className="text-5xl md:text-6xl lg:text-6xl leading-[1.1] tracking-tighter text-brand-dark font-serif pb-8 w-full">
-                        Transformo problemas complejos en productos digitales viables
+                        Diseño productos digitales que convierten insights en impacto de negocio.
                     </h1>
 
                     {/* Subtitle - Sans-Serif */}
@@ -28,7 +28,7 @@ export const Hero: React.FC = () => {
                                 iconLeft={<ArrowDown size={20} strokeWidth={3} />}
                                 className="w-full md:w-fit text-sm uppercase tracking-widest font-black py-5 px-10"
                             >
-                                Ver Proyectos
+                                Ver casos de estudio
                             </PillButton>
 
                             <PillButton
