@@ -346,7 +346,7 @@ export const CaseStudy: React.FC<{
                 >
                     <motion.div variants={fadeInUp} className="flex flex-col gap-8">
                         <h2 className="font-serif text-3xl md:text-5xl text-brand-dark leading-tight tracking-tighter">
-                            El Reto y la Situación
+                            El Reto y la Situación<span className="text-brand-accent">.</span>
                         </h2>
                         <p className="font-sans text-brand-dark/80 text-xl md:text-2xl leading-relaxed">
                             {project.overview} <span className="text-brand-dark font-medium">{project.problem}</span>
@@ -435,11 +435,11 @@ export const CaseStudy: React.FC<{
                             <motion.div key={idx} variants={fadeInUp} className={`grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center`}>
                                 {/* Text Content */}
                                 <div className={`flex flex-col gap-6 w-full ${isEven ? 'md:order-1 text-left' : 'md:order-2 md:text-right text-left'}`}>
-                                    <div className={`w-14 h-14 rounded-full bg-brand-dark/5 flex items-center justify-center text-brand-dark shadow-sm ${isEven ? '' : 'md:ml-auto'}`}>
+                                    <div className={`w-12 h-12 rounded-full bg-brand-accent/10 text-brand-dark border border-brand-accent/20 flex items-center justify-center shadow-sm ${isEven ? '' : 'md:ml-auto'}`}>
                                         {step.icon}
                                     </div>
                                     <h3 className="font-serif text-3xl md:text-4xl text-brand-dark leading-tight">
-                                        {step.title}
+                                        {step.title}<span className="text-brand-accent">.</span>
                                     </h3>
                                     <p className="font-sans text-brand-dark/80 text-lg md:text-xl leading-relaxed">
                                         {step.desc}
@@ -448,7 +448,7 @@ export const CaseStudy: React.FC<{
 
                                 {/* Image Placeholder or Visual Component */}
                                 <div
-                                    className={`w-full aspect-square md:aspect-4/3 bg-white rounded-3xl overflow-hidden border border-brand-dark/5 shadow-2xl shadow-brand-dark/5 ${isEven ? 'md:order-2' : 'md:order-1'} flex items-center justify-center p-6 md:p-12 ${step.image ? 'group' : ''}`}
+                                    className={`w-full aspect-square md:aspect-4/3 bg-white rounded-3xl overflow-hidden border border-brand-cream-dark/10 hover:border-brand-accent/40 hover:shadow-[0_20px_40px_rgba(41,208,103,0.06)] transition-all duration-500 ${isEven ? 'md:order-2' : 'md:order-1'} flex items-center justify-center p-6 md:p-12 ${step.image ? 'group' : ''}`}
                                 >
                                     {step.visual ? (
                                         step.visual
@@ -463,7 +463,7 @@ export const CaseStudy: React.FC<{
                                                 src={step.image}
                                                 alt={step.title}
                                                 loading="lazy"
-                                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                                                 onError={(e) => {
                                                     const target = e.target as HTMLImageElement;
                                                     target.src = `https://placehold.co/1280x720/1a1a1b/e9e3d5?text=${encodeURIComponent('En construcción...')}`;
@@ -485,16 +485,21 @@ export const CaseStudy: React.FC<{
                 {/* 3. The Impact (Dark Section Full-Width) */}
                 <div data-theme="dark" className="w-screen relative left-1/2 ml-[-50vw] bg-brand-dark py-32 md:py-48 px-6">
                     <div className="max-w-5xl mx-auto flex flex-col items-center">
-                        <h2 className="font-serif text-4xl md:text-6xl text-brand-cream tracking-tighter mb-20 text-center">
-                            Resultados Clave
+                        {/* Pulsing indicator badge for outcomes */}
+                        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-accent/10 border border-brand-accent/30 text-brand-accent font-sans font-black text-[9px] uppercase tracking-widest mb-4 shadow-[0_4px_16px_rgba(41,208,103,0.15)]">
+                            <span className="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
+                            03 / OUTCOMES & IMPACT
+                        </div>
+                        <h2 className="font-serif text-4xl md:text-6xl text-brand-cream tracking-tighter mb-20 text-center leading-tight">
+                            Resultados Clave<span className="text-brand-accent">.</span>
                         </h2>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-24 text-center">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10 w-full">
                             {project.outcomes.map((outcome, idx) => (
-                                <motion.div key={idx} variants={fadeInUp} initial="initial" whileInView="animate" viewport={{ once: true }} className="flex flex-col items-start text-left gap-4 md:gap-5">
+                                <motion.div key={idx} variants={fadeInUp} initial="initial" whileInView="animate" viewport={{ once: true }} className="flex flex-col items-start text-left gap-6 p-8 rounded-[2rem] bg-white/5 border border-white/10 hover:border-brand-accent/30 hover:shadow-[0_16px_32px_rgba(41,208,103,0.04)] transition-all duration-500 w-full">
                                     <div className="text-brand-accent">
-                                        {React.isValidElement(outcome.icon) ? React.cloneElement(outcome.icon as React.ReactElement<{ size?: number, strokeWidth?: number }>, { size: 40, strokeWidth: 1.5 }) : outcome.icon}
+                                        {React.isValidElement(outcome.icon) ? React.cloneElement(outcome.icon as React.ReactElement<{ size?: number, strokeWidth?: number }>, { size: 36, strokeWidth: 1.5 }) : outcome.icon}
                                     </div>
-                                    <span className="font-sans text-brand-cream text-lg md:text-xl leading-relaxed font-medium">
+                                    <span className="font-sans text-brand-cream text-base md:text-lg leading-relaxed font-medium">
                                         {outcome.text}
                                     </span>
                                 </motion.div>
@@ -510,12 +515,17 @@ export const CaseStudy: React.FC<{
                     initial="initial"
                     whileInView="animate"
                     viewport={{ once: true }}
-                    className="w-full max-w-5xl mx-auto bg-brand-cream p-12 md:p-20 rounded-4xl flex flex-col items-center text-center gap-12"
+                    className="w-full max-w-5xl mx-auto bg-brand-cream p-12 md:p-20 rounded-4xl border border-brand-cream-dark/10 hover:border-brand-accent/20 transition-all duration-500 flex flex-col items-center text-center gap-8"
                 >
+                    {/* Premium Pulsing Neon Green Badge */}
+                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-accent/10 border border-brand-accent/30 text-brand-dark font-sans font-black text-[9px] uppercase tracking-widest shadow-[0_4px_16px_rgba(41,208,103,0.08)] mb-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
+                        04 / TESTIMONIAL & VALIDATION
+                    </div>
                     <h3 className="font-serif text-xl md:text-3xl lg:text-4xl text-brand-dark leading-[1.3] tracking-tight italic max-w-4xl">
                         "{project.testimonial.text.replace(/"/g, '')}"
                     </h3>
-                    <div className="flex flex-col items-center gap-2">
+                    <div className="flex flex-col items-center gap-2 mt-4">
                         <span className="font-sans text-brand-dark text-sm tracking-[0.2em] uppercase font-black">
                             {project.testimonial.author}
                         </span>

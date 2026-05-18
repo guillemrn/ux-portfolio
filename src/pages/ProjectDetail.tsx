@@ -43,14 +43,20 @@ export const ProjectDetail: React.FC = () => {
             </div>
 
             {/* Immersive Hero Header */}
-            <div className="w-full px-6 md:px-12 max-w-5xl mx-auto mb-16 md:mb-24 flex flex-col items-start gap-12">
-                {/* H1 Gigante */}
+            <div className="w-full px-6 md:px-12 max-w-5xl mx-auto mb-16 md:mb-24 flex flex-col items-start gap-8">
+                {/* Premium Pulsing Neon Green Badge */}
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-accent/10 border border-brand-accent/30 text-brand-dark font-sans font-black text-[9px] uppercase tracking-widest shadow-[0_4px_16px_rgba(41,208,103,0.08)]">
+                    <span className="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
+                    CASE STUDY & ARCHITECTURE / {project.metadata["Industry"] || "Product Design"}
+                </div>
+
+                {/* H1 Gigante - detailed with neon green accent period */}
                 <h1 className="font-serif text-5xl md:text-7xl lg:text-[6rem] text-brand-dark leading-[1.05] tracking-tighter max-w-5xl">
-                    {project.title}
+                    {project.title}<span className="text-brand-accent">.</span>
                 </h1>
 
-                {/* Info & CTA Block - Wrapped in Cream Container */}
-                <div className="w-full bg-brand-cream p-8 md:p-12 rounded-[2.5rem] flex flex-col gap-8">
+                {/* Info & CTA Block - Wrapped in Cream Container with Premium Hover */}
+                <div className="w-full bg-brand-cream p-8 md:p-12 rounded-[2.5rem] border border-brand-cream-dark/10 hover:border-brand-accent/30 transition-all duration-500 flex flex-col gap-8">
                     {/* Row 1: Metadata Grid */}
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-x-12 gap-y-10 w-full">
                         <div className="flex flex-col gap-1">

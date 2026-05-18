@@ -11,11 +11,12 @@ export const Footer: React.FC = () => {
 
                     {/* Left Column - Elegant Serif Typography */}
                     <div className="w-full lg:w-1/2 flex flex-col items-start gap-6">
-                        <span className="font-sans text-[10px] uppercase tracking-[0.2em] font-black text-brand-accent/80 block">
+                        <span className="font-sans text-[10px] uppercase tracking-[0.2em] font-black text-brand-accent/80 flex items-center gap-2 mb-2">
+                            <span className="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
                             Abierto a nuevas oportunidades
                         </span>
-                        <h2 className="text-4xl md:text-5xl lg:text-7xl leading-[1.1] tracking-tighter font-serif text-white w-full animate-fade-in-up">
-                            ¿Hablamos de tu próximo reto de producto?
+                        <h2 className="text-4xl md:text-5xl lg:text-7xl leading-[1.12] tracking-tighter font-serif text-white w-full animate-fade-in-up">
+                            ¿Hablamos de tu próximo reto de producto<span className="text-brand-accent">?</span>
                         </h2>
                     </div>
 

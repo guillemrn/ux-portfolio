@@ -33,27 +33,19 @@ export const UIArchive: React.FC = () => {
 
     return (
         <section data-theme="light" className="w-full py-32 px-6 md:px-12 lg:px-20 bg-white" id="archive">
-            <div className="max-w-5xl mx-auto">
-                {/* Section Header */}
-                <div className="mb-20">
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8 }}
-                        className="font-serif text-4xl md:text-5xl text-brand-dark mb-6 tracking-tight leading-none"
-                    >
-                        UI Archive & Explorations
-                    </motion.h2>
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8, delay: 0.1 }}
-                        className="font-sans text-brand-dark/70 text-base md:text-lg max-w-sm leading-relaxed"
-                    >
-                        Interfaces limpias, prototipos y experimentación visual enfocada en la estética funcional.
-                    </motion.p>
+            <div className="max-w-6xl mx-auto">
+                {/* Premium Pulsing Neon Green Badge & Centered Heading */}
+                <div className="flex flex-col items-center text-center mb-16">
+                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-accent/10 border border-brand-accent/30 text-brand-dark font-sans font-black text-[9px] uppercase tracking-widest mb-4 shadow-[0_4px_16px_rgba(41,208,103,0.08)]">
+                        <span className="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
+                        02 / LABS & EXPLORATIONS
+                    </div>
+                    <h2 className="text-4xl md:text-5xl font-serif text-brand-dark tracking-tighter max-w-2xl mb-4 leading-tight">
+                        UI Archive & Prototipado Técnico<span className="text-brand-accent">.</span>
+                    </h2>
+                    <p className="font-sans text-brand-dark/70 text-base md:text-lg max-w-lg leading-relaxed">
+                        Exploraciones de interfaz, interacciones avanzadas y prototipos experimentales que validan la estética y la técnica.
+                    </p>
                 </div>
 
                 {/* Gallery Grid */}
@@ -65,7 +57,7 @@ export const UIArchive: React.FC = () => {
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.6, delay: index * 0.1 }}
-                            className={`${item.span || 'md:col-span-4'} relative rounded-2xl overflow-hidden group cursor-none border border-brand-dark/10 w-full text-left`}
+                            className={`${item.span || 'md:col-span-4'} relative rounded-2xl overflow-hidden group cursor-none border border-brand-dark/10 hover:border-brand-accent/40 hover:shadow-[0_20px_40px_rgba(41,208,103,0.06)] transition-all duration-500 w-full text-left`}
                             onClick={() => setSelectedItem(item)}
                             aria-label={`View full project: ${item.title}`}
                         >
@@ -90,13 +82,14 @@ export const UIArchive: React.FC = () => {
                                 )}
                             </div>
 
-                            {/* Hover Overlay */}
-                            <div className="absolute inset-0 bg-brand-dark/0 group-hover:bg-brand-dark/40 transition-colors duration-500 flex items-center justify-center opacity-0 group-hover:opacity-100">
-                                <div className="flex flex-col items-center">
-                                    <span className="font-sans text-[10px] uppercase tracking-[0.2em] font-black text-white mb-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                                        {item.category}
-                                    </span>
-                                </div>
+                            {/* Hover Overlay - Ultra-premium Backdrop Blur Glassmorphism with Title & Category */}
+                            <div className="absolute inset-0 bg-brand-dark/40 backdrop-blur-xs opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col items-center justify-center gap-2 p-6 text-center">
+                                <span className="font-sans text-[10px] uppercase tracking-[0.2em] font-black text-brand-accent bg-brand-dark/80 px-4 py-2 rounded-full border border-brand-accent/30 shadow-[0_4px_16px_rgba(41,208,103,0.15)] transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 ease-out">
+                                    {item.category}
+                                </span>
+                                <span className="font-serif text-lg md:text-xl text-white font-medium transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 ease-out delay-75">
+                                    {item.title}
+                                </span>
                             </div>
                         </motion.button>
                     ))}

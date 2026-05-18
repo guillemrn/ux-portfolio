@@ -50,11 +50,17 @@ export const ProjectsGrid: React.FC = () => {
             className="w-full pt-32 pb-40 px-6 md:px-12 lg:px-20 bg-brand-cream relative"
             id="work"
         >
-            <div className="max-w-5xl mx-auto">
-                {/* Section Title */}
-                <h2 className="text-4xl md:text-5xl font-serif text-brand-dark mb-16">
-                    Selected Work
-                </h2>
+            <div className="max-w-6xl mx-auto">
+                {/* Premium Pulsing Neon Green Badge & Editorial Title */}
+                <div className="flex flex-col items-center text-center mb-16">
+                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-accent/10 border border-brand-accent/30 text-brand-dark font-sans font-black text-[9px] uppercase tracking-widest mb-4 shadow-[0_4px_16px_rgba(41,208,103,0.08)]">
+                        <span className="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
+                        01 / SELECTED WORK
+                    </div>
+                    <h2 className="text-4xl md:text-5xl font-serif text-brand-dark tracking-tighter max-w-2xl leading-tight">
+                        Casos de estudio enfocados en impacto y conversión<span className="text-brand-accent">.</span>
+                    </h2>
+                </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8 mb-16">
                     {PROJECTS.map((project, index) => (
