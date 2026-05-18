@@ -202,7 +202,8 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
             author: "Comunidad Maternar",
             authorInitials: "M",
             company: "Fundación Maternar"
-        }
+        },
+        liveUrl: "https://www.figma.com/design/GhQLTFzQK0UhUEKPfbTqH6/Maternar?node-id=75-1673&t=XbszKEceXJpW8dre-1"
     },
     "invitaciones-digitales": {
         title: "Invitaciones Digitales: Productizando la Gestión de Eventos",
