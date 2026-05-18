@@ -18,7 +18,7 @@ export const Hero: React.FC = () => {
 
                 {/* Refined Typography - H1 Serif (Made wider and detailed in neon green) */}
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.12] tracking-tighter text-brand-dark font-serif max-w-6xl">
-                    Diseño productos digitales <span className="text-brand-accent">accesibles</span> que las personas realmente pueden usar<span className="text-brand-accent">.</span>
+                    Diseño productos digitales <span className="relative inline-block px-1 text-brand-dark z-10">accesibles<span className="absolute bottom-1 sm:bottom-2 left-0 w-full h-[0.22em] bg-brand-accent -z-10 rounded-full" /></span> que las personas realmente pueden usar<span className="text-brand-accent">.</span>
                 </h1>
 
                 {/* Details Wrapper - Centered Editorial Layout (Made wider) */}

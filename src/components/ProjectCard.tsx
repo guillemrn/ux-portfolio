@@ -58,7 +58,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
                         </span>
 
                         {/* Title - Slids in elegant neon green arrow on hover */}
-                        <h3 className="font-serif text-xl md:text-2xl lg:text-3xl text-brand-dark tracking-tighter leading-tight mb-4 flex items-baseline justify-between gap-4 group-hover:text-brand-accent transition-colors duration-500">
+                        <h3 className="font-serif text-xl md:text-2xl lg:text-3xl text-brand-dark tracking-tighter leading-tight mb-4 flex items-baseline justify-between gap-4 transition-colors duration-500">
                             <span>{project.title}</span>
                             <span className="text-brand-accent opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-500 ease-out font-sans font-bold text-lg md:text-xl lg:text-2xl shrink-0">
                                 →
