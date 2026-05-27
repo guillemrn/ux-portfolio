@@ -10,7 +10,7 @@ export const PROJECTS: ProjectData[] = [
         category: 'AI & SaaS',
         title: 'TrustLens: De "punto ciego" legal a escudo financiero con IA',
         description: 'Extensión de Chrome impulsada por IA que traduce términos de servicio complejos en insights claros para proteger el capital y la IP.',
-        imageUrl: '/projects/trustlens/hero.png',
+        imageUrl: '/projects/trustlens/TrustLens - v1.0 - High risk.png',
         tags: ['AI Product', 'UX/UI', 'Extension'],
         layout: 'horizontal'
     },
@@ -28,7 +28,7 @@ export const PROJECTS: ProjectData[] = [
         category: 'UX Research & Social',
         title: 'Maternar: Diseñando una Red de Apoyo para Madres',
         description: 'Pivote estratégico de una app de donaciones a un ecosistema de apoyo para resolver la soledad materna.',
-        imageUrl: '/projects/maternar/maternar.png',
+        imageUrl: '/projects/maternar/Home - Dark theme.png',
         tags: ['UX Strategy', 'Research', 'Figma'],
         layout: 'vertical'
     },

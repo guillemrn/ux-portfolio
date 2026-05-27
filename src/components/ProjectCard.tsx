@@ -40,7 +40,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
                             alt={`Thumbnail for ${project.title}`}
                             loading={index === 0 ? "eager" : "lazy"}
                             {...(index === 0 ? { fetchpriority: "high" } : {})}
-                            className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                            className={`w-full h-full ${project.imageUrl.toLowerCase().includes('trustlens') || project.imageUrl.toLowerCase().includes('maternar') ? 'object-contain p-6 bg-brand-dark/95' : 'object-cover'} transition-transform duration-700 ease-out group-hover:scale-[1.03]`}
                             onError={(e) => {
                                 const target = e.target as HTMLImageElement;
                                 target.src = `https://placehold.co/1280x720/1a1a1b/e9e3d5?text=${encodeURIComponent('En construcción...')}`;

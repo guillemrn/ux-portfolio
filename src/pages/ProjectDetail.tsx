@@ -35,82 +35,79 @@ export const ProjectDetail: React.FC = () => {
             className="pt-16 bg-white min-h-screen relative z-10 w-full flex flex-col"
         >
             {/* Top Navigation - Sutil Back Button */}
-            <div className="w-full px-6 md:px-12 flex items-center justify-start mb-16 md:mb-24 relative">
-                <Link to="/#work" className="group flex items-center gap-2 text-brand-dark hover:text-brand-accent transition-colors duration-300 no-underline">
-                    <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform duration-300" />
-                    <span className="font-sans text-xs uppercase tracking-widest font-bold">Volver</span>
+            <div className="w-full px-6 md:px-12 flex items-center justify-start mb-12 md:mb-16 relative">
+                <Link to="/#work" className="group flex items-center gap-3 text-brand-dark hover:text-brand-accent transition-all duration-300 no-underline cursor-none">
+                    <div className="w-8 h-8 rounded-full border border-brand-dark/10 flex items-center justify-center group-hover:border-brand-accent/40 group-hover:bg-brand-accent/5 transition-all duration-300">
+                        <ArrowLeft size={14} className="group-hover:-translate-x-0.5 transition-transform duration-300 text-brand-dark group-hover:text-brand-accent" />
+                    </div>
+                    <span className="font-sans text-[10px] uppercase tracking-widest font-black text-brand-dark/70 group-hover:text-brand-dark">Volver a Proyectos</span>
                 </Link>
             </div>
 
-            {/* Immersive Hero Header */}
-            <div className="w-full px-6 md:px-12 max-w-5xl mx-auto mb-16 md:mb-24 flex flex-col items-start gap-8">
-                {/* Premium Pulsing Neon Green Badge */}
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-accent/10 border border-brand-accent/30 text-brand-dark font-sans font-black text-[9px] uppercase tracking-widest shadow-[0_4px_16px_rgba(41,208,103,0.08)]">
-                    <span className="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
-                    CASE STUDY & ARCHITECTURE / {project.metadata["Industry"] || "Product Design"}
+            {/* Immersive Hero Header (Editorial Grid) */}
+            <div className="w-full px-6 md:px-12 max-w-5xl mx-auto mb-16 md:mb-24 flex flex-col gap-12 relative">
+                
+                {/* Thin top divider */}
+                <div className="w-full h-px bg-brand-dark/10 relative">
+                    <div className="absolute right-0 top-0 -translate-y-1/2 font-sans text-[9px] uppercase tracking-[0.25em] font-black text-brand-accent bg-white pl-4">
+                        PROYECTO / {project.metadata["Timeline"] ? project.metadata["Timeline"].toUpperCase() : "SPRINT ÁGIL"}
+                    </div>
                 </div>
 
-                {/* H1 Gigante - detailed with neon green accent period */}
-                <h1 className="font-serif text-5xl md:text-7xl lg:text-[6rem] text-brand-dark leading-[1.05] tracking-tighter max-w-5xl">
-                    {project.title}<span className="text-brand-accent">.</span>
-                </h1>
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                    {/* Left Column: Title & Subtitle */}
+                    <div className="lg:col-span-8 flex flex-col gap-6">
+                        {/* Premium Pulsing Neon Green Badge */}
+                        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-accent/10 border border-brand-accent/30 text-brand-dark font-sans font-black text-[9px] uppercase tracking-widest shadow-[0_4px_16px_rgba(41,208,103,0.08)] max-w-fit">
+                            <span className="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
+                            CASE STUDY & UX DESIGN / {project.metadata["Industry"] || "Product Design"}
+                        </div>
 
-                {/* Info & CTA Block - Wrapped in Cream Container with Premium Hover */}
-                <div className="w-full bg-brand-cream p-8 md:p-12 rounded-[2.5rem] border border-brand-cream-dark/10 hover:border-brand-accent/30 transition-all duration-500 flex flex-col gap-8">
-                    {/* Row 1: Metadata Grid */}
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-x-12 gap-y-10 w-full">
-                        <div className="flex flex-col gap-1">
-                            <span className="font-sans text-[10px] uppercase tracking-[0.2em] font-black text-brand-dark/70">Rol</span>
-                            <span className="font-sans text-brand-dark text-base md:text-lg font-medium">{project.metadata["My Role"]}</span>
-                        </div>
-                        <div className="flex flex-col gap-1">
-                            <span className="font-sans text-[10px] uppercase tracking-[0.2em] font-black text-brand-dark/70">Industria</span>
-                            <span className="font-sans text-brand-dark text-base md:text-lg font-medium">{project.metadata["Industry"]}</span>
-                        </div>
-                        <div className="flex flex-col gap-1">
-                            <span className="font-sans text-[10px] uppercase tracking-[0.2em] font-black text-brand-dark/70">Entregables</span>
-                            <span className="font-sans text-brand-dark text-base md:text-lg font-medium leading-relaxed">{project.metadata["Deliverables"]}</span>
-                        </div>
+                        {/* H1 Gigante - detailed with neon green accent period */}
+                        <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl text-brand-dark leading-[1.08] tracking-tighter">
+                            {project.title}<span className="text-brand-accent">.</span>
+                        </h1>
+                        
+                        {/* Elegant italic summary */}
+                        <p className="font-serif text-xl md:text-2xl text-brand-dark/80 italic leading-relaxed font-normal max-w-3xl mt-2 border-l-2 border-brand-accent pl-6">
+                            {project.subtitle}
+                        </p>
                     </div>
 
-                    {/* Row 2: Live URL CTA - Left Aligned */}
-                    {project.liveUrl && (
-                        <div className="w-full flex justify-start border-t border-brand-dark/5 pt-8">
-                            <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="block w-full sm:w-fit">
+                    {/* Right Column: Metadata details in an elegant editorial sheet */}
+                    <div className="lg:col-span-4 lg:border-l lg:border-brand-dark/10 lg:pl-10 flex flex-col gap-8 w-full">
+                        <div className="flex flex-col gap-6">
+                            <div className="flex flex-col gap-1.5 pb-4 border-b border-brand-dark/5">
+                                <span className="font-sans text-[9px] uppercase tracking-[0.25em] font-black text-brand-dark/50">Rol Técnico</span>
+                                <span className="font-serif text-lg text-brand-dark font-semibold">{project.metadata["My Role"]}</span>
+                            </div>
+                            <div className="flex flex-col gap-1.5 pb-4 border-b border-brand-dark/5">
+                                <span className="font-sans text-[9px] uppercase tracking-[0.25em] font-black text-brand-dark/50">Sector / Industria</span>
+                                <span className="font-serif text-lg text-brand-dark font-semibold">{project.metadata["Industry"]}</span>
+                            </div>
+                            <div className="flex flex-col gap-1.5 pb-4 border-b border-brand-dark/5">
+                                <span className="font-sans text-[9px] uppercase tracking-[0.25em] font-black text-brand-dark/50">Línea de Trabajo</span>
+                                <span className="font-serif text-lg text-brand-dark font-semibold leading-relaxed">{project.metadata["Deliverables"]}</span>
+                            </div>
+                        </div>
+
+                        {/* Live URL CTA - Beautifully integrated as an editorial button */}
+                        {project.liveUrl && (
+                            <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="block w-full cursor-none">
                                 <PillButton
                                     variant="accent"
-                                    iconRight={<ArrowUpRight size={18} strokeWidth={3} />}
-                                    className="w-full sm:w-fit whitespace-nowrap text-xs uppercase tracking-widest font-black py-4 px-10 shadow-xl shadow-brand-accent/20"
+                                    iconRight={<ArrowUpRight size={16} strokeWidth={3} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />}
+                                    className="w-full justify-between text-[10px] uppercase tracking-widest font-black py-4 px-8 shadow-lg shadow-brand-accent/15 group hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
                                 >
-                                    Ver Proyecto en Vivo
+                                    Ver en Vivo
                                 </PillButton>
                             </a>
-                        </div>
-                    )}
+                        )}
+                    </div>
                 </div>
             </div>
 
-            {/* Full-width Image Placeholder / Hero Image */}
-            <div className="w-full px-6 md:px-12 mb-24 md:mb-40">
-                <div className="w-full max-w-5xl mx-auto aspect-video md:aspect-21/9 bg-brand-dark/5 rounded-3xl overflow-hidden relative group">
-                    <button
-                        className="w-full h-full block cursor-none pointer-events-auto"
-                        onClick={() => setSelectedImage({ src: project.heroImage, title: project.title })}
-                        aria-label={`View full image: ${project.title}`}
-                    >
-                        <img
-                            src={project.heroImage}
-                            alt={`${project.title} Preview`}
-                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                            onError={(e) => {
-                                const target = e.target as HTMLImageElement;
-                                target.src = `https://placehold.co/1920x1080/1a1a1b/e9e3d5?text=${encodeURIComponent('En construcción...')}`;
-                            }}
-                        />
-                        <div className="absolute inset-0 bg-brand-dark/0 group-hover:bg-brand-dark/10 transition-colors duration-500" />
-                    </button>
-                </div>
-            </div>
+
 
             {/* Main Content Component */}
             <CaseStudy id={projectId} onImageClick={setSelectedImage} />
