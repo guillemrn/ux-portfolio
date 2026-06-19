@@ -1144,7 +1144,7 @@ const ProcessBoard: React.FC<{
                 </div>
 
                 {/* Right side: Active Visual Artifact Stage */}
-                <div className="lg:col-span-7 flex items-center justify-center relative min-h-[420px] w-full">
+                <div className="hidden lg:flex lg:col-span-7 items-center justify-center relative min-h-[420px] w-full">
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={activeStep}
