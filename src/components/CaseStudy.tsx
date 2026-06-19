@@ -247,6 +247,84 @@ const TrustLensFlowchart: React.FC = () => {
     );
 };
 
+// TrustLens Landing Page Lead Simulator
+const TrustLensLandingSim: React.FC = () => {
+    const [email, setEmail] = useState('');
+    const [submitted, setSubmitted] = useState(false);
+    const [subscribers, setSubscribers] = useState(142);
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (email.trim() && email.includes('@')) {
+            setSubmitted(true);
+            setSubscribers(prev => prev + 1);
+            setTimeout(() => {
+                setSubmitted(false);
+                setEmail('');
+            }, 3000);
+        }
+    };
+
+    return (
+        <div className="w-full flex flex-col p-6 bg-brand-dark border border-brand-accent/20 rounded-3xl gap-5 shadow-xl text-left relative min-h-[300px] justify-between">
+            <div className="absolute top-4 left-4 font-sans text-[8px] uppercase tracking-widest font-black text-brand-accent">
+                Next.js Landing / Simulación Captura Leads
+            </div>
+
+            <div className="flex flex-col gap-3 mt-6">
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-brand-accent/15 border border-brand-accent/35 text-brand-accent font-sans font-bold text-[8px] uppercase tracking-widest max-w-fit">
+                    <span className="w-1 h-1 rounded-full bg-brand-accent animate-pulse" />
+                    BETA PÚBLICA PRÓXIMAMENTE
+                </div>
+                <h4 className="font-serif text-lg text-brand-cream font-bold leading-tight">
+                    Traduce la "letra chica" del software a insights claros
+                </h4>
+                <p className="font-sans text-[10px] text-white/60 leading-relaxed">
+                    Evita suscripciones trampa y protege tus activos digitales con el detector de cláusulas con Inteligencia Artificial.
+                </p>
+            </div>
+
+            <div className="bg-white/5 p-4 rounded-xl border border-white/5 flex flex-col gap-3">
+                {submitted ? (
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        className="flex flex-col items-center justify-center text-center py-2"
+                    >
+                        <span className="w-6 h-6 rounded-full bg-brand-accent/20 border border-brand-accent/40 flex items-center justify-center text-brand-accent font-bold text-xs mb-1.5">✓</span>
+                        <span className="font-sans text-[10px] font-bold text-brand-cream">¡Te has registrado con éxito!</span>
+                        <span className="font-sans text-[8px] text-white/55 mt-0.5">Te avisaremos tan pronto liberemos la Beta.</span>
+                    </motion.div>
+                ) : (
+                    <form onSubmit={handleSubmit} className="flex gap-2 w-full">
+                        <input
+                            type="email"
+                            placeholder="Tu correo..."
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                            className="flex-1 px-3 py-2 bg-brand-dark/80 border border-white/10 rounded-lg font-sans text-[10px] text-brand-cream placeholder-white/35 focus:outline-none focus:border-brand-accent/40"
+                        />
+                        <button
+                            type="submit"
+                            className="px-3 py-2 bg-brand-accent hover:bg-brand-accent/90 text-brand-dark font-sans text-[9px] uppercase tracking-wider font-black rounded-lg transition-colors cursor-none shrink-0"
+                        >
+                            Unirse
+                        </button>
+                    </form>
+                )}
+            </div>
+
+            <div className="flex items-center justify-between text-[8px] font-sans text-white/45 px-1">
+                <span>Comunidad Early Adopters</span>
+                <span className="font-bold text-brand-accent uppercase tracking-wider">
+                    {subscribers} registrados
+                </span>
+            </div>
+        </div>
+    );
+};
+
 // ==========================================
 // 2. MATERNAR INTERACTIVE WIDGETS
 // ==========================================
@@ -482,8 +560,8 @@ const EcovisIaTree: React.FC = () => {
 
             <div className="flex flex-col gap-6 mt-8">
                 {/* Old IA */}
-                <div className="flex flex-col gap-1.5 border-l-2 border-red-500/50 pl-4">
-                    <span className="font-sans text-[9px] uppercase tracking-widest font-black text-red-500">Antigua Estructura (Catálogo Opaco)</span>
+                <div className="flex flex-col gap-1.5 border-l-2 border-rose-300/40 pl-4">
+                    <span className="font-sans text-[9px] uppercase tracking-widest font-black text-rose-300">Antigua Estructura (Catálogo Opaco)</span>
                     <p className="font-sans text-[11px] text-white/50 leading-relaxed">
                         Inicio → Modelos HXM-300 → Especificaciones PDF → Contáctenos (Sin valor previo ni flujo lógico).
                     </p>
@@ -705,14 +783,14 @@ interface ProjectData {
 export const PROJECTS_DATA: Record<string, ProjectData> = {
     "ecovis": {
         title: "Ecovis México: Optimizando la Conversión B2B",
-        subtitle: "Rediseño estratégico enfocado en transformar un catálogo industrial en una herramienta de generación de leads y optimización SEO.",
+        subtitle: "Sector Industrial",
         heroImage: "/projects/ecovis/b2b-leads.png",
         overview: "Ecovis México, empresa especializada en el diseño y manufactura de soluciones energéticas industriales, me contactó inicialmente para una mejora táctica en su blog. Tras realizar una Auditoría UX profunda, identifiqué que el sitio enfrentaba un reto mayor:",
         problem: "un lenguaje excesivamente técnico y una navegación inconsistente que generaban fricción y no lograban convertir el tráfico B2B en prospectos reales.",
         metadata: {
             Industry: "Industrial / Energía",
-            "My Role": "Product Designer",
-            Deliverables: "UX Audit, Arquitectura de Información, UI/UX, CRO, SEO Técnico",
+            "My Role": "Lead Product Designer",
+            Deliverables: "UX Audit, Arquitectura de Información, UI/UX, CRO (Optimización de Tasa de Conversión), SEO Técnico",
             Timeline: "Sprint Ágil"
         },
         pivot: {
@@ -732,33 +810,33 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
         process: [
             {
                 icon: <Search size={20} />,
-                title: "01 User Persona Focalizada",
+                title: "01 Definición del User Persona",
                 desc: "Trabajamos en definir al cliente ideal industrial para alinear el lenguaje y diseño, comunicando valor (eficiencia energética, seguridad) en los primeros segundos.",
-                visual: <EcovisCroToggle />
+                image: "/projects/ecovis/ecovis-hero.png"
             },
             {
                 icon: <Layout size={20} />,
-                title: "02 Arquitectura de Información",
-                desc: "Diseñé un flujo global intuitivo que guía al usuario corporativo sin confusiones hacia la toma de contacto, reduciendo pasos innecesarios.",
+                title: "02 Arquitectura de Información y Navegación",
+                desc: "Diseñé un flujo global intuitivo que guía al usuario corporativo sin confusiones hacia la toma de contacto.",
                 visual: <EcovisIaTree />
             },
             {
                 icon: <Zap size={20} />,
-                title: "03 Optimización de CTAs y CRO",
-                desc: "Reemplazamos botones genéricos por micro-copy persuasivo diseñado para capturar la intención de compra del sector B2B de forma asíncrona.",
-                image: "/projects/ecovis/contact-footer.png"
+                title: "03 Optimización de CTAs y Conversión",
+                desc: "Reemplazamos botones genéricos por micro-copy persuasivo diseñado para capturar la intención de compra del sector B2B.",
+                visual: <EcovisCroToggle />
             },
             {
                 icon: <BarChart size={20} />,
-                title: "04 SEO y Rendimiento Técnico",
-                desc: "Estructuración técnica semántica para asegurar el posicionamiento orgánico en un nicho altamente competitivo y velocidad instantánea.",
+                title: "04 SEO y Rendimiento",
+                desc: "Estructuración técnica para asegurar el posicionamiento orgánico en un nicho altamente competitivo.",
                 visual: <EcovisSeoMetrics />
             }
         ],
         outcomes: [
-            { text: "Aumento tangible del 1.2% al 4.8% en la captación de leads cualificados.", icon: <TrendingUp size={24} /> },
-            { text: "Transformación de catálogo pasivo a herramienta activa de generación de leads.", icon: <Zap size={24} /> },
-            { text: "Mejora radical en el posicionamiento orgánico (SEO) y de la marca corporativa.", icon: <CheckCircle size={24} /> }
+            { text: "Aumento tangible en la captación de leads cualificados.", icon: <TrendingUp size={24} /> },
+            { text: "Transformación de catálogo a herramienta de generación de leads.", icon: <Zap size={24} /> },
+            { text: "Mejora en el posicionamiento orgánico (SEO) y de la marca corporativa.", icon: <CheckCircle size={24} /> }
         ],
         testimonial: {
             title: "Validación del Negocio",
@@ -976,7 +1054,7 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
                 icon: <Users size={20} />,
                 title: "04 Validación #BuildInPublic",
                 desc: "Lanzamiento y validación temprana en comunidades tech. Creación de landing page con Next.js + Tailwind enfocada en captar leads y recolectar feedback de early adopters.",
-                image: "/projects/trustlens/hero.png"
+                visual: <TrustLensLandingSim />
             }
         ],
         outcomes: [
@@ -1066,10 +1144,7 @@ const ProcessBoard: React.FC<{
                 </div>
 
                 {/* Right side: Active Visual Artifact Stage */}
-                <div className="lg:col-span-7 bg-brand-cream/25 border border-brand-cream-dark/10 rounded-[2.5rem] p-6 md:p-8 flex items-center justify-center relative overflow-hidden min-h-[420px] shadow-sm">
-                    {/* Subtle grid line backdrop */}
-                    <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, var(--color-brand-dark) 1px, transparent 1px)', backgroundSize: '16px 16px' }} />
-
+                <div className="lg:col-span-7 flex items-center justify-center relative min-h-[420px] w-full">
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={activeStep}
@@ -1085,20 +1160,19 @@ const ProcessBoard: React.FC<{
                                 </div>
                             ) : process[activeStep].image ? (
                                 <button
-                                    className="relative block w-full aspect-video md:aspect-4/3 rounded-2xl overflow-hidden border border-brand-cream-dark/10 hover:border-brand-accent/40 shadow-lg hover:shadow-[0_20px_40px_rgba(41,208,103,0.06)] transition-all duration-500 cursor-none group outline-none focus-visible:ring-2 focus-visible:ring-brand-accent"
+                                    className="relative flex items-center justify-center max-h-[440px] w-full outline-none cursor-none group"
                                     onClick={() => onImageClick({ src: process[activeStep].image as string, title: process[activeStep].title })}
                                     aria-label={`View larger image of ${process[activeStep].title}`}
                                 >
                                     <img
                                         src={process[activeStep].image}
                                         alt={process[activeStep].title}
-                                        className={`w-full h-full ${process[activeStep].image?.toLowerCase().includes('trustlens') || process[activeStep].image?.toLowerCase().includes('maternar') ? 'object-contain p-8 bg-brand-dark/95' : 'object-cover'} transition-transform duration-700 group-hover:scale-[1.03]`}
+                                        className="max-h-[420px] w-auto object-contain rounded-2xl shadow-xl hover:shadow-[0_24px_48px_rgba(0,0,0,0.15)] transition-all duration-500 hover:scale-[1.02]"
                                         onError={(e) => {
                                             const target = e.target as HTMLImageElement;
                                             target.src = `https://placehold.co/1280x720/1a1a1b/e9e3d5?text=${encodeURIComponent('En construcción...')}`;
                                         }}
                                     />
-                                    <div className="absolute inset-0 bg-brand-dark/0 group-hover:bg-brand-dark/10 transition-colors duration-500" />
                                 </button>
                             ) : (
                                 <div className="font-sans text-xs tracking-[0.2em] uppercase font-bold text-brand-dark/20">
@@ -1146,7 +1220,7 @@ export const CaseStudy: React.FC<{
                                 El Reto y la Situación<span className="text-brand-accent">.</span>
                             </h2>
                         </div>
-                        
+
                         <div className="relative">
                             <p className="font-sans text-brand-dark/85 text-lg md:text-xl leading-relaxed">
                                 <span className="float-left text-brand-dark font-serif text-6xl md:text-7xl lg:text-8xl font-black mr-4 leading-[0.8] mt-1 border-r border-brand-accent/20 pr-3 text-brand-dark">
@@ -1242,12 +1316,12 @@ export const CaseStudy: React.FC<{
 
                         {/* Interactive Switcher for Personas if more than 1 */}
                         {project.personas.length > 1 && (
-                            <div className="flex justify-center bg-white/5 p-1 rounded-full max-w-xs mx-auto border border-white/5">
+                            <div className="flex justify-center bg-white/5 p-1 rounded-full w-fit mx-auto border border-white/5 gap-2">
                                 {project.personas.map((persona, idx) => (
                                     <button
                                         key={idx}
                                         onClick={() => setActivePersona(idx)}
-                                        className={`flex-1 py-2 text-center rounded-full font-sans text-[9px] uppercase tracking-wider font-black transition-all cursor-none ${activePersona === idx ? 'bg-brand-accent text-brand-dark' : 'text-brand-cream/60 hover:text-brand-cream'}`}
+                                        className={`px-6 py-2.5 text-center rounded-full font-sans text-[10px] uppercase tracking-wider font-black transition-all duration-300 cursor-none ${activePersona === idx ? 'bg-brand-accent text-brand-dark shadow-md' : 'text-brand-cream/60 hover:text-brand-cream'}`}
                                     >
                                         {persona.name.split(' ')[0]}
                                     </button>
@@ -1420,16 +1494,16 @@ export const CaseStudy: React.FC<{
                     <span className="font-serif text-8xl text-brand-accent/25 absolute left-10 top-6 select-none font-bold">
                         “
                     </span>
-                    
+
                     <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-accent/15 border border-brand-accent/35 text-brand-dark font-sans font-black text-[9px] uppercase tracking-widest shadow-[0_4px_16px_rgba(41,208,103,0.08)] mb-2 relative z-10">
                         <span className="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
                         VALIDACIÓN Y COMENTARIO
                     </div>
-                    
+
                     <h3 className="font-serif text-xl md:text-3xl lg:text-3xl text-brand-dark leading-[1.35] tracking-tight italic max-w-4xl font-normal relative z-10">
                         "{project.testimonial.text.replace(/"/g, '')}"
                     </h3>
-                    
+
                     <div className="flex flex-col items-center gap-1 mt-4 relative z-10">
                         <span className="font-sans text-[10px] tracking-[0.25em] font-black uppercase text-brand-dark">
                             {project.testimonial.author}

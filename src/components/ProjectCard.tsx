@@ -34,20 +34,34 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
                 <div className={`flex flex-col ${isHorizontal ? 'lg:flex-row' : ''} h-full gap-8 md:gap-12`}>
 
                     {/* Visual Element / Mockup */}
-                    <div className={`${isHorizontal ? 'lg:w-[45%] aspect-4/3 lg:aspect-auto' : 'w-full aspect-square'} relative overflow-hidden bg-brand-cream/10 rounded-3xl md:rounded-4xl`}>
-                        <motion.img
-                            src={project.imageUrl}
-                            alt={`Thumbnail for ${project.title}`}
-                            loading={index === 0 ? "eager" : "lazy"}
-                            {...(index === 0 ? { fetchpriority: "high" } : {})}
-                            className={`w-full h-full ${project.imageUrl.toLowerCase().includes('trustlens') || project.imageUrl.toLowerCase().includes('maternar') ? 'object-contain p-6 bg-brand-dark/95' : 'object-cover'} transition-transform duration-700 ease-out group-hover:scale-[1.03]`}
-                            onError={(e) => {
-                                const target = e.target as HTMLImageElement;
-                                target.src = `https://placehold.co/1280x720/1a1a1b/e9e3d5?text=${encodeURIComponent('En construcción...')}`;
-                            }}
-                        />
+                    <div className={`${isHorizontal ? 'lg:w-[45%] aspect-4/3 lg:aspect-auto' : 'w-full aspect-square'} relative overflow-hidden rounded-3xl md:rounded-4xl flex items-center justify-center ${project.id === 'ecovis' ? 'bg-brand-cream/10' : 'bg-brand-dark p-6 md:p-8'}`}>
+                        {project.id === 'ecovis' ? (
+                            <motion.img
+                                src={project.imageUrl}
+                                alt={`Thumbnail for ${project.title}`}
+                                loading={index === 0 ? "eager" : "lazy"}
+                                {...(index === 0 ? { fetchpriority: "high" } : {})}
+                                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                                onError={(e) => {
+                                    const target = e.target as HTMLImageElement;
+                                    target.src = `https://placehold.co/1280x720/1a1a1b/e9e3d5?text=${encodeURIComponent('En construcción...')}`;
+                                }}
+                            />
+                        ) : (
+                            <motion.img
+                                src={project.imageUrl}
+                                alt={`Thumbnail for ${project.title}`}
+                                loading={index === 0 ? "eager" : "lazy"}
+                                {...(index === 0 ? { fetchpriority: "high" } : {})}
+                                className="max-h-full max-w-full object-contain rounded-2xl shadow-[0_12px_28px_rgba(0,0,0,0.35)] transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                                onError={(e) => {
+                                    const target = e.target as HTMLImageElement;
+                                    target.src = `https://placehold.co/1280x720/1a1a1b/e9e3d5?text=${encodeURIComponent('En construcción...')}`;
+                                }}
+                            />
+                        )}
                         {/* Subtle overlay */}
-                        <div className="absolute inset-0 bg-brand-dark/0 group-hover:bg-brand-dark/5 transition-colors duration-500" />
+                        <div className="absolute inset-0 bg-brand-dark/0 group-hover:bg-brand-dark/5 transition-colors duration-500 pointer-events-none" />
                     </div>
 
                     {/* Content Section */}

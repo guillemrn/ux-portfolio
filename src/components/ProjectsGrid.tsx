@@ -15,21 +15,21 @@ export const PROJECTS: ProjectData[] = [
         layout: 'horizontal'
     },
     {
-        id: 'ecovis',
-        category: 'B2B & CRO',
-        title: 'Ecovis México: Optimizando la Conversión B2B',
-        description: 'Rediseño estratégico enfocado en transformar un catálogo industrial en una herramienta de generación de leads.',
-        imageUrl: '/projects/ecovis/b2b-leads.png',
-        tags: ['UX Audit', 'CRO', 'SEO'],
-        layout: 'vertical'
-    },
-    {
         id: 'maternar',
         category: 'UX Research & Social',
         title: 'Maternar: Diseñando una Red de Apoyo para Madres',
         description: 'Pivote estratégico de una app de donaciones a un ecosistema de apoyo para resolver la soledad materna.',
         imageUrl: '/projects/maternar/Home - Dark theme.png',
         tags: ['UX Strategy', 'Research', 'Figma'],
+        layout: 'vertical'
+    },
+    {
+        id: 'ecovis',
+        category: 'B2B & CRO',
+        title: 'Ecovis México: Optimizando la Conversión B2B',
+        description: 'Rediseño estratégico enfocado en transformar un catálogo industrial en una herramienta de generación de leads.',
+        imageUrl: '/projects/ecovis/b2b-leads.png',
+        tags: ['UX Audit', 'CRO', 'SEO'],
         layout: 'vertical'
     },
     // {
