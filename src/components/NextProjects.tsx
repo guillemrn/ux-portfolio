@@ -4,7 +4,10 @@ import { ArrowUpRight } from 'lucide-react';
 import { PROJECTS } from './ProjectsGrid';
 
 export const NextProjects: React.FC<{ currentProjectId: string }> = ({ currentProjectId }) => {
-    const nextProject = PROJECTS.find((project) => project.id !== currentProjectId);
+    const currentIndex = PROJECTS.findIndex((project) => project.id === currentProjectId);
+    const nextProject = currentIndex !== -1
+        ? PROJECTS[(currentIndex + 1) % PROJECTS.length]
+        : PROJECTS[0];
 
     if (!nextProject) return null;
 

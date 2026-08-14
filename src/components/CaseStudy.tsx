@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 import {
     Target,
@@ -9,13 +9,7 @@ import {
     Search,
     Layout,
     Zap,
-    BarChart,
-    Shield,
-    ArrowRight,
-    AlertTriangle,
-    Cpu,
-    Database,
-    Sparkles
+    BarChart
 } from 'lucide-react';
 
 // Animation Variants
@@ -47,550 +41,6 @@ const scaleIn: Variants = {
 };
 
 // ==========================================
-// 1. TRUSTLENS INTERACTIVE WIDGETS
-// ==========================================
-
-// TrustLens Chrome Extension Simulator
-const TrustLensExtensionSim: React.FC = () => {
-    const [activeTab, setActiveTab] = useState<'alerts' | 'rights' | 'savings'>('alerts');
-    const [score, setScore] = useState(0);
-    const [expandedAlert, setExpandedAlert] = useState<number | null>(null);
-
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setScore(68);
-        }, 855);
-        return () => clearTimeout(timer);
-    }, []);
-
-    const alerts = [
-        { id: 1, title: 'Renovación Automática Oculta', type: 'danger', desc: 'Se te cobrarán $49 USD/mes tras 3 días de prueba gratuita sin previo aviso.' },
-        { id: 2, title: 'Cesión Total de Contenidos', type: 'warning', desc: 'Concedes licencia perpetua, irrevocable y sublicenciable de todos tus diseños.' }
-    ];
-
-    const rights = [
-        { title: 'Jurisdicción del Contrato', value: 'Delaware, EE.UU. (Dificulta reclamos legales)' },
-        { title: 'Modificación Unilateral', value: 'Pueden cambiar precios en cualquier momento sin avisar' }
-    ];
-
-    return (
-        <div className="w-full max-w-[340px] h-[480px] bg-brand-dark rounded-3xl border border-brand-accent/20 flex flex-col overflow-hidden text-left shadow-2xl relative">
-            {/* Header bar */}
-            <div className="px-5 py-4 border-b border-white/10 flex items-center justify-between bg-white/5">
-                <div className="flex items-center gap-2">
-                    <div className="w-6 h-6 rounded-lg bg-brand-accent/20 flex items-center justify-center border border-brand-accent/30">
-                        <Shield size={12} className="text-brand-accent" />
-                    </div>
-                    <span className="font-sans text-[11px] font-black uppercase tracking-wider text-brand-cream">TrustLens AI</span>
-                </div>
-                <span className="w-2 h-2 rounded-full bg-brand-accent animate-pulse" />
-            </div>
-
-            {/* Content URL Info */}
-            <div className="px-5 py-3 bg-white/2 flex items-center gap-1.5 border-b border-white/5">
-                <div className="w-1.5 h-1.5 rounded-full bg-yellow-400" />
-                <span className="font-sans text-[9px] font-bold text-white/50 truncate">
-                    Analizando: pdf-generator-ai.com/terms
-                </span>
-            </div>
-
-            {/* Extension Core */}
-            <div className="flex-1 p-5 overflow-y-auto flex flex-col gap-5">
-                {/* Score Widget */}
-                <div className="flex items-center gap-4 bg-white/5 p-4 rounded-2xl border border-white/5">
-                    <div className="relative w-16 h-16 flex items-center justify-center">
-                        <svg className="w-full h-full transform -rotate-95" viewBox="0 0 36 36">
-                            <path
-                                className="text-white/10"
-                                strokeWidth="3"
-                                stroke="currentColor"
-                                fill="none"
-                                d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-                            />
-                            <motion.path
-                                className="text-brand-accent"
-                                strokeWidth="3"
-                                strokeDasharray={`${score}, 100`}
-                                strokeLinecap="round"
-                                stroke="currentColor"
-                                fill="none"
-                                d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-                                initial={{ strokeDasharray: "0, 100" }}
-                                animate={{ strokeDasharray: `${score}, 100` }}
-                                transition={{ duration: 1.5, ease: "easeOut" }}
-                            />
-                        </svg>
-                        <span className="absolute font-sans text-lg font-black text-brand-cream">{score}</span>
-                    </div>
-                    <div className="flex flex-col">
-                        <span className="font-sans text-[10px] font-black uppercase text-brand-accent tracking-wider">Puntuación</span>
-                        <span className="font-sans text-sm text-brand-cream font-medium">Riesgo Moderado</span>
-                    </div>
-                </div>
-
-                {/* Tabs */}
-                <div className="grid grid-cols-3 bg-white/5 rounded-xl p-1 border border-white/5">
-                    {(['alerts', 'rights', 'savings'] as const).map((tab) => (
-                        <button
-                            key={tab}
-                            onClick={() => setActiveTab(tab)}
-                            className={`py-1.5 text-center rounded-lg font-sans text-[9px] uppercase tracking-wider font-black transition-all ${activeTab === tab ? 'bg-brand-accent text-brand-dark' : 'text-brand-cream/60 hover:text-brand-cream'}`}
-                        >
-                            {tab === 'alerts' ? 'Alertas' : tab === 'rights' ? 'Cláusulas' : 'Ahorro'}
-                        </button>
-                    ))}
-                </div>
-
-                {/* Tab content */}
-                <div className="flex-1">
-                    {activeTab === 'alerts' && (
-                        <div className="flex flex-col gap-3">
-                            {alerts.map((item) => (
-                                <div key={item.id} className="bg-white/5 rounded-xl border border-white/5 overflow-hidden transition-all duration-300">
-                                    <button
-                                        onClick={() => setExpandedAlert(expandedAlert === item.id ? null : item.id)}
-                                        className="w-full px-4 py-3 flex items-center justify-between font-sans text-[10px] text-brand-cream font-bold"
-                                    >
-                                        <div className="flex items-center gap-2">
-                                            <AlertTriangle size={12} className={item.type === 'danger' ? 'text-red-500' : 'text-yellow-500'} />
-                                            <span>{item.title}</span>
-                                        </div>
-                                        <span className="text-[10px] text-brand-accent">{expandedAlert === item.id ? '−' : '+'}</span>
-                                    </button>
-                                    <AnimatePresence>
-                                        {expandedAlert === item.id && (
-                                            <motion.div
-                                                initial={{ height: 0, opacity: 0 }}
-                                                animate={{ height: 'auto', opacity: 1 }}
-                                                exit={{ height: 0, opacity: 0 }}
-                                                className="px-4 pb-3 pt-1 border-t border-white/5 font-sans text-[10px] text-white/70 leading-relaxed"
-                                            >
-                                                {item.desc}
-                                            </motion.div>
-                                        )}
-                                    </AnimatePresence>
-                                </div>
-                            ))}
-                        </div>
-                    )}
-
-                    {activeTab === 'rights' && (
-                        <div className="flex flex-col gap-3 font-sans text-[10px]">
-                            {rights.map((item, i) => (
-                                <div key={i} className="bg-white/2 p-3.5 rounded-xl border border-white/5 flex flex-col gap-1">
-                                    <span className="font-black text-brand-accent uppercase tracking-wider text-[8px]">{item.title}</span>
-                                    <span className="text-white/80">{item.value}</span>
-                                </div>
-                            ))}
-                        </div>
-                    )}
-
-                    {activeTab === 'savings' && (
-                        <div className="flex flex-col items-center justify-center py-6 text-center gap-2">
-                            <span className="font-sans text-3xl font-black text-brand-accent tracking-tighter">$350 USD</span>
-                            <span className="font-sans text-[10px] font-black uppercase text-brand-cream/50 tracking-wider">Ahorro Estimado Evitado</span>
-                            <p className="font-sans text-[9px] text-white/60 max-w-[200px] leading-relaxed mt-2">
-                                Evitado mediante la detección de suscripciones trampa y cláusulas abusivas en 6 productos evaluados.
-                            </p>
-                        </div>
-                    )}
-                </div>
-            </div>
-        </div>
-    );
-};
-
-// TrustLens Architecture Flowchart
-const TrustLensFlowchart: React.FC = () => {
-    return (
-        <div className="w-full flex flex-col items-center justify-center p-6 bg-brand-dark/95 border border-brand-accent/20 rounded-3xl gap-6 shadow-xl text-left relative min-h-[300px]">
-            <div className="absolute top-4 left-4 font-sans text-[8px] uppercase tracking-widest font-black text-brand-accent">
-                Visual Core Engine / Arquitectura
-            </div>
-
-            <div className="flex flex-col md:flex-row items-center gap-4 w-full max-w-lg relative">
-                {/* Node 1 */}
-                <div className="flex flex-col items-center p-3 bg-white/5 border border-white/10 rounded-2xl w-full md:w-1/3 text-center">
-                    <Cpu size={20} className="text-brand-accent mb-2" />
-                    <span className="font-sans text-[10px] font-black uppercase text-brand-cream">Extensión URL</span>
-                    <span className="font-sans text-[9px] text-white/50 mt-1">Usuario navega</span>
-                </div>
-
-                <div className="text-brand-accent font-black hidden md:block">→</div>
-
-                {/* Node 2 */}
-                <div className="flex flex-col items-center p-3 bg-brand-accent/10 border border-brand-accent/30 rounded-2xl w-full md:w-1/3 text-center relative overflow-hidden">
-                    <Database size={20} className="text-brand-accent mb-2" />
-                    <span className="font-sans text-[10px] font-black uppercase text-brand-cream">Supabase Cache</span>
-                    <span className="font-sans text-[9px] text-brand-accent mt-1">¿Existe en caché?</span>
-                    <div className="absolute top-1 right-1 w-1.5 h-1.5 rounded-full bg-brand-accent animate-ping" />
-                </div>
-
-                <div className="text-brand-accent font-black hidden md:block">→</div>
-
-                {/* Node 3 */}
-                <div className="flex flex-col items-center p-3 bg-white/5 border border-white/10 rounded-2xl w-full md:w-1/3 text-center">
-                    <Sparkles size={20} className="text-yellow-400 mb-2" />
-                    <span className="font-sans text-[10px] font-black uppercase text-brand-cream">AI Parser</span>
-                    <span className="font-sans text-[9px] text-white/50 mt-1">Cálculo de Score JSON</span>
-                </div>
-            </div>
-
-            <div className="w-full bg-white/5 p-4 rounded-2xl border border-white/5">
-                <p className="font-sans text-[10px] text-white/80 leading-relaxed">
-                    <strong className="text-brand-accent">Ventaja Estratégica:</strong> Para evitar el retardo y costo de analizar 50 páginas mediante LLM en cada carga, la arquitectura consulta primero un hash indexado en Supabase. Si existe, entrega el <span className="text-brand-accent">Trust Score al instante</span>.
-                </p>
-            </div>
-        </div>
-    );
-};
-
-// TrustLens Landing Page Lead Simulator
-const TrustLensLandingSim: React.FC = () => {
-    const [email, setEmail] = useState('');
-    const [submitted, setSubmitted] = useState(false);
-    const [subscribers, setSubscribers] = useState(142);
-
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        if (email.trim() && email.includes('@')) {
-            setSubmitted(true);
-            setSubscribers(prev => prev + 1);
-            setTimeout(() => {
-                setSubmitted(false);
-                setEmail('');
-            }, 3000);
-        }
-    };
-
-    return (
-        <div className="w-full flex flex-col p-6 bg-brand-dark border border-brand-accent/20 rounded-3xl gap-5 shadow-xl text-left relative min-h-[300px] justify-between">
-            <div className="absolute top-4 left-4 font-sans text-[8px] uppercase tracking-widest font-black text-brand-accent">
-                Next.js Landing / Simulación Captura Leads
-            </div>
-
-            <div className="flex flex-col gap-3 mt-6">
-                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-brand-accent/15 border border-brand-accent/35 text-brand-accent font-sans font-bold text-[8px] uppercase tracking-widest max-w-fit">
-                    <span className="w-1 h-1 rounded-full bg-brand-accent animate-pulse" />
-                    Validación temprana
-                </div>
-                <h4 className="font-sans text-lg text-brand-cream font-bold leading-tight">
-                    Traduce la "letra chica" del software a insights claros
-                </h4>
-                <p className="font-sans text-[10px] text-white/60 leading-relaxed">
-                    Evita suscripciones trampa y protege tus activos digitales con el detector de cláusulas con Inteligencia Artificial.
-                </p>
-            </div>
-
-            <div className="bg-white/5 p-4 rounded-xl border border-white/5 flex flex-col gap-3">
-                {submitted ? (
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        className="flex flex-col items-center justify-center text-center py-2"
-                    >
-                        <span className="w-6 h-6 rounded-full bg-brand-accent/20 border border-brand-accent/40 flex items-center justify-center text-brand-accent font-bold text-xs mb-1.5">✓</span>
-                        <span className="font-sans text-[10px] font-bold text-brand-cream">¡Te has registrado con éxito!</span>
-                        <span className="font-sans text-[8px] text-white/55 mt-0.5">Te avisaremos tan pronto liberemos la Beta.</span>
-                    </motion.div>
-                ) : (
-                    <form onSubmit={handleSubmit} className="flex gap-2 w-full">
-                        <input
-                            type="email"
-                            placeholder="Tu correo..."
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                            className="flex-1 px-3 py-2 bg-brand-dark/80 border border-white/10 rounded-lg font-sans text-[10px] text-brand-cream placeholder-white/35 focus:outline-none focus:border-brand-accent/40"
-                        />
-                        <button
-                            type="submit"
-                            className="px-3 py-2 bg-brand-accent hover:bg-brand-accent/90 text-brand-dark font-sans text-[9px] uppercase tracking-wider font-black rounded-lg transition-colors shrink-0"
-                        >
-                            Unirse
-                        </button>
-                    </form>
-                )}
-            </div>
-
-            <div className="flex items-center justify-between text-[8px] font-sans text-white/45 px-1">
-                <span>Comunidad Early Adopters</span>
-                <span className="font-bold text-brand-accent uppercase tracking-wider">
-                    {subscribers} registrados
-                </span>
-            </div>
-        </div>
-    );
-};
-
-// ==========================================
-// 3. ECOVIS MEXICOM WIDGETS
-// ==========================================
-
-// Ecovis CRO Before/After Toggle
-const EcovisCroToggle: React.FC = () => {
-    const [theme, setTheme] = useState<'before' | 'after'>('after');
-    const [clicked, setClicked] = useState(false);
-
-    const handleClick = () => {
-        if (theme === 'after') {
-            setClicked(true);
-            setTimeout(() => setClicked(false), 2000);
-        }
-    };
-
-    return (
-        <div className="w-full flex flex-col items-center justify-center p-6 bg-brand-cream border border-brand-cream-dark/20 rounded-3xl gap-6 shadow-md text-left relative">
-            <div className="absolute top-4 left-4 font-sans text-[8px] uppercase tracking-widest font-black text-brand-dark/50">
-                Experimento CRO / CTA Microcopy
-            </div>
-
-            {/* Split Switcher */}
-            <div className="flex bg-brand-dark/5 p-1 rounded-full border border-brand-dark/5 mt-4">
-                <button
-                    onClick={() => setTheme('before')}
-                    className={`px-4 py-1.5 rounded-full font-sans text-[9px] uppercase tracking-wider font-black transition-all ${theme === 'before' ? 'bg-brand-dark text-white' : 'text-brand-dark/60'}`}
-                >
-                    Antes (Táctico)
-                </button>
-                <button
-                    onClick={() => setTheme('after')}
-                    className={`px-4 py-1.5 rounded-full font-sans text-[9px] uppercase tracking-wider font-black transition-all ${theme === 'after' ? 'bg-brand-dark text-white' : 'text-brand-dark/60'}`}
-                >
-                    Después (Optimizado)
-                </button>
-            </div>
-
-            {/* Button Simulator */}
-            <div className="w-full bg-white p-8 rounded-2xl border border-brand-cream-dark/15 flex flex-col items-center text-center gap-4 min-h-[160px] justify-center relative">
-                {theme === 'before' ? (
-                    <>
-                        <button className="px-6 py-3.5 bg-gray-200 border border-gray-300 rounded-lg text-gray-700 font-sans text-xs font-semibold uppercase tracking-wider pointer-events-none">
-                            Nuestros Servicios Industriales
-                        </button>
-                        <div className="flex items-center gap-1.5 text-red-600 font-sans text-[10px] font-black uppercase tracking-wider mt-2">
-                            <span className="w-2 h-2 rounded-full bg-red-600" />
-                            Baja intención de contacto
-                        </div>
-                    </>
-                ) : (
-                    <>
-                        <motion.button
-                            onClick={handleClick}
-                            whileTap={{ scale: 0.95 }}
-                            className="px-8 py-4 bg-brand-dark hover:bg-brand-dark/95 border border-brand-accent/25 text-brand-accent rounded-full font-sans text-xs font-black uppercase tracking-widest shadow-lg shadow-brand-accent/10 flex items-center gap-2 relative group overflow-hidden"
-                        >
-                            <span className="w-2 h-2 rounded-full bg-brand-accent animate-ping absolute left-4" />
-                            <span className="pl-4">Optimizar Eficiencia Energética Ahora</span>
-                            <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-                        </motion.button>
-                        <span className="font-sans text-[9px] text-brand-dark/50 -mt-2">Cotización Técnica Asíncrona sin Compromiso en 24 Horas</span>
-                        <div className="flex items-center gap-1.5 text-brand-accent font-sans text-[10px] font-black uppercase tracking-wider mt-1">
-                            <span className="w-2 h-2 rounded-full bg-brand-accent animate-pulse" />
-                            Mayor claridad para contactar
-                        </div>
-
-                        {/* Confetti Animation Sim */}
-                        <AnimatePresence>
-                            {clicked && (
-                                <motion.div
-                                    initial={{ opacity: 0, scale: 0.8 }}
-                                    animate={{ opacity: 1, scale: 1 }}
-                                    exit={{ opacity: 0 }}
-                                    className="absolute inset-0 bg-brand-cream/90 flex flex-col items-center justify-center rounded-2xl p-4 border border-brand-accent/35"
-                                >
-                                    <Sparkles className="text-brand-accent mb-2" size={24} />
-                                    <span className="font-sans text-lg font-black text-brand-dark">¡Solicitud Simulada!</span>
-                                    <span className="font-sans text-[10px] text-brand-dark/70 mt-1">Evidencia real del impacto de CRO.</span>
-                                </motion.div>
-                            )}
-                        </AnimatePresence>
-                    </>
-                )}
-            </div>
-        </div>
-    );
-};
-
-// Ecovis Navigation IA structure
-const EcovisIaTree: React.FC = () => {
-    return (
-        <div className="w-full flex flex-col p-6 bg-brand-dark text-brand-cream rounded-3xl gap-4 shadow-lg border border-brand-dark/20 text-left min-h-[300px] justify-between relative">
-            <div className="absolute top-4 left-4 font-sans text-[8px] uppercase tracking-widest font-black text-brand-accent">
-                Arquitectura de Información / Sitemap
-            </div>
-
-            <div className="flex flex-col gap-6 mt-8">
-                {/* Old IA */}
-                <div className="flex flex-col gap-1.5 border-l-2 border-rose-300/40 pl-4">
-                    <span className="font-sans text-[9px] uppercase tracking-widest font-black text-rose-300">Antigua Estructura (Catálogo Opaco)</span>
-                    <p className="font-sans text-[11px] text-white/50 leading-relaxed">
-                        Inicio → Modelos HXM-300 → Especificaciones PDF → Contáctenos (Sin valor previo ni flujo lógico).
-                    </p>
-                </div>
-
-                {/* New IA */}
-                <div className="flex flex-col gap-1.5 border-l-2 border-brand-accent pl-4">
-                    <span className="font-sans text-[9px] uppercase tracking-widest font-black text-brand-accent">Nueva Arquitectura Editorial</span>
-                    <div className="flex flex-col gap-2 font-sans text-[11px] text-white/80 mt-1">
-                        <div className="flex items-center gap-1.5">
-                            <span className="w-1.5 h-1.5 rounded-full bg-brand-accent" />
-                            <span>1. Propuesta de Valor Editorial (Ahorros energéticos)</span>
-                        </div>
-                        <div className="flex items-center gap-1.5">
-                            <span className="w-1.5 h-1.5 rounded-full bg-brand-accent" />
-                            <span>2. Categorización Inteligente (Sistemas de Combustión vs Ahorro)</span>
-                        </div>
-                        <div className="flex items-center gap-1.5">
-                            <span className="w-1.5 h-1.5 rounded-full bg-brand-accent" />
-                            <span>3. Flujo CRO Secuencial (Cotización guiada por micro-copy)</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div className="bg-white/5 p-3 rounded-xl border border-white/5 mt-2">
-                <span className="font-sans text-[10px] text-brand-accent leading-relaxed">
-                    ✓ Navegación limpia y rápida que reduce el ciclo de ventas B2B corporativo.
-                </span>
-            </div>
-        </div>
-    );
-};
-
-// Ecovis SEO Metrics Dial
-const EcovisSeoMetrics: React.FC = () => {
-    const [score, setScore] = useState(0);
-
-    useEffect(() => {
-        const timer = setTimeout(() => setScore(92), 600);
-        return () => clearTimeout(timer);
-    }, []);
-
-    return (
-        <div className="w-full flex flex-col items-center justify-center p-6 bg-brand-cream border border-brand-cream-dark/20 rounded-3xl gap-6 shadow-md text-left relative">
-            <div className="absolute top-4 left-4 font-sans text-[8px] uppercase tracking-widest font-black text-brand-dark/50">
-                SEO & Rendimiento Técnico
-            </div>
-
-            <div className="flex flex-col md:flex-row items-center gap-8 w-full justify-center mt-6">
-                {/* Lighthouse Dial */}
-                <div className="flex flex-col items-center gap-3">
-                    <div className="relative w-24 h-24 flex items-center justify-center bg-brand-dark rounded-full shadow-lg border border-brand-accent/20">
-                        <svg className="w-20 h-20 transform -rotate-90" viewBox="0 0 36 36">
-                            <circle
-                                className="text-white/5"
-                                strokeWidth="3"
-                                stroke="currentColor"
-                                fill="none"
-                                r="16"
-                                cx="18"
-                                cy="18"
-                            />
-                            <motion.circle
-                                className="text-brand-accent"
-                                strokeWidth="3"
-                                strokeDasharray="100"
-                                strokeDashoffset={100 - score}
-                                strokeLinecap="round"
-                                stroke="currentColor"
-                                fill="none"
-                                r="16"
-                                cx="18"
-                                cy="18"
-                                initial={{ strokeDashoffset: 100 }}
-                                animate={{ strokeDashoffset: 100 - score }}
-                                transition={{ duration: 1.8, ease: "easeOut" }}
-                            />
-                        </svg>
-                        <span className="absolute font-sans text-2xl font-black text-brand-cream">{score}</span>
-                    </div>
-                    <span className="font-sans text-[10px] font-black uppercase text-brand-dark tracking-wider">Performance</span>
-                </div>
-
-                {/* Audit points */}
-                <div className="flex flex-col gap-3 font-sans text-xs">
-                    <div className="flex items-center gap-2 text-brand-dark/80">
-                        <CheckCircle size={14} className="text-brand-accent shrink-0" />
-                        <span>Rendimiento y estructura técnica optimizados</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-brand-dark/80">
-                        <CheckCircle size={14} className="text-brand-accent shrink-0" />
-                        <span>Estructuración Semántica SEO Completa</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-brand-dark/80">
-                        <CheckCircle size={14} className="text-brand-accent shrink-0" />
-                        <span>Código Estático Optimizado para Móviles</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
-};
-
-// ==========================================
-// 4. INVITACIONES SAAS INTERACTIVE WIDGET
-// ==========================================
-
-const InvitacionesSaasSim: React.FC = () => {
-    const invited = 120;
-    const [confirmed, setConfirmed] = useState(84);
-    const [savings, setSavings] = useState(360);
-
-    const handleConfirm = () => {
-        if (confirmed < invited) {
-            setConfirmed(prev => prev + 1);
-            setSavings(prev => prev + 15); // $15 per plate saved typical B2B estimation
-        }
-    };
-
-    return (
-        <div className="w-full flex flex-col p-6 bg-brand-dark text-brand-cream rounded-3xl gap-6 shadow-xl border border-brand-accent/20 text-left min-h-[300px] justify-between relative">
-            <div className="absolute top-4 left-4 font-sans text-[8px] uppercase tracking-widest font-black text-brand-accent">
-                Logística Móvil SaaS / Dashboard
-            </div>
-
-            <div className="grid grid-cols-3 gap-3 mt-6">
-                <div className="bg-white/5 p-3 rounded-xl border border-white/5 flex flex-col text-center">
-                    <span className="font-sans text-xl font-bold text-brand-cream">{invited}</span>
-                    <span className="font-sans text-[8px] uppercase tracking-widest font-black text-white/50 mt-1">Invitados</span>
-                </div>
-                <div className="bg-brand-accent/10 p-3 rounded-xl border border-brand-accent/20 flex flex-col text-center">
-                    <span className="font-sans text-xl font-bold text-brand-accent">{confirmed}</span>
-                    <span className="font-sans text-[8px] uppercase tracking-widest font-black text-brand-accent mt-1">RSVP Sí</span>
-                </div>
-                <div className="bg-white/5 p-3 rounded-xl border border-white/5 flex flex-col text-center">
-                    <span className="font-sans text-xl font-bold text-brand-cream">${savings}</span>
-                    <span className="font-sans text-[8px] uppercase tracking-widest font-black text-white/50 mt-1">Ahorrado</span>
-                </div>
-            </div>
-
-            {/* QR validation mockup */}
-            <div className="bg-white/5 p-4 rounded-2xl border border-white/5 flex flex-col gap-3">
-                <div className="flex items-center justify-between">
-                    <span className="font-sans text-[10px] font-black uppercase text-brand-accent">Escanear Invitación QR</span>
-                    <button
-                        onClick={handleConfirm}
-                        className="px-3 py-1 bg-brand-accent hover:bg-brand-accent/90 text-brand-dark rounded-full font-sans text-[9px] uppercase tracking-wider font-black"
-                    >
-                        Confirmar Entrada
-                    </button>
-                </div>
-                <div className="w-full bg-brand-dark border border-white/10 rounded-xl p-3 flex items-center justify-between">
-                    <div className="flex flex-col">
-                        <span className="font-sans text-[10px] font-bold text-brand-cream">Familia Pérez G.</span>
-                        <span className="font-sans text-[8px] text-white/50 mt-0.5">Pases Autorizados: 4</span>
-                    </div>
-                    <div className="w-7 h-7 bg-white rounded-md flex items-center justify-center">
-                        <div className="w-5 h-5 bg-brand-dark" style={{ backgroundImage: 'radial-gradient(black 3px, transparent 3px)', backgroundSize: '6px 6px' }} />
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
-};
-
-// ==========================================
 // PROJECT DATA DEFINITION
 // ==========================================
 
@@ -612,13 +62,10 @@ interface ProjectData {
         icon: React.ReactNode;
         title: string;
         desc: string;
-        image?: string;
-        visual?: React.ReactNode;
     }[];
     outcomes: {
         text: string;
         icon: React.ReactNode;
-        visualWidget?: React.ReactNode;
     }[];
     testimonial: {
         title: string;
@@ -673,26 +120,22 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
             {
                 icon: <Search size={20} />,
                 title: "01 Definición del User Persona",
-                desc: "Trabajamos en definir al cliente ideal industrial para alinear el lenguaje y diseño, comunicando valor (eficiencia energética, seguridad) en los primeros segundos.",
-                image: "/projects/ecovis/ecovis-hero.png"
+                desc: "Trabajamos en definir al cliente ideal industrial para alinear el lenguaje y diseño, comunicando valor (eficiencia energética, seguridad) en los primeros segundos."
             },
             {
                 icon: <Layout size={20} />,
                 title: "02 Arquitectura de Información y Navegación",
-                desc: "Diseñé un flujo global intuitivo que guía al usuario corporativo sin confusiones hacia la toma de contacto.",
-                visual: <EcovisIaTree />
+                desc: "Diseñé un flujo global intuitivo que guía al usuario corporativo sin confusiones hacia la toma de contacto."
             },
             {
                 icon: <Zap size={20} />,
                 title: "03 Optimización de CTAs y Conversión",
-                desc: "Reemplazamos botones genéricos por micro-copy persuasivo diseñado para capturar la intención de compra del sector B2B.",
-                visual: <EcovisCroToggle />
+                desc: "Reemplazamos botones genéricos por micro-copy persuasivo diseñado para capturar la intención de compra del sector B2B."
             },
             {
                 icon: <BarChart size={20} />,
                 title: "04 SEO y Rendimiento",
-                desc: "Estructuración técnica para asegurar el posicionamiento orgánico en un nicho altamente competitivo.",
-                visual: <EcovisSeoMetrics />
+                desc: "Estructuración técnica para asegurar el posicionamiento orgánico en un nicho altamente competitivo."
             }
         ],
         outcomes: [
@@ -751,20 +194,17 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
             {
                 icon: <Search size={20} />,
                 title: "01 Investigación cualitativa",
-                desc: "Las entrevistas validaron el valor emocional de donar, pero revelaron una urgencia mayor: muchas madres necesitaban sentirse acompañadas y comprendidas.",
-                image: "/projects/maternar/Home - Dark theme.png"
+                desc: "Las entrevistas validaron el valor emocional de donar, pero revelaron una urgencia mayor: muchas madres necesitaban sentirse acompañadas y comprendidas."
             },
             {
                 icon: <Target size={20} />,
                 title: "02 Pivote estratégico",
-                desc: "La visión cambió de intercambio de artículos a una red donde pedir, donar, conectar y ofrecer servicios pudiera suceder sin estigma.",
-                image: "/projects/maternar/Onboarding - Step 1.png"
+                desc: "La visión cambió de intercambio de artículos a una red donde pedir, donar, conectar y ofrecer servicios pudiera suceder sin estigma."
             },
             {
                 icon: <Zap size={20} />,
                 title: "03 Prototipo en Figma",
-                desc: "El prototipo permitió probar una solución multifacética: apoyo material, comunidad emocional y espacios para independencia profesional.",
-                image: "/projects/maternar/Home.png"
+                desc: "El prototipo permitió probar una solución multifacética: apoyo material, comunidad emocional y espacios para independencia profesional."
             }
         ],
         outcomes: [
@@ -789,76 +229,6 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
             { image: "/projects/maternar/Onboarding - Step 1.png", title: "Onboarding - Paso 1", category: "UI Onboarding", aspectRatio: 'portrait' },
             { image: "/projects/maternar/Onboarding - Step 2.png", title: "Onboarding - Paso 2", category: "UI Onboarding", aspectRatio: 'portrait' },
             { image: "/projects/maternar/Onboarding - Step 3.png", title: "Onboarding - Paso 3", category: "UI Onboarding", aspectRatio: 'portrait' }
-        ]
-    },
-    "invitaciones-digitales": {
-        title: "Invitaciones Digitales: Gestión Estratégica de Eventos",
-        subtitle: "SaaS DFY y Mobile-First enfocado en optimizar el RSVP y erradicar el caos de la logística y los invitados sorpresa.",
-        heroImage: "/projects/events-saas.png",
-        overview: "El proyecto nació de una necesidad personal al organizar el cumpleaños de mi hija. Al investigar el mercado, descubrí una industria arcaica y llena de fricción: procesos manuales, pagos lentos y confirmaciones desorganizadas.",
-        problem: "Las soluciones existentes competían solo por estética, pero fallaban catastróficamente en la Experiencia de Usuario (UX) y la logística real, lo que inspiró un modelo de negocio asíncrono y escalable.",
-        metadata: {
-            Industry: "SaaS / EventTech",
-            "My Role": "Lead Product Designer & Founder",
-            Deliverables: "Product Strategy, Análisis Competitivo, Flujos de Usuario, UI Mobile-First, E-commerce Integration",
-            Timeline: "Founder Vision"
-        },
-        pivot: {
-            hypothesis: "Competir en el mercado a base de plantillas de diseño visual e invitaciones estáticas.",
-            insight: "El dolor real de los anfitriones de eventos radica en la ineficiencia logística: WhatsApps de ida y vuelta para RSVP, invitados extra no planificados y desperdicio financiero de platillos.",
-            solution: "Un ecosistema de gestión asíncrona que automatiza la base de datos de RSVP, control de platillos e introduce validación por código QR."
-        },
-        personas: [
-            {
-                name: "Anfitrión del Evento",
-                role: "Organizador / Padre de familia",
-                phrase: "El verdadero dolor no es el diseño estético de la invitación, es la pesadilla logística que viene después.",
-                goals: "Evitar pagar platillos de invitados que no asisten (ahorro real). Tener un control absoluto de quién entra al evento. Eliminar el ida y vuelta de cotizaciones.",
-                frustrations: "Perseguir confirmaciones por WhatsApp de forma manual. Estrés por invitados \"colados\". Falta de transparencia en precios de proveedores."
-            }
-        ],
-        process: [
-            {
-                icon: <Target size={20} />,
-                title: "01 Análisis e Insight de Negocio",
-                desc: "Realicé un análisis profundo asistido por IA, descubriendo que el producto debía evolucionar de un 'gasto estético' a una 'inversión de ahorro' logística.",
-                visual: <InvitacionesSaasSim />
-            },
-            {
-                icon: <CheckCircle size={20} />,
-                title: "02 Solución UX: Flujo \"Done-For-You\"",
-                desc: "Diseñé un sistema sin fricción con Checkout transparente y 3 Tiers de precios validados, eliminando por completo la necesidad de reuniones innecesarias.",
-                image: "/projects/events-saas.png"
-            },
-            {
-                icon: <Zap size={20} />,
-                title: "03 Onboarding Automatizado",
-                desc: "Tras el pago, implementé un formulario optimizado que recolecta datos del evento en minutos, permitiendo entregas estandarizadas en menos de 48 horas.",
-                image: "/projects/ecovis/contact-footer.png"
-            },
-            {
-                icon: <Layout size={20} />,
-                title: "04 Logística Mobile-First y QR",
-                desc: "Implementé una lógica estricta de base de datos para RSVP y validación por QR en puerta, resolviendo el problema #1 de los eventos sociales.",
-                image: "/projects/ecovis/navbar.png"
-            }
-        ],
-        outcomes: [
-            { text: "Flujo DFY 100% asíncrono, escalable y sin reuniones.", icon: <Zap size={24} /> },
-            { text: "Control exacto de pases y validación QR en puerta del salón.", icon: <Target size={24} /> },
-            { text: "Transformación de gasto puramente estético a inversión financiera de ahorro real.", icon: <TrendingUp size={24} /> }
-        ],
-        testimonial: {
-            title: "Visión de Producto",
-            text: "\"Al asumir el rol de Founder y Product Designer, aprendí que la estética atrae, pero la eliminación de la fricción logística es lo que verdaderamente retiene y convierte. El éxito no fue el diseño de la invitación, sino convertirla en una herramienta de gestión estratégica.\"",
-            author: "Guillermo Moreno",
-            authorInitials: "GM",
-            company: "Founder & Lead Designer"
-        },
-        liveUrl: "https://events-saas-demo.com",
-        gallery: [
-            { image: "/projects/events-saas.png", title: "Vista Móvil de la Invitación Logística", category: "Diseño Mobile" },
-            { image: "/projects/ecovis/contact-footer.png", title: "Formulario Automatizado de Reserva", category: "UI Flow" }
         ]
     },
     "trustlens": {
@@ -891,26 +261,22 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
             {
                 icon: <Search size={20} />,
                 title: "01 Pivot: De Privacidad a Activos",
-                desc: "Originalmente enfocado en la privacidad contra las Big Tech, descubrí que el dolor real radica en las 'Trampas Financieras' y el 'Robo de IP' al probar nuevas apps.",
-                visual: <TrustLensExtensionSim />
+                desc: "Originalmente enfocado en la privacidad contra las Big Tech, descubrí que el dolor real radica en las 'Trampas Financieras' y el 'Robo de IP' al probar nuevas apps."
             },
             {
                 icon: <Layout size={20} />,
                 title: "02 Escudo Digital ante la Letra Chiquita",
-                desc: "Diseñando la extensión de Chrome bajo la restricción técnica de 400x600px; transformando cláusulas abusivas y riesgos de IP en alertas críticas, un Trust Score y un Dashboard de Ahorro.",
-                image: "/projects/trustlens/TrustLens - v1.0.png"
+                desc: "Diseñando la extensión de Chrome bajo la restricción técnica de 400x600px; transformando cláusulas abusivas y riesgos de IP en alertas críticas, un Trust Score y un Dashboard de Ahorro."
             },
             {
                 icon: <Zap size={20} />,
                 title: "03 El Motor Detrás de la Magia",
-                desc: "Para lograr procesar miles de palabras sin congelar la futura extensión, estoy implementando una arquitectura por fragmentos con resultados almacenados en Supabase. Esto evitará llamadas innecesarias a la IA, asegurando que el usuario reciba su Trust Score al instante y sin tiempos de carga frustrantes.",
-                visual: <TrustLensFlowchart />
+                desc: "Para lograr procesar miles de palabras sin congelar la futura extensión, estoy implementando una arquitectura por fragmentos con resultados almacenados en Supabase. Esto evitará llamadas innecesarias a la IA, asegurando que el usuario reciba su Trust Score al instante y sin tiempos de carga frustrantes."
             },
             {
                 icon: <Users size={20} />,
                 title: "04 Validación #BuildInPublic",
-                desc: "Lanzamiento y validación temprana en comunidades tech. Creación de landing page con Next.js + Tailwind enfocada en captar leads y recolectar feedback de early adopters.",
-                visual: <TrustLensLandingSim />
+                desc: "Lanzamiento y validación temprana en comunidades tech. Creación de landing page con Next.js + Tailwind enfocada en captar leads y recolectar feedback de early adopters."
             }
         ],
         outcomes: [
@@ -1076,7 +442,7 @@ export const CaseStudy: React.FC<{
                                         className="h-full w-full object-contain p-4 transition-transform duration-700 group-hover:scale-[1.035]"
                                         loading="lazy"
                                         onError={(e) => {
-                                            const target = e.target as HTMLImageElement;
+                                             const target = e.target as HTMLImageElement;
                                             target.src = `https://placehold.co/900x700/07100c/e8efe7?text=${encodeURIComponent(item.title)}`;
                                         }}
                                     />
