@@ -15,9 +15,7 @@ import {
     AlertTriangle,
     Cpu,
     Database,
-    Sparkles,
-    Plus,
-    Heart
+    Sparkles
 } from 'lucide-react';
 
 // Animation Variants
@@ -122,11 +120,11 @@ const TrustLensExtensionSim: React.FC = () => {
                                 transition={{ duration: 1.5, ease: "easeOut" }}
                             />
                         </svg>
-                        <span className="absolute font-serif text-lg font-black text-brand-cream">{score}</span>
+                        <span className="absolute font-sans text-lg font-black text-brand-cream">{score}</span>
                     </div>
                     <div className="flex flex-col">
                         <span className="font-sans text-[10px] font-black uppercase text-brand-accent tracking-wider">Puntuación</span>
-                        <span className="font-serif text-sm text-brand-cream font-medium">Riesgo Moderado</span>
+                        <span className="font-sans text-sm text-brand-cream font-medium">Riesgo Moderado</span>
                     </div>
                 </div>
 
@@ -136,7 +134,7 @@ const TrustLensExtensionSim: React.FC = () => {
                         <button
                             key={tab}
                             onClick={() => setActiveTab(tab)}
-                            className={`py-1.5 text-center rounded-lg font-sans text-[9px] uppercase tracking-wider font-black transition-all cursor-none ${activeTab === tab ? 'bg-brand-accent text-brand-dark' : 'text-brand-cream/60 hover:text-brand-cream'}`}
+                            className={`py-1.5 text-center rounded-lg font-sans text-[9px] uppercase tracking-wider font-black transition-all ${activeTab === tab ? 'bg-brand-accent text-brand-dark' : 'text-brand-cream/60 hover:text-brand-cream'}`}
                         >
                             {tab === 'alerts' ? 'Alertas' : tab === 'rights' ? 'Cláusulas' : 'Ahorro'}
                         </button>
@@ -151,7 +149,7 @@ const TrustLensExtensionSim: React.FC = () => {
                                 <div key={item.id} className="bg-white/5 rounded-xl border border-white/5 overflow-hidden transition-all duration-300">
                                     <button
                                         onClick={() => setExpandedAlert(expandedAlert === item.id ? null : item.id)}
-                                        className="w-full px-4 py-3 flex items-center justify-between font-sans text-[10px] text-brand-cream font-bold cursor-none"
+                                        className="w-full px-4 py-3 flex items-center justify-between font-sans text-[10px] text-brand-cream font-bold"
                                     >
                                         <div className="flex items-center gap-2">
                                             <AlertTriangle size={12} className={item.type === 'danger' ? 'text-red-500' : 'text-yellow-500'} />
@@ -189,7 +187,7 @@ const TrustLensExtensionSim: React.FC = () => {
 
                     {activeTab === 'savings' && (
                         <div className="flex flex-col items-center justify-center py-6 text-center gap-2">
-                            <span className="font-serif text-3xl font-black text-brand-accent tracking-tighter">$350 USD</span>
+                            <span className="font-sans text-3xl font-black text-brand-accent tracking-tighter">$350 USD</span>
                             <span className="font-sans text-[10px] font-black uppercase text-brand-cream/50 tracking-wider">Ahorro Estimado Evitado</span>
                             <p className="font-sans text-[9px] text-white/60 max-w-[200px] leading-relaxed mt-2">
                                 Evitado mediante la detección de suscripciones trampa y cláusulas abusivas en 6 productos evaluados.
@@ -274,9 +272,9 @@ const TrustLensLandingSim: React.FC = () => {
             <div className="flex flex-col gap-3 mt-6">
                 <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-brand-accent/15 border border-brand-accent/35 text-brand-accent font-sans font-bold text-[8px] uppercase tracking-widest max-w-fit">
                     <span className="w-1 h-1 rounded-full bg-brand-accent animate-pulse" />
-                    BETA PÚBLICA PRÓXIMAMENTE
+                    Validación temprana
                 </div>
-                <h4 className="font-serif text-lg text-brand-cream font-bold leading-tight">
+                <h4 className="font-sans text-lg text-brand-cream font-bold leading-tight">
                     Traduce la "letra chica" del software a insights claros
                 </h4>
                 <p className="font-sans text-[10px] text-white/60 leading-relaxed">
@@ -307,7 +305,7 @@ const TrustLensLandingSim: React.FC = () => {
                         />
                         <button
                             type="submit"
-                            className="px-3 py-2 bg-brand-accent hover:bg-brand-accent/90 text-brand-dark font-sans text-[9px] uppercase tracking-wider font-black rounded-lg transition-colors cursor-none shrink-0"
+                            className="px-3 py-2 bg-brand-accent hover:bg-brand-accent/90 text-brand-dark font-sans text-[9px] uppercase tracking-wider font-black rounded-lg transition-colors shrink-0"
                         >
                             Unirse
                         </button>
@@ -320,142 +318,6 @@ const TrustLensLandingSim: React.FC = () => {
                 <span className="font-bold text-brand-accent uppercase tracking-wider">
                     {subscribers} registrados
                 </span>
-            </div>
-        </div>
-    );
-};
-
-// ==========================================
-// 2. MATERNAR INTERACTIVE WIDGETS
-// ==========================================
-
-// Maternar Interactive Support Triangle
-const MaternarTriangle: React.FC = () => {
-    const [selectedPillar, setSelectedPillar] = useState<'material' | 'emotional' | 'professional'>('material');
-
-    const pillars = {
-        material: {
-            title: 'Apoyo Material',
-            subtitle: 'Donaciones con Dignidad',
-            desc: 'Intercambio seguro de ropa, cunas y juguetes en perfecto estado. Un diseño que elimina el estigma y la vergüenza, transformando el acto de donación en una conexión de respeto mutuo.'
-        },
-        emotional: {
-            title: 'Apoyo Emocional',
-            subtitle: 'Red contra el Aislamiento',
-            desc: 'Círculos comunitarios locales guiados y apoyo entre madres. Rompe la soledad del primer año, ofreciendo un refugio seguro para compartir experiencias reales sin ser juzgadas.'
-        },
-        professional: {
-            title: 'Apoyo Profesional',
-            subtitle: 'Independencia Financiera',
-            desc: 'Espacio para que las madres ofrezcan servicios profesionales y de autoempleo de manera asíncrona, promoviendo su desarrollo profesional compatible con la crianza.'
-        }
-    };
-
-    return (
-        <div className="w-full flex flex-col items-center justify-center p-6 bg-brand-cream border border-brand-cream-dark/20 rounded-3xl gap-8 shadow-md relative text-left">
-            <div className="absolute top-4 left-4 font-sans text-[8px] uppercase tracking-widest font-black text-brand-dark/50">
-                Ecosistema de Apoyo Maternar / Pilares
-            </div>
-
-            {/* Interactive Triangle Graphic */}
-            <div className="relative w-48 h-48 flex items-center justify-center mt-4">
-                <svg className="absolute w-full h-full text-brand-dark/10" viewBox="0 0 100 100">
-                    <polygon points="50,15 15,75 85,75" fill="none" stroke="currentColor" strokeWidth="2" strokeDasharray="3,3" />
-                </svg>
-
-                {/* Material Pillar Node */}
-                <button
-                    onClick={() => setSelectedPillar('material')}
-                    className={`absolute top-0 w-10 h-10 rounded-full flex items-center justify-center border transition-all duration-300 cursor-none ${selectedPillar === 'material' ? 'bg-brand-dark border-brand-accent text-brand-accent scale-110 shadow-lg' : 'bg-white border-brand-dark/10 text-brand-dark hover:border-brand-dark/30'}`}
-                    style={{ transform: 'translateY(-20%)' }}
-                    aria-label="Pillar material"
-                >
-                    <Plus size={16} />
-                </button>
-
-                {/* Emotional Pillar Node */}
-                <button
-                    onClick={() => setSelectedPillar('emotional')}
-                    className={`absolute bottom-0 left-0 w-10 h-10 rounded-full flex items-center justify-center border transition-all duration-300 cursor-none ${selectedPillar === 'emotional' ? 'bg-brand-dark border-brand-accent text-brand-accent scale-110 shadow-lg' : 'bg-white border-brand-dark/10 text-brand-dark hover:border-brand-dark/30'}`}
-                    style={{ transform: 'translate(-20%, 20%)' }}
-                    aria-label="Pillar emotional"
-                >
-                    <Heart size={16} />
-                </button>
-
-                {/* Professional Pillar Node */}
-                <button
-                    onClick={() => setSelectedPillar('professional')}
-                    className={`absolute bottom-0 right-0 w-10 h-10 rounded-full flex items-center justify-center border transition-all duration-300 cursor-none ${selectedPillar === 'professional' ? 'bg-brand-dark border-brand-accent text-brand-accent scale-110 shadow-lg' : 'bg-white border-brand-dark/10 text-brand-dark hover:border-brand-dark/30'}`}
-                    style={{ transform: 'translate(20%, 20%)' }}
-                    aria-label="Pillar professional"
-                >
-                    <Users size={16} />
-                </button>
-
-                <div className="font-serif text-sm font-black text-brand-dark select-none text-center">
-                    MATERNAR
-                </div>
-            </div>
-
-            {/* Selected Pillar Card */}
-            <div className="w-full bg-white p-6 rounded-2xl border border-brand-cream-dark/20 flex flex-col gap-2 min-h-[140px]">
-                <span className="font-sans text-[9px] uppercase tracking-widest font-black text-brand-accent">{pillars[selectedPillar].subtitle}</span>
-                <h4 className="font-serif text-xl font-bold text-brand-dark">{pillars[selectedPillar].title}</h4>
-                <p className="font-sans text-sm text-brand-dark/70 leading-relaxed mt-2">
-                    {pillars[selectedPillar].desc}
-                </p>
-            </div>
-        </div>
-    );
-};
-
-// Maternar Flow Simulator
-const MaternarFlows: React.FC = () => {
-    const [role, setRole] = useState<'donadora' | 'receptora'>('donadora');
-
-    const steps = role === 'donadora' ? [
-        { label: 'Publicación Ágil', detail: 'Sube foto y estado del artículo en menos de 1 minuto.' },
-        { label: 'Filtro Empático', detail: 'Acepta solicitudes basadas en la cercanía y conexión de empatía.' },
-        { label: 'Entrega Segura', detail: 'Coordinación en un Punto de Encuentro Seguro verificado.' }
-    ] : [
-        { label: 'Búsqueda Digna', detail: 'Visualiza artículos sin listas cargadas de vergüenza.' },
-        { label: 'Solicitud Confidencial', detail: 'Explica tu necesidad de forma privada al donante.' },
-        { label: 'Protocolo de Seguridad', detail: 'Recibe tu artículo de manera respetuosa en puntos seguros.' }
-    ];
-
-    return (
-        <div className="w-full flex flex-col p-6 bg-brand-dark text-brand-cream rounded-3xl gap-6 shadow-lg border border-brand-dark/20 text-left">
-            <div className="flex items-center justify-between">
-                <span className="font-sans text-[8px] uppercase tracking-widest font-black text-brand-accent">Empathetic Flow / Dos Canales</span>
-                <div className="flex bg-white/5 p-1 rounded-full border border-white/5">
-                    <button
-                        onClick={() => setRole('donadora')}
-                        className={`px-3 py-1 rounded-full font-sans text-[9px] uppercase tracking-wider font-black transition-all cursor-none ${role === 'donadora' ? 'bg-brand-accent text-brand-dark' : 'text-brand-cream/65'}`}
-                    >
-                        Donadora
-                    </button>
-                    <button
-                        onClick={() => setRole('receptora')}
-                        className={`px-3 py-1 rounded-full font-sans text-[9px] uppercase tracking-wider font-black transition-all cursor-none ${role === 'receptora' ? 'bg-brand-accent text-brand-dark' : 'text-brand-cream/65'}`}
-                    >
-                        Receptora
-                    </button>
-                </div>
-            </div>
-
-            <div className="flex flex-col gap-4">
-                {steps.map((step, i) => (
-                    <div key={i} className="flex gap-4 items-start">
-                        <div className="w-6 h-6 rounded-full bg-brand-accent/20 border border-brand-accent/40 flex items-center justify-center text-brand-accent font-sans text-[10px] font-black shrink-0 mt-0.5">
-                            {i + 1}
-                        </div>
-                        <div className="flex flex-col">
-                            <span className="font-sans text-xs font-black text-brand-cream uppercase tracking-wider">{step.label}</span>
-                            <span className="font-sans text-xs text-white/70 leading-relaxed mt-1">{step.detail}</span>
-                        </div>
-                    </div>
-                ))}
             </div>
         </div>
     );
@@ -487,13 +349,13 @@ const EcovisCroToggle: React.FC = () => {
             <div className="flex bg-brand-dark/5 p-1 rounded-full border border-brand-dark/5 mt-4">
                 <button
                     onClick={() => setTheme('before')}
-                    className={`px-4 py-1.5 rounded-full font-sans text-[9px] uppercase tracking-wider font-black transition-all cursor-none ${theme === 'before' ? 'bg-brand-dark text-white' : 'text-brand-dark/60'}`}
+                    className={`px-4 py-1.5 rounded-full font-sans text-[9px] uppercase tracking-wider font-black transition-all ${theme === 'before' ? 'bg-brand-dark text-white' : 'text-brand-dark/60'}`}
                 >
                     Antes (Táctico)
                 </button>
                 <button
                     onClick={() => setTheme('after')}
-                    className={`px-4 py-1.5 rounded-full font-sans text-[9px] uppercase tracking-wider font-black transition-all cursor-none ${theme === 'after' ? 'bg-brand-dark text-white' : 'text-brand-dark/60'}`}
+                    className={`px-4 py-1.5 rounded-full font-sans text-[9px] uppercase tracking-wider font-black transition-all ${theme === 'after' ? 'bg-brand-dark text-white' : 'text-brand-dark/60'}`}
                 >
                     Después (Optimizado)
                 </button>
@@ -508,7 +370,7 @@ const EcovisCroToggle: React.FC = () => {
                         </button>
                         <div className="flex items-center gap-1.5 text-red-600 font-sans text-[10px] font-black uppercase tracking-wider mt-2">
                             <span className="w-2 h-2 rounded-full bg-red-600" />
-                            Conversión B2B: 1.2% (Rebote Elevado)
+                            Baja intención de contacto
                         </div>
                     </>
                 ) : (
@@ -516,7 +378,7 @@ const EcovisCroToggle: React.FC = () => {
                         <motion.button
                             onClick={handleClick}
                             whileTap={{ scale: 0.95 }}
-                            className="px-8 py-4 bg-brand-dark hover:bg-brand-dark/95 border border-brand-accent/25 text-brand-accent rounded-full font-sans text-xs font-black uppercase tracking-widest cursor-none shadow-lg shadow-brand-accent/10 flex items-center gap-2 relative group overflow-hidden"
+                            className="px-8 py-4 bg-brand-dark hover:bg-brand-dark/95 border border-brand-accent/25 text-brand-accent rounded-full font-sans text-xs font-black uppercase tracking-widest shadow-lg shadow-brand-accent/10 flex items-center gap-2 relative group overflow-hidden"
                         >
                             <span className="w-2 h-2 rounded-full bg-brand-accent animate-ping absolute left-4" />
                             <span className="pl-4">Optimizar Eficiencia Energética Ahora</span>
@@ -525,7 +387,7 @@ const EcovisCroToggle: React.FC = () => {
                         <span className="font-sans text-[9px] text-brand-dark/50 -mt-2">Cotización Técnica Asíncrona sin Compromiso en 24 Horas</span>
                         <div className="flex items-center gap-1.5 text-brand-accent font-sans text-[10px] font-black uppercase tracking-wider mt-1">
                             <span className="w-2 h-2 rounded-full bg-brand-accent animate-pulse" />
-                            Conversión B2B: 4.8% (4x Multiplicado)
+                            Mayor claridad para contactar
                         </div>
 
                         {/* Confetti Animation Sim */}
@@ -538,7 +400,7 @@ const EcovisCroToggle: React.FC = () => {
                                     className="absolute inset-0 bg-brand-cream/90 flex flex-col items-center justify-center rounded-2xl p-4 border border-brand-accent/35"
                                 >
                                     <Sparkles className="text-brand-accent mb-2" size={24} />
-                                    <span className="font-serif text-lg font-black text-brand-dark">¡Solicitud Simulada!</span>
+                                    <span className="font-sans text-lg font-black text-brand-dark">¡Solicitud Simulada!</span>
                                     <span className="font-sans text-[10px] text-brand-dark/70 mt-1">Evidencia real del impacto de CRO.</span>
                                 </motion.div>
                             )}
@@ -601,7 +463,7 @@ const EcovisSeoMetrics: React.FC = () => {
     const [score, setScore] = useState(0);
 
     useEffect(() => {
-        const timer = setTimeout(() => setScore(99), 600);
+        const timer = setTimeout(() => setScore(92), 600);
         return () => clearTimeout(timer);
     }, []);
 
@@ -641,7 +503,7 @@ const EcovisSeoMetrics: React.FC = () => {
                                 transition={{ duration: 1.8, ease: "easeOut" }}
                             />
                         </svg>
-                        <span className="absolute font-serif text-2xl font-black text-brand-cream">{score}</span>
+                        <span className="absolute font-sans text-2xl font-black text-brand-cream">{score}</span>
                     </div>
                     <span className="font-sans text-[10px] font-black uppercase text-brand-dark tracking-wider">Performance</span>
                 </div>
@@ -650,7 +512,7 @@ const EcovisSeoMetrics: React.FC = () => {
                 <div className="flex flex-col gap-3 font-sans text-xs">
                     <div className="flex items-center gap-2 text-brand-dark/80">
                         <CheckCircle size={14} className="text-brand-accent shrink-0" />
-                        <span>Core Web Vitals Impecables (LCP &lt; 1.2s)</span>
+                        <span>Rendimiento y estructura técnica optimizados</span>
                     </div>
                     <div className="flex items-center gap-2 text-brand-dark/80">
                         <CheckCircle size={14} className="text-brand-accent shrink-0" />
@@ -690,15 +552,15 @@ const InvitacionesSaasSim: React.FC = () => {
 
             <div className="grid grid-cols-3 gap-3 mt-6">
                 <div className="bg-white/5 p-3 rounded-xl border border-white/5 flex flex-col text-center">
-                    <span className="font-serif text-xl font-bold text-brand-cream">{invited}</span>
+                    <span className="font-sans text-xl font-bold text-brand-cream">{invited}</span>
                     <span className="font-sans text-[8px] uppercase tracking-widest font-black text-white/50 mt-1">Invitados</span>
                 </div>
                 <div className="bg-brand-accent/10 p-3 rounded-xl border border-brand-accent/20 flex flex-col text-center">
-                    <span className="font-serif text-xl font-bold text-brand-accent">{confirmed}</span>
+                    <span className="font-sans text-xl font-bold text-brand-accent">{confirmed}</span>
                     <span className="font-sans text-[8px] uppercase tracking-widest font-black text-brand-accent mt-1">RSVP Sí</span>
                 </div>
                 <div className="bg-white/5 p-3 rounded-xl border border-white/5 flex flex-col text-center">
-                    <span className="font-serif text-xl font-bold text-brand-cream">${savings}</span>
+                    <span className="font-sans text-xl font-bold text-brand-cream">${savings}</span>
                     <span className="font-sans text-[8px] uppercase tracking-widest font-black text-white/50 mt-1">Ahorrado</span>
                 </div>
             </div>
@@ -709,7 +571,7 @@ const InvitacionesSaasSim: React.FC = () => {
                     <span className="font-sans text-[10px] font-black uppercase text-brand-accent">Escanear Invitación QR</span>
                     <button
                         onClick={handleConfirm}
-                        className="px-3 py-1 bg-brand-accent hover:bg-brand-accent/90 text-brand-dark rounded-full font-sans text-[9px] uppercase tracking-wider font-black cursor-none"
+                        className="px-3 py-1 bg-brand-accent hover:bg-brand-accent/90 text-brand-dark rounded-full font-sans text-[9px] uppercase tracking-wider font-black"
                     >
                         Confirmar Entrada
                     </button>
@@ -854,10 +716,10 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
     },
     "maternar": {
         title: "Maternar: Diseñando una Red de Apoyo para Madres",
-        subtitle: "Pivote estratégico de una app de donaciones transaccionales a un ecosistema de apoyo para resolver la soledad materna.",
+        subtitle: "De app de donaciones a ecosistema de apoyo para la soledad materna.",
         heroImage: "/projects/maternar/Home - Dark theme.png",
-        overview: "Identifiqué una doble oportunidad en la experiencia de las madres primerizas: por un lado, la acumulación de artículos de bebé y, por otro, la falta de canales seguros y dignos para donarlos o recibirlos.",
-        problem: "Mi hipótesis inicial era una plataforma transaccional de donaciones. Sin embargo, la investigación cualitativa reveló un problema de raíz mucho más profundo y urgente:",
+        overview: "La oportunidad inicial parecía material: madres con artículos de bebé en buen estado y otras madres sin canales seguros para recibirlos.",
+        problem: "La investigación mostró algo más profundo: las redes existentes resolvían objetos, pero no dignidad, seguridad ni pertenencia.",
         metadata: {
             Industry: "Social / HealthTech",
             "My Role": "Product Designer & Líder de Proyecto",
@@ -865,9 +727,9 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
             Timeline: "3 Meses"
         },
         pivot: {
-            hypothesis: "Desarrollar una aplicación puramente transaccional para donación ágil de artículos de bebé usados.",
-            insight: "Las madres experimentan una abrumadora soledad y pérdida de identidad individual. Su mayor necesidad no es recibir objetos, sino la contención y el apoyo comunitario.",
-            solution: "Crear un ecosistema con tres pilares entrelazados: apoyo material (donaciones), emocional (redes locales comunitarias) y profesional (independencia financiera)."
+            hypothesis: "Una plataforma centralizada de donaciones seguras podía mejorar el bienestar material de la comunidad.",
+            insight: "El problema real no era material, sino emocional y social: soledad, vulnerabilidad y pérdida de identidad tras la maternidad.",
+            solution: "Redefinir Maternar como ecosistema de apoyo: material, emocional y profesional."
         },
         personas: [
             {
@@ -888,33 +750,27 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
         process: [
             {
                 icon: <Search size={20} />,
-                title: "01 Investigación y Descubrimiento",
-                desc: "Inicié una fase de investigación cualitativa con entrevistas a profundidad para entender las necesidades emocionales reales más allá de lo puramente material.",
-                visual: <MaternarFlows />
+                title: "01 Investigación cualitativa",
+                desc: "Las entrevistas validaron el valor emocional de donar, pero revelaron una urgencia mayor: muchas madres necesitaban sentirse acompañadas y comprendidas.",
+                image: "/projects/maternar/Home - Dark theme.png"
             },
             {
                 icon: <Target size={20} />,
-                title: "02 Insight Clave y Redefinición",
-                desc: "Descubrí que la mayor necesidad no era recibir artículos, sino pertenecer a una comunidad de apoyo que las entendiera y fortaleciera emocionalmente.",
-                visual: <MaternarTriangle />
-            },
-            {
-                icon: <Zap size={20} />,
-                title: "03 Pivote: Ecosistema de Apoyo",
-                desc: "La visión evolucionó a un ecosistema basado en tres pilares: apoyo material (donaciones), apoyo emocional (comunidad) y apoyo profesional (independencia financiera).",
+                title: "02 Pivote estratégico",
+                desc: "La visión cambió de intercambio de artículos a una red donde pedir, donar, conectar y ofrecer servicios pudiera suceder sin estigma.",
                 image: "/projects/maternar/Onboarding - Step 1.png"
             },
             {
-                icon: <Layout size={20} />,
-                title: "04 Diseño y Prototipado Figma",
-                desc: "Diseñé dos perfiles flexibles permitiendo a cada madre donar, recibir, conectar y ofrecer servicios, eliminando estigmas y fomentando el empoderamiento.",
+                icon: <Zap size={20} />,
+                title: "03 Prototipo en Figma",
+                desc: "El prototipo permitió probar una solución multifacética: apoyo material, comunidad emocional y espacios para independencia profesional.",
                 image: "/projects/maternar/Home.png"
             }
         ],
         outcomes: [
-            { text: "Validación de una solución empática para la soledad materna extrema.", icon: <TrendingUp size={24} /> },
-            { text: "Diseño de perfiles flexibles y polifacéticos (Donadora/Receptora en una app).", icon: <Layout size={24} /> },
-            { text: "Fomento del empoderamiento y rol activo en la comunidad social.", icon: <Users size={24} /> }
+            { text: "El caso dejó de centrarse en objetos y pasó a resolver pertenencia, seguridad y apoyo.", icon: <TrendingUp size={24} /> },
+            { text: "El prototipo validó perfiles flexibles: donar, recibir, conectar y ofrecer servicios.", icon: <Layout size={24} /> },
+            { text: "La propuesta redujo el estigma al convertir la ayuda en participación activa dentro de una comunidad.", icon: <Users size={24} /> }
         ],
         testimonial: {
             title: "Impacto Social",
@@ -1041,7 +897,7 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
             {
                 icon: <Layout size={20} />,
                 title: "02 Escudo Digital ante la Letra Chiquita",
-                desc: "Diseñando la extensión de Chrome bajo la restricción técnica de 400x600px; transformando cláusulas abusivas y riesgos de IP en alertas críticas (🚨/⚠️), un Trust Score y un Dashboard de Ahorro.",
+                desc: "Diseñando la extensión de Chrome bajo la restricción técnica de 400x600px; transformando cláusulas abusivas y riesgos de IP en alertas críticas, un Trust Score y un Dashboard de Ahorro.",
                 image: "/projects/trustlens/TrustLens - v1.0.png"
             },
             {
@@ -1084,105 +940,30 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
     }
 };
 
-// ==========================================
-// INTERACTIVE PROCESS BOARD COMPONENT
-// ==========================================
+const cleanStepTitle = (title: string) => title.replace(/^\d+\s*/, '').trim();
+
 const ProcessBoard: React.FC<{
     process: ProjectData['process'];
-    onImageClick: (image: { src: string; title: string }) => void;
-}> = ({ process, onImageClick }) => {
-    const [activeStep, setActiveStep] = useState(0);
-
+}> = ({ process }) => {
     return (
-        <div className="w-full flex flex-col gap-12 my-12 relative z-20">
-            {/* Header section */}
-            <div className="flex flex-col gap-2 text-center items-center mb-6">
-                <span className="font-sans text-brand-accent text-xs tracking-[0.25em] font-black uppercase">
-                    03 / PROCESO DE DISEÑO TÉCNICO
-                </span>
-                <h2 className="font-serif text-4xl md:text-5xl text-brand-dark tracking-tighter mt-2">
-                    Ingeniería & Flujo del Producto<span className="text-brand-accent">.</span>
-                </h2>
-            </div>
-
-            {/* Split Board layout */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch min-h-[500px]">
-                {/* Left side: Editorial Navigator Stepper */}
-                <div className="lg:col-span-5 flex flex-col gap-4 justify-center">
-                    {process.map((step, idx) => {
-                        const isActive = activeStep === idx;
-                        return (
-                            <button
-                                key={idx}
-                                onClick={() => setActiveStep(idx)}
-                                className={`w-full text-left p-6 rounded-3xl border transition-all duration-500 cursor-none flex flex-col gap-2 relative overflow-hidden ${isActive ? 'bg-brand-cream border-brand-accent/40 shadow-[0_12px_32px_rgba(41,208,103,0.06)]' : 'bg-transparent border-transparent hover:bg-brand-cream/20 hover:border-brand-cream-dark/10'}`}
-                            >
-                                <div className="flex items-center gap-4">
-                                    <div className={`w-9 h-9 rounded-full flex items-center justify-center border font-sans text-xs font-black transition-all duration-500 ${isActive ? 'bg-brand-dark border-brand-accent text-brand-accent' : 'bg-brand-cream-dark/20 border-brand-dark/5 text-brand-dark/60'}`}>
-                                        {idx + 1}
-                                    </div>
-                                    <span className={`font-serif text-xl tracking-tight transition-all duration-300 ${isActive ? 'text-brand-dark font-black' : 'text-brand-dark/70 font-semibold'}`}>
-                                        {step.title}
-                                    </span>
-                                </div>
-                                <AnimatePresence initial={false}>
-                                    {isActive && (
-                                        <motion.p
-                                            initial={{ height: 0, opacity: 0 }}
-                                            animate={{ height: 'auto', opacity: 1 }}
-                                            exit={{ height: 0, opacity: 0 }}
-                                            transition={{ duration: 0.4, ease: "easeInOut" }}
-                                            className="font-sans text-brand-dark/80 text-sm leading-relaxed mt-2 pl-13 overflow-hidden"
-                                        >
-                                            {step.desc}
-                                        </motion.p>
-                                    )}
-                                </AnimatePresence>
-                            </button>
-                        );
-                    })}
+        <div className="border-y border-brand-cream/10">
+            {process.map((step, idx) => (
+                <div
+                    key={step.title}
+                    className="grid gap-4 border-b border-brand-cream/10 py-5 last:border-b-0 md:grid-cols-[56px_1fr]"
+                >
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-cream/7 text-brand-accent">
+                        {React.isValidElement(step.icon) ? React.cloneElement(step.icon as React.ReactElement<{ size?: number, strokeWidth?: number }>, { size: 16, strokeWidth: 1.9 }) : step.icon}
+                    </span>
+                    <div>
+                        <p className="text-sm font-semibold text-brand-accent">{String(idx + 1).padStart(2, '0')}</p>
+                        <h3 className="mt-1 text-2xl font-semibold leading-tight tracking-[-0.03em] text-brand-cream">
+                            {cleanStepTitle(step.title)}
+                        </h3>
+                        <p className="mt-3 max-w-3xl text-base leading-7 text-brand-cream-dark">{step.desc}</p>
+                    </div>
                 </div>
-
-                {/* Right side: Active Visual Artifact Stage */}
-                <div className="hidden lg:flex lg:col-span-7 items-center justify-center relative min-h-[420px] w-full">
-                    <AnimatePresence mode="wait">
-                        <motion.div
-                            key={activeStep}
-                            initial={{ opacity: 0, scale: 0.96, y: 15 }}
-                            animate={{ opacity: 1, scale: 1, y: 0 }}
-                            exit={{ opacity: 0, scale: 0.96, y: -15 }}
-                            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                            className="w-full h-full flex items-center justify-center"
-                        >
-                            {process[activeStep].visual ? (
-                                <div className="w-full h-full flex items-center justify-center">
-                                    {process[activeStep].visual}
-                                </div>
-                            ) : process[activeStep].image ? (
-                                <button
-                                    className="relative flex items-center justify-center max-h-[440px] w-full outline-none cursor-none group"
-                                    onClick={() => onImageClick({ src: process[activeStep].image as string, title: process[activeStep].title })}
-                                    aria-label={`View larger image of ${process[activeStep].title}`}
-                                >
-                                    <img
-                                        src={process[activeStep].image}
-                                        alt={process[activeStep].title}
-                                        className="max-h-[420px] w-auto object-contain rounded-2xl shadow-xl hover:shadow-[0_24px_48px_rgba(0,0,0,0.15)] transition-all duration-500 hover:scale-[1.02]"
-                                        onError={(e) => {
-                                            const target = e.target as HTMLImageElement;
-                                            target.src = `https://placehold.co/1280x720/1a1a1b/e9e3d5?text=${encodeURIComponent('En construcción...')}`;
-                                        }}
-                                    />
-                                </button>
-                            ) : (
-                                <div className="font-sans text-xs tracking-[0.2em] uppercase font-bold text-brand-dark/20">
-                                    Visualización Técnica {activeStep + 1}
-                                </div>
-                            )}
-                        </motion.div>
-                    </AnimatePresence>
-                </div>
-            </div>
+            ))}
         </div>
     );
 };
@@ -1191,257 +972,119 @@ export const CaseStudy: React.FC<{
     id: string;
     onImageClick: (image: { src: string; title: string }) => void;
 }> = ({ id, onImageClick }) => {
-    const project = PROJECTS_DATA[id] || PROJECTS_DATA["ecovis"];
-    const [activePersona, setActivePersona] = useState(0);
-
-    // Dynamic drop cap parsing
-    const firstLetter = project.overview.charAt(0);
-    const restOfOverview = project.overview.slice(1);
+    const project = PROJECTS_DATA[id] || PROJECTS_DATA.ecovis;
+    const keyGallery = project.gallery?.slice(0, 3) || [];
 
     return (
-        <div className="w-full bg-white select-none">
-            <article className="w-full max-w-5xl mx-auto px-6 md:px-12 flex flex-col gap-24 md:gap-36 pb-40">
-
-                {/* 1. The Context (Asymmetric Editorial Layout) */}
+        <div className="w-full bg-brand-dark">
+            <article className="mx-auto flex w-full max-w-7xl flex-col gap-16 px-5 pb-20 sm:px-6 md:px-10 lg:px-12">
                 <motion.section
-                    data-theme="light"
                     variants={staggerContainer}
                     initial="initial"
                     whileInView="animate"
-                    viewport={{ once: true }}
-                    className="w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-start"
+                    viewport={{ once: true, margin: '-80px' }}
+                    className="max-w-4xl"
                 >
-                    <motion.div variants={fadeInUp} className="lg:col-span-8 flex flex-col gap-8">
-                        <div className="flex flex-col gap-2">
-                            <span className="font-sans text-brand-accent text-xs tracking-[0.25em] font-black uppercase">
-                                01 / EL CONTEXTO Y PROPÓSITO
-                            </span>
-                            <h2 className="font-serif text-3xl md:text-5xl text-brand-dark leading-tight tracking-tighter">
-                                El Reto y la Situación<span className="text-brand-accent">.</span>
-                            </h2>
-                        </div>
-
-                        <div className="relative">
-                            <p className="font-sans text-brand-dark/85 text-lg md:text-xl leading-relaxed">
-                                <span className="float-left text-brand-dark font-serif text-6xl md:text-7xl lg:text-8xl font-black mr-4 leading-[0.8] mt-1 border-r border-brand-accent/20 pr-3 text-brand-dark">
-                                    {firstLetter}
-                                </span>
-                                {restOfOverview} <span className="text-brand-dark font-black">{project.problem}</span>
-                            </p>
-                        </div>
-                    </motion.div>
-
-                    {/* Editorial Sidebar Quote Card */}
-                    <motion.div
-                        variants={fadeInUp}
-                        className="lg:col-span-4 bg-brand-cream p-8 rounded-3xl border border-brand-cream-dark/15 flex flex-col gap-4 text-left relative overflow-hidden"
-                    >
-                        <div className="w-8 h-8 rounded-full bg-brand-accent/10 border border-brand-accent/30 flex items-center justify-center text-brand-dark">
-                            <Target size={14} />
-                        </div>
-                        <span className="font-sans text-[9px] uppercase tracking-widest font-black text-brand-dark/50">FOCO PRINCIPAL</span>
-                        <h4 className="font-serif text-lg font-bold text-brand-dark">Estrategia de Solución</h4>
-                        <p className="font-sans text-xs text-brand-dark/70 leading-relaxed">
-                            Alinear la arquitectura de datos y la interfaz visual hacia el dolor real del usuario B2B o del consumidor creativo final.
+                    <motion.div variants={fadeInUp}>
+                        <h2 className="max-w-3xl text-4xl font-semibold leading-[1.02] tracking-[-0.035em] text-brand-cream md:text-5xl">
+                            El reto real detrás de la pantalla.
+                        </h2>
+                        <p className="mt-6 max-w-3xl text-lg leading-8 text-brand-cream-dark">
+                            {project.overview} <strong className="font-semibold text-brand-cream">{project.problem}</strong>
                         </p>
                     </motion.div>
                 </motion.section>
 
-                {/* 2. The Strategic Pivot (High-Fidelity Storytelling Element) */}
                 {project.pivot && (
                     <motion.section
-                        data-theme="light"
                         variants={staggerContainer}
                         initial="initial"
                         whileInView="animate"
-                        viewport={{ once: true }}
-                        className="w-full flex flex-col gap-10 border-t border-b border-brand-dark/10 py-16"
+                        viewport={{ once: true, margin: '-80px' }}
+                        className="grid gap-6"
                     >
-                        <div className="flex flex-col gap-2 text-center items-center">
-                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-accent/15 border border-brand-accent/35 text-brand-dark font-sans font-black text-[9px] uppercase tracking-widest">
-                                <span className="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
-                                STRATEGIC DISCOVERY & PIVOT
-                            </div>
-                            <h3 className="font-serif text-3xl md:text-4xl text-brand-dark tracking-tighter mt-3">
-                                Descubrimiento y Redefinición de Ruta
-                            </h3>
+                        <div className="max-w-3xl">
+                            <h2 className="text-4xl font-semibold leading-[1.02] tracking-[-0.035em] text-brand-cream md:text-5xl">
+                                La decisión que cambió el enfoque.
+                            </h2>
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mt-6">
-                            {/* Hypothesis */}
-                            <div className="bg-brand-cream/30 p-8 rounded-3xl border border-brand-cream-dark/10 flex flex-col gap-3 relative">
-                                <span className="font-sans text-[8px] uppercase tracking-[0.2em] font-black text-red-500 bg-red-500/10 px-3 py-1 rounded-full max-w-fit">Hipótesis Inicial</span>
-                                <p className="font-sans text-sm text-brand-dark/75 leading-relaxed mt-2">
-                                    "{project.pivot.hypothesis}"
-                                </p>
-                            </div>
-
-                            {/* Research Insight */}
-                            <div className="bg-brand-dark p-8 rounded-3xl border border-brand-accent/20 flex flex-col gap-3 relative shadow-lg">
-                                <span className="font-sans text-[8px] uppercase tracking-[0.2em] font-black text-brand-accent bg-brand-accent/10 px-3 py-1 rounded-full max-w-fit">Insight de Investigación</span>
-                                <p className="font-sans text-sm text-brand-cream/85 leading-relaxed mt-2 italic">
-                                    "{project.pivot.insight}"
-                                </p>
-                            </div>
-
-                            {/* Validated Solution */}
-                            <div className="bg-brand-cream/30 p-8 rounded-3xl border border-brand-cream-dark/10 flex flex-col gap-3 relative">
-                                <span className="font-sans text-[8px] uppercase tracking-[0.2em] font-black text-brand-dark bg-brand-dark/10 px-3 py-1 rounded-full max-w-fit">Solución Validada</span>
-                                <p className="font-sans text-sm text-brand-dark/75 leading-relaxed mt-2">
-                                    "{project.pivot.solution}"
-                                </p>
-                            </div>
+                        <div className="grid gap-0 border-y border-brand-cream/10">
+                            {[
+                                ['Hipótesis', project.pivot.hypothesis],
+                                ['Insight', project.pivot.insight],
+                                ['Solución', project.pivot.solution]
+                            ].map(([label, text]) => (
+                                <motion.div
+                                    key={label}
+                                    variants={fadeInUp}
+                                    className="grid gap-3 border-b border-brand-cream/10 py-5 last:border-b-0 md:grid-cols-[160px_1fr]"
+                                >
+                                    <p className="text-sm font-semibold text-brand-accent">{label}</p>
+                                    <p className="text-base leading-7 text-brand-cream-dark">{text}</p>
+                                </motion.div>
+                            ))}
                         </div>
                     </motion.section>
                 )}
 
-                {/* 3. The User Persona (Interactive Empathy Section - Dark) */}
                 <motion.section
-                    data-theme="dark"
-                    variants={staggerContainer}
-                    initial="initial"
-                    whileInView="animate"
-                    viewport={{ once: true }}
-                    className="w-screen relative left-1/2 ml-[-50vw] bg-brand-dark py-24 md:py-32 px-6"
+                    initial={{ opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-80px' }}
+                    transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                    className="grid gap-8"
                 >
-                    <div className="max-w-5xl mx-auto flex flex-col gap-16">
-                        <div className="flex flex-col gap-4 text-center items-center">
-                            <span className="font-sans text-brand-accent text-xs tracking-[0.25em] font-black uppercase">
-                                02 / EMPATÍA DE USUARIO
-                            </span>
-                            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-brand-cream tracking-tighter mt-2">
-                                Entendiendo la Necesidad<span className="text-brand-accent">.</span>
-                            </h2>
-                        </div>
-
-                        {/* Interactive Switcher for Personas if more than 1 */}
-                        {project.personas.length > 1 && (
-                            <div className="flex justify-center bg-white/5 p-1 rounded-full w-fit mx-auto border border-white/5 gap-2">
-                                {project.personas.map((persona, idx) => (
-                                    <button
-                                        key={idx}
-                                        onClick={() => setActivePersona(idx)}
-                                        className={`px-6 py-2.5 text-center rounded-full font-sans text-[10px] uppercase tracking-wider font-black transition-all duration-300 cursor-none ${activePersona === idx ? 'bg-brand-accent text-brand-dark shadow-md' : 'text-brand-cream/60 hover:text-brand-cream'}`}
-                                    >
-                                        {persona.name.split(' ')[0]}
-                                    </button>
-                                ))}
-                            </div>
-                        )}
-
-                        <div className="w-full">
-                            <AnimatePresence mode="wait">
-                                <motion.div
-                                    key={activePersona}
-                                    initial={{ opacity: 0, y: 15 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    exit={{ opacity: 0, y: -15 }}
-                                    transition={{ duration: 0.5 }}
-                                    className="bg-white/5 rounded-[2.5rem] p-8 md:p-14 flex flex-col gap-10 border border-white/10 hover:border-brand-accent/20 transition-all duration-500 relative overflow-hidden"
-                                >
-                                    {/* Large background decorative quote mark */}
-                                    <span className="absolute right-10 top-6 font-serif text-[10rem] text-brand-accent/5 font-black select-none pointer-events-none">
-                                        “
-                                    </span>
-
-                                    <div className="flex flex-col gap-4">
-                                        <h3 className="font-serif text-3xl md:text-4xl text-brand-cream leading-tight">
-                                            {project.personas[activePersona].name}
-                                        </h3>
-                                        <p className="font-sans text-brand-accent text-xs uppercase tracking-widest font-black">
-                                            {project.personas[activePersona].role}
-                                        </p>
-                                        {project.personas[activePersona].phrase && (
-                                            <p className="font-serif text-xl md:text-2xl text-brand-cream/90 italic leading-relaxed max-w-3xl mt-4 border-l-2 border-brand-accent/50 pl-6">
-                                                "{project.personas[activePersona].phrase}"
-                                            </p>
-                                        )}
-                                    </div>
-
-                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 border-t border-white/10 pt-10 mt-4">
-                                        <div className="flex flex-col gap-4">
-                                            <span className="font-sans text-brand-cream/30 text-xs tracking-[0.2em] font-bold uppercase relative pl-4 before:content-[''] before:absolute before:left-0 before:top-0 before:h-full before:w-[2px] before:bg-brand-accent">
-                                                Objetivos y Metas
-                                            </span>
-                                            <p className="font-sans text-brand-cream/80 text-sm md:text-base leading-relaxed">
-                                                {project.personas[activePersona].goals}
-                                            </p>
-                                        </div>
-                                        <div className="flex flex-col gap-4">
-                                            <span className="font-sans text-brand-cream/30 text-xs tracking-[0.2em] font-bold uppercase relative pl-4 before:content-[''] before:absolute before:left-0 before:top-0 before:h-full before:w-[2px] before:bg-[#ff4d4d]">
-                                                Frustraciones y Fricciones
-                                            </span>
-                                            <p className="font-sans text-brand-cream/80 text-sm md:text-base leading-relaxed">
-                                                {project.personas[activePersona].frustrations}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </motion.div>
-                            </AnimatePresence>
-                        </div>
+                    <div className="max-w-3xl">
+                        <h2 className="text-4xl font-semibold leading-[1.02] tracking-[-0.035em] text-brand-cream md:text-5xl">
+                            Cómo se tomó forma.
+                        </h2>
                     </div>
+                    <ProcessBoard process={project.process} />
                 </motion.section>
 
-                {/* 4. The Process (COMPLETELY REDESIGNED: Split Workspace Board) */}
-                <motion.section
-                    data-theme="light"
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
-                    className="w-full relative z-10"
-                >
-                    <ProcessBoard process={project.process} onImageClick={onImageClick} />
-                </motion.section>
-
-                {/* 4.5 UI Showcase Gallery (NEW SECTION) */}
-                {project.gallery && project.gallery.length > 0 && (
+                {keyGallery.length > 0 && (
                     <motion.section
-                        data-theme="light"
                         variants={staggerContainer}
                         initial="initial"
                         whileInView="animate"
-                        viewport={{ once: true }}
-                        className="w-full flex flex-col gap-12 border-t border-brand-dark/10 pt-24"
+                        viewport={{ once: true, margin: '-80px' }}
+                        className="grid gap-8"
                     >
-                        <div className="flex flex-col gap-2 text-center items-center">
-                            <span className="font-sans text-brand-accent text-xs tracking-[0.25em] font-black uppercase">
-                                04 / GALERÍA DE ALTA FIDELIDAD
-                            </span>
-                            <h2 className="font-serif text-4xl md:text-5xl text-brand-dark tracking-tighter mt-2">
-                                UI & Detalles de Interfaz<span className="text-brand-accent">.</span>
+                        <div className="grid gap-5 lg:grid-cols-[0.7fr_1fr] lg:items-end">
+                            <h2 className="text-4xl font-semibold leading-[1.02] tracking-[-0.035em] text-brand-cream md:text-5xl">
+                                Evidencia visual.
                             </h2>
-                            <p className="font-sans text-brand-dark/60 text-base max-w-lg mt-2 leading-relaxed text-center">
-                                Explora las pantallas de producción, componentes e interacciones clave de este proyecto. Haz clic en las tarjetas para ampliar.
+                            <p className="max-w-2xl text-base leading-7 text-brand-cream-dark lg:justify-self-end">
+                                Las pantallas necesarias para entender la solución. Se pueden abrir para inspeccionar detalle.
                             </p>
                         </div>
 
-                        {/* Gallery Horizontal Slide Grid */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mt-6">
-                            {project.gallery.map((item, idx) => (
+                        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                            {keyGallery.map((item, idx) => (
                                 <motion.button
-                                    key={idx}
+                                    key={`${item.image}-${idx}`}
                                     variants={fadeInUp}
+                                    type="button"
                                     onClick={() => onImageClick({ src: item.image, title: item.title })}
-                                    className="flex flex-col text-left bg-brand-cream/15 rounded-[2rem] border border-brand-cream-dark/10 p-4 hover:border-brand-accent/40 hover:shadow-[0_16px_32px_rgba(41,208,103,0.05)] transition-all duration-500 cursor-none group outline-none focus-visible:ring-2 focus-visible:ring-brand-accent w-full"
-                                    aria-label={`Ver pantalla completa: ${item.title}`}
+                                    className="group relative aspect-[4/5] min-h-[320px] overflow-hidden rounded-2xl border border-brand-cream/10 bg-brand-panel text-left transition-all duration-500 hover:-translate-y-1 hover:border-brand-accent/35 sm:min-h-0"
+                                    aria-label={`Ampliar pantalla: ${item.title}`}
                                 >
-                                    <div className={`w-full ${item.aspectRatio === 'portrait' ? 'aspect-[2/3]' : 'aspect-video'} rounded-2xl overflow-hidden bg-brand-cream-dark/20 relative border border-brand-dark/5`}>
-                                        <img
-                                            src={item.image}
-                                            alt={item.title}
-                                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-                                            loading="lazy"
-                                            onError={(e) => {
-                                                const target = e.target as HTMLImageElement;
-                                                target.src = `https://placehold.co/800x450/052E1C/ECE5D5?text=${encodeURIComponent(item.title)}`;
-                                            }}
-                                        />
-                                        <div className="absolute inset-0 bg-brand-dark/0 group-hover:bg-brand-dark/5 transition-colors duration-500" />
-                                    </div>
-                                    <div className="flex flex-col mt-4 px-2 pb-2">
-                                        <span className="font-sans text-[8px] uppercase tracking-[0.25em] font-black text-brand-accent mb-1.5">{item.category}</span>
-                                        <h4 className="font-serif text-lg font-bold text-brand-dark leading-tight">{item.title}</h4>
+                                    <img
+                                        src={item.image}
+                                        alt={item.title}
+                                        className="h-full w-full object-contain p-4 transition-transform duration-700 group-hover:scale-[1.035]"
+                                        loading="lazy"
+                                        onError={(e) => {
+                                            const target = e.target as HTMLImageElement;
+                                            target.src = `https://placehold.co/900x700/07100c/e8efe7?text=${encodeURIComponent(item.title)}`;
+                                        }}
+                                    />
+                                    <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-brand-dark via-brand-dark/78 to-transparent p-4 pt-16">
+                                        <p className="text-xs font-semibold text-brand-accent">{item.category}</p>
+                                        <h3 className="mt-1 overflow-hidden text-base font-semibold leading-tight tracking-[-0.02em] text-brand-cream [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2]">
+                                            {item.title}
+                                        </h3>
                                     </div>
                                 </motion.button>
                             ))}
@@ -1449,68 +1092,47 @@ export const CaseStudy: React.FC<{
                     </motion.section>
                 )}
 
-                {/* 5. The Impact (Premium Metrics) */}
-                <div data-theme="dark" className="w-screen relative left-1/2 ml-[-50vw] bg-brand-dark py-32 md:py-40 px-6">
-                    <div className="max-w-5xl mx-auto flex flex-col items-center">
-                        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-accent/10 border border-brand-accent/30 text-brand-accent font-sans font-black text-[9px] uppercase tracking-widest mb-4 shadow-[0_4px_16px_rgba(41,208,103,0.15)]">
-                            <span className="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
-                            05 / VALOR Y RESULTADOS
-                        </div>
-                        <h2 className="font-serif text-4xl md:text-6xl text-brand-cream tracking-tighter mb-20 text-center leading-tight">
-                            Resultados Clave de Negocio<span className="text-brand-accent">.</span>
-                        </h2>
-
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10 w-full">
-                            {project.outcomes.map((outcome, idx) => (
-                                <motion.div
-                                    key={idx}
-                                    variants={fadeInUp}
-                                    initial="initial"
-                                    whileInView="animate"
-                                    viewport={{ once: true }}
-                                    className="flex flex-col items-start text-left gap-6 p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-brand-accent/30 hover:shadow-[0_16px_32px_rgba(41,208,103,0.04)] transition-all duration-500 w-full relative overflow-hidden"
-                                >
-                                    <div className="text-brand-accent bg-white/5 p-4 rounded-2xl border border-white/5">
-                                        {React.isValidElement(outcome.icon) ? React.cloneElement(outcome.icon as React.ReactElement<{ size?: number, strokeWidth?: number }>, { size: 28, strokeWidth: 1.5 }) : outcome.icon}
-                                    </div>
-                                    <span className="font-sans text-brand-cream text-base md:text-lg leading-relaxed font-semibold">
-                                        {outcome.text}
-                                    </span>
-                                </motion.div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-
-                {/* 6. Testimonial - Luxury Editorial Monograph style */}
                 <motion.section
-                    data-theme="light"
+                    variants={staggerContainer}
+                    initial="initial"
+                    whileInView="animate"
+                    viewport={{ once: true, margin: '-80px' }}
+                    className="grid gap-8"
+                >
+                    <div className="grid gap-0 border-y border-brand-cream/10">
+                        {project.outcomes.map((outcome, idx) => (
+                            <motion.div
+                                key={idx}
+                                variants={fadeInUp}
+                                className="grid gap-4 border-b border-brand-cream/10 py-5 last:border-b-0 md:grid-cols-[140px_1fr]"
+                            >
+                                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-accent text-brand-dark">
+                                    {React.isValidElement(outcome.icon) ? React.cloneElement(outcome.icon as React.ReactElement<{ size?: number, strokeWidth?: number }>, { size: 22, strokeWidth: 2 }) : outcome.icon}
+                                </div>
+                                <p className="text-base font-semibold leading-7 text-brand-cream">{outcome.text}</p>
+                            </motion.div>
+                        ))}
+                    </div>
+                </motion.section>
+
+                <motion.section
                     variants={scaleIn}
                     initial="initial"
                     whileInView="animate"
-                    viewport={{ once: true }}
-                    className="w-full max-w-5xl mx-auto bg-brand-cream p-12 md:p-20 rounded-4xl border border-brand-cream-dark/15 hover:border-brand-accent/20 transition-all duration-500 flex flex-col items-center text-center gap-8 relative overflow-hidden"
+                    viewport={{ once: true, margin: '-80px' }}
+                    className="border-t border-brand-accent/30 pt-8"
                 >
-                    <span className="font-serif text-8xl text-brand-accent/25 absolute left-10 top-6 select-none font-bold">
-                        “
-                    </span>
-
-                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-accent/15 border border-brand-accent/35 text-brand-dark font-sans font-black text-[9px] uppercase tracking-widest shadow-[0_4px_16px_rgba(41,208,103,0.08)] mb-2 relative z-10">
-                        <span className="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
-                        VALIDACIÓN Y COMENTARIO
-                    </div>
-
-                    <h3 className="font-serif text-xl md:text-3xl lg:text-3xl text-brand-dark leading-[1.35] tracking-tight italic max-w-4xl font-normal relative z-10">
-                        "{project.testimonial.text.replace(/"/g, '')}"
-                    </h3>
-
-                    <div className="flex flex-col items-center gap-1 mt-4 relative z-10">
-                        <span className="font-sans text-[10px] tracking-[0.25em] font-black uppercase text-brand-dark">
-                            {project.testimonial.author}
-                        </span>
-                        <span className="font-serif text-brand-accent font-medium text-lg italic mt-1">
-                            {project.testimonial.company}
-                        </span>
+                    <p className="max-w-5xl text-2xl font-semibold leading-[1.18] tracking-[-0.03em] text-brand-cream md:text-3xl">
+                        “{project.testimonial.text.replace(/"/g, '')}”
+                    </p>
+                    <div className="mt-8 flex items-center gap-4">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-accent text-sm font-semibold text-brand-dark">
+                            {project.testimonial.authorInitials}
+                        </div>
+                        <div>
+                            <p className="font-semibold text-brand-cream">{project.testimonial.author}</p>
+                            <p className="text-sm text-brand-cream-dark">{project.testimonial.company}</p>
+                        </div>
                     </div>
                 </motion.section>
             </article>

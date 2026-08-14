@@ -16,14 +16,14 @@ export const PillButton: React.FC<PillButtonProps> = ({
     className = '',
     ...props
 }) => {
-    const baseStyles = 'inline-flex items-center justify-center px-6 py-3 rounded-full font-sans font-bold transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-accent cursor-pointer gap-2 select-none';
+    const baseStyles = 'inline-flex items-center justify-center px-6 py-3 rounded-full font-sans font-semibold transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-accent cursor-pointer gap-2 select-none';
 
     const variants = {
-        primary: 'bg-brand-dark text-white hover:bg-brand-dark/90',
-        secondary: 'bg-brand-cream text-brand-dark hover:bg-brand-cream/80',
-        outline: 'bg-transparent border border-brand-dark text-brand-dark hover:bg-brand-dark/5',
-        accent: 'bg-brand-accent text-brand-dark shadow-lg shadow-brand-accent/20',
-        ghost: 'bg-transparent text-brand-dark/70 hover:text-brand-dark hover:bg-brand-dark/5 border border-transparent'
+        primary: 'bg-brand-cream text-brand-dark hover:bg-white',
+        secondary: 'bg-brand-panel-soft text-brand-cream hover:bg-brand-panel-line',
+        outline: 'bg-transparent border border-brand-cream/20 text-brand-cream hover:bg-brand-cream/6',
+        accent: 'bg-brand-accent text-brand-dark shadow-[0_16px_40px_rgba(155,255,114,0.16)]',
+        ghost: 'bg-transparent text-brand-cream-dark hover:text-brand-cream hover:bg-brand-cream/6 border border-brand-cream/10'
     };
 
     return (

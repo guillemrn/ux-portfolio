@@ -1,7 +1,5 @@
 import React from 'react';
 import { ProjectCard, type ProjectData } from './ProjectCard';
-// import { PillButton } from './PillButton';
-// import { ArrowRight } from 'lucide-react';
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const PROJECTS: ProjectData[] = [
@@ -11,8 +9,7 @@ export const PROJECTS: ProjectData[] = [
         title: 'TrustLens: De "punto ciego" legal a escudo financiero con IA',
         description: 'Extensión de Chrome impulsada por IA que traduce términos de servicio complejos en insights claros para proteger el capital y la IP.',
         imageUrl: '/projects/trustlens/TrustLens - v1.0 - High risk.png',
-        tags: ['AI Product', 'UX/UI', 'Extension'],
-        layout: 'horizontal'
+        signal: 'IA, Chrome Extension, Supabase',
     },
     {
         id: 'maternar',
@@ -20,8 +17,7 @@ export const PROJECTS: ProjectData[] = [
         title: 'Maternar: Diseñando una Red de Apoyo para Madres',
         description: 'Pivote estratégico de una app de donaciones a un ecosistema de apoyo para resolver la soledad materna.',
         imageUrl: '/projects/maternar/Home - Dark theme.png',
-        tags: ['UX Strategy', 'Research', 'Figma'],
-        layout: 'vertical'
+        signal: 'Discovery, entrevistas, Figma',
     },
     {
         id: 'ecovis',
@@ -29,40 +25,28 @@ export const PROJECTS: ProjectData[] = [
         title: 'Ecovis México: Optimizando la Conversión B2B',
         description: 'Rediseño estratégico enfocado en transformar un catálogo industrial en una herramienta de generación de leads.',
         imageUrl: '/projects/ecovis/b2b-leads.png',
-        tags: ['UX Audit', 'CRO', 'SEO'],
-        layout: 'vertical'
+        signal: 'UX audit, IA, CRO, SEO',
     },
-    // {
-    //     id: 'invitaciones-digitales',
-    //     category: 'SaaS & Mobile',
-    //     title: 'Invitaciones Digitales: Productizando la Gestión de Eventos',
-    //     description: 'Eliminando la fricción logística mediante un modelo "Done-For-You" y validación por QR en puerta.',
-    //     imageUrl: '/projects/events-saas.png',
-    //     tags: ['Product', 'Mobile-First'],
-    //     layout: 'vertical'
-    // },
 ];
 
 export const ProjectsGrid: React.FC = () => {
     return (
         <section
-            data-theme="light"
-            className="w-full pt-32 pb-40 px-6 md:px-12 lg:px-20 bg-brand-cream relative"
+            data-theme="dark"
+            className="relative w-full px-5 py-14 sm:px-6 md:px-10 lg:px-12"
             id="work"
         >
-            <div className="max-w-6xl mx-auto">
-                {/* Premium Pulsing Neon Green Badge & Editorial Title */}
-                <div className="flex flex-col items-center text-center mb-16">
-                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-accent/10 border border-brand-accent/30 text-brand-dark font-sans font-black text-[9px] uppercase tracking-widest mb-4 shadow-[0_4px_16px_rgba(41,208,103,0.08)]">
-                        <span className="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
-                        01 / SELECTED WORK
-                    </div>
-                    <h2 className="text-4xl md:text-5xl font-serif text-brand-dark tracking-tighter max-w-2xl leading-tight">
-                        Casos de estudio enfocados en impacto y conversión<span className="text-brand-accent">.</span>
+            <div className="mx-auto max-w-7xl">
+                <div className="mb-7 grid gap-4 lg:grid-cols-[0.95fr_0.65fr] lg:items-end">
+                    <h2 className="max-w-3xl text-4xl font-semibold leading-[1.02] tracking-[-0.035em] text-brand-cream md:text-5xl">
+                        Casos donde la claridad tuvo consecuencias.
                     </h2>
+                    <p className="max-w-xl text-base leading-7 text-brand-cream-dark">
+                        Tres piezas para leer estrategia, criterio visual y ejecución de producto sin rodeos.
+                    </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8 mb-16">
+                <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-5">
                     {PROJECTS.map((project, index) => (
                         <ProjectCard
                             key={project.id}
@@ -72,15 +56,6 @@ export const ProjectsGrid: React.FC = () => {
                     ))}
                 </div>
 
-                {/* <div className="flex justify-center mt-20">
-                    <PillButton
-                        variant="accent"
-                        className="w-full md:w-auto min-w-[320px] py-6 text-base justify-between px-10 group"
-                        iconRight={<ArrowRight className="group-hover:translate-x-2 transition-transform duration-300" />}
-                    >
-                        View All Cases
-                    </PillButton>
-                </div> */}
             </div>
         </section>
     );

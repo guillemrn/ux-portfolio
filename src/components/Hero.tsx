@@ -1,56 +1,65 @@
 import React from 'react';
-import { PillButton } from './PillButton';
 import { ArrowDown, FileText } from 'lucide-react';
+import { PillButton } from './PillButton';
+
+const PRACTICE_SIGNALS = ['Estrategia UX', 'Design systems', 'Entrega frontend'];
 
 export const Hero: React.FC = () => {
     return (
-        <section data-theme="light" className="relative min-h-[100vh] flex items-center justify-center px-6 pt-36 pb-20 md:px-12 lg:px-20 overflow-hidden">
-            {/* Subtle editorial warm glow backdrop */}
-            <div className="absolute inset-0 bg-gradient-to-b from-brand-cream/30 via-transparent to-transparent pointer-events-none" />
+        <section className="relative w-full max-w-full overflow-hidden px-5 pt-24 pb-12 sm:px-6 md:px-10 lg:px-12 lg:pt-24">
+            <div className="pointer-events-none absolute inset-0 opacity-80">
+                <div className="absolute inset-0 bg-[linear-gradient(rgba(232,239,231,0.055)_1px,transparent_1px),linear-gradient(90deg,rgba(232,239,231,0.055)_1px,transparent_1px)] bg-[size:44px_44px] [mask-image:linear-gradient(to_bottom,black,transparent_78%)]" />
+            </div>
 
-            <div className="max-w-7xl mx-auto w-full flex flex-col items-center text-center gap-6 sm:gap-8 animate-fade-in-up z-10">
-
-                {/* Premium Pulsing Neon Green Badge */}
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-accent/10 border border-brand-accent/30 text-brand-dark font-sans font-black text-[9px] uppercase tracking-widest mb-2 shadow-[0_4px_16px_rgba(41,208,103,0.08)]">
-                    <span className="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
-                    Product Design & UX/UI
-                </div>
-
-                {/* Refined Typography - H1 Serif (Made wider and detailed in neon green) */}
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.12] tracking-tighter text-brand-dark font-serif max-w-6xl">
-                    Diseño productos digitales <span className="relative inline-block px-1 text-brand-dark z-10">accesibles<span className="absolute bottom-1 sm:bottom-2 left-0 w-full h-[0.22em] bg-brand-accent -z-10 rounded-full" /></span> que las personas realmente pueden usar<span className="text-brand-accent">.</span>
-                </h1>
-
-                {/* Details Wrapper - Centered Editorial Layout (Made wider) */}
-                <div className="font-sans text-brand-dark max-w-3xl flex flex-col items-center gap-8 w-full">
-                    <p className="text-lg sm:text-xl md:text-2xl font-light text-brand-dark/80 leading-relaxed max-w-2xl">
-                        Product Designer con 5 años de exp. Design systems escalables,
-                        accesibilidad (WCAG), y ejecución técnica (HTML/CSS/JS/Tailwind).
+            <div className="relative mx-auto grid max-w-7xl items-center gap-10 lg:min-h-[650px] lg:grid-cols-[1.04fr_0.72fr]">
+                <div className="max-w-4xl">
+                    <p className="mb-5 max-w-[21rem] text-base font-medium leading-7 text-brand-cream-dark sm:max-w-lg">
+                        Product Designer para SaaS, HR Tech y ciberseguridad.
                     </p>
 
-                    {/* Credibility Paragraph - Horizontal Editorial Frame (Styled with Neon Green borders) */}
-                    <div className="w-full border-t border-b border-brand-accent/30 py-4 px-6 my-2 text-sm sm:text-base md:text-lg font-light text-brand-dark/80 leading-relaxed font-serif italic">
-                        Trabajé con <span className="font-bold text-brand-dark not-italic">Prey</span> (8M+ dispositivos protegidos) y <span className="font-bold text-brand-dark not-italic">Fortia</span> (HR Tech para LATAM). Actualmente building <span className="font-bold text-brand-dark not-italic">TrustLens</span>.
+                    <h1 className="max-w-[21rem] text-[clamp(2.25rem,9.2vw,4rem)] font-semibold leading-[0.98] tracking-[-0.032em] text-brand-cream sm:max-w-5xl sm:text-6xl lg:text-7xl">
+                        Diseño interfaces que vuelven legible lo difícil.
+                    </h1>
+
+                    <div className="mt-7 flex max-w-2xl flex-wrap gap-x-5 gap-y-2 text-sm font-semibold text-brand-cream-dark">
+                        {PRACTICE_SIGNALS.map((signal) => (
+                            <span key={signal} className="border-b border-brand-cream/16 pb-1">{signal}</span>
+                        ))}
                     </div>
 
-                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 pt-2 w-full sm:w-auto">
+                    <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                         <PillButton
-                            variant="primary"
+                            variant="accent"
                             onClick={() => document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })}
-                            iconLeft={<ArrowDown size={20} strokeWidth={3} />}
-                            className="w-full sm:w-fit text-sm uppercase tracking-widest font-black py-4.5 px-8"
+                            iconLeft={<ArrowDown size={18} strokeWidth={2.4} />}
+                            className="w-full px-7 py-4 text-sm sm:w-fit"
                         >
-                            Ver casos de estudio
+                            Ver trabajo
                         </PillButton>
 
                         <PillButton
                             variant="ghost"
                             onClick={() => window.open('/cv-guillermo-moreno.pdf', '_blank')}
-                            iconLeft={<FileText size={20} />}
-                            className="w-full sm:w-fit text-sm uppercase tracking-widest font-black py-4.5 px-8"
+                            iconLeft={<FileText size={18} strokeWidth={2.2} />}
+                            className="w-full px-7 py-4 text-sm sm:w-fit"
                         >
                             Descargar CV
                         </PillButton>
+                    </div>
+                </div>
+
+                <div className="relative mx-auto w-full max-w-md lg:max-w-none">
+                    <div className="relative overflow-hidden rounded-2xl border border-brand-cream/12 bg-brand-panel-soft p-3">
+                        <img
+                            src="/guillermo.PNG"
+                            alt="Guillermo Moreno"
+                            className="h-[380px] w-full rounded-xl object-cover grayscale contrast-110 sm:h-[460px]"
+                            loading="eager"
+                            fetchPriority="high"
+                        />
+                        <p className="mt-3 px-1 text-sm leading-6 text-brand-cream-dark">
+                            5+ años conectando producto, sistemas, accesibilidad y ejecución visual.
+                        </p>
                     </div>
                 </div>
             </div>

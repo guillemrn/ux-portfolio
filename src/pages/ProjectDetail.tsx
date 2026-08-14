@@ -1,16 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, ArrowUpRight, X } from 'lucide-react';
-import { PillButton } from '../components/PillButton';
+import React, { useEffect, useMemo, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { AnimatePresence, motion } from 'framer-motion';
+import { ArrowLeft, ArrowUpRight, ExternalLink, X } from 'lucide-react';
 import { CaseStudy, PROJECTS_DATA } from '../components/CaseStudy';
 import { NextProjects } from '../components/NextProjects';
 
 export const ProjectDetail: React.FC = () => {
     const { id } = useParams<{ id: string }>();
-    const projectId = id || "ecovis";
-    const project = PROJECTS_DATA[projectId] || PROJECTS_DATA["ecovis"];
+    const projectId = id || 'ecovis';
+    const project = PROJECTS_DATA[projectId] || PROJECTS_DATA.ecovis;
     const [selectedImage, setSelectedImage] = useState<{ src: string; title: string } | null>(null);
+
+    const heroImage = useMemo(() => {
+        return project.gallery?.[0]?.image || project.heroImage;
+    }, [project.gallery, project.heroImage]);
+    const heroIsPortrait = project.gallery?.[0]?.aspectRatio === 'portrait';
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -20,150 +24,137 @@ export const ProjectDetail: React.FC = () => {
         const handleKeyDown = (e: KeyboardEvent) => {
             if (e.key === 'Escape') setSelectedImage(null);
         };
-        if (selectedImage) {
-            window.addEventListener('keydown', handleKeyDown);
-        }
+        if (selectedImage) window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
     }, [selectedImage]);
 
     return (
         <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] }}
-            className="pt-16 bg-white min-h-screen relative z-10 w-full flex flex-col"
+            exit={{ opacity: 0, y: -18 }}
+            transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+            className="relative z-10 flex min-h-screen w-full flex-col overflow-x-hidden bg-brand-dark pt-32 text-brand-cream md:pt-36"
         >
-            {/* Top Navigation - Sutil Back Button */}
-            <div className="w-full px-6 md:px-12 flex items-center justify-start mb-12 md:mb-16 relative">
-                <Link to="/#work" className="group flex items-center gap-3 text-brand-dark hover:text-brand-accent transition-all duration-300 no-underline cursor-none">
-                    <div className="w-8 h-8 rounded-full border border-brand-dark/10 flex items-center justify-center group-hover:border-brand-accent/40 group-hover:bg-brand-accent/5 transition-all duration-300">
-                        <ArrowLeft size={14} className="group-hover:-translate-x-0.5 transition-transform duration-300 text-brand-dark group-hover:text-brand-accent" />
-                    </div>
-                    <span className="font-sans text-[10px] uppercase tracking-widest font-black text-brand-dark/70 group-hover:text-brand-dark">Volver a Proyectos</span>
-                </Link>
-            </div>
+            <section className="relative overflow-hidden px-5 pb-10 sm:px-6 md:px-10 lg:px-12">
+                <div className="pointer-events-none absolute inset-x-0 top-0 h-[460px] bg-[radial-gradient(circle_at_46%_0%,rgba(155,255,114,0.09),transparent_46%)]" />
+                <div className="relative mx-auto max-w-7xl">
+                    <Link
+                        to="/#work"
+                        className="mb-10 inline-flex items-center gap-2 text-sm font-semibold text-brand-cream-dark transition-colors hover:text-brand-cream md:mb-12"
+                    >
+                        <ArrowLeft size={16} strokeWidth={2.2} />
+                        Volver a proyectos
+                    </Link>
 
-            {/* Immersive Hero Header (Editorial Grid) */}
-            <div className="w-full px-6 md:px-12 max-w-5xl mx-auto mb-16 md:mb-24 flex flex-col gap-12 relative">
-                
-                {/* Thin top divider */}
-                <div className="w-full h-px bg-brand-dark/10 relative">
-                    <div className="absolute right-0 top-0 -translate-y-1/2 font-sans text-[9px] uppercase tracking-[0.25em] font-black text-brand-accent bg-white pl-4">
-                        PROYECTO / {project.metadata["Timeline"] ? project.metadata["Timeline"].toUpperCase() : "SPRINT ÁGIL"}
-                    </div>
-                </div>
+                    <div className="grid gap-8 lg:grid-cols-[0.98fr_0.82fr] lg:items-center">
+                        <div className="max-w-full lg:max-w-4xl">
+                            <p className="mb-4 text-sm font-semibold text-brand-accent">
+                                {project.metadata.Industry || 'Product Design'}
+                            </p>
+                            <h1 className="max-w-[21rem] break-words text-[clamp(2.2rem,9vw,3.4rem)] font-semibold leading-[0.98] tracking-[-0.035em] text-brand-cream sm:max-w-3xl md:text-[clamp(3rem,5.8vw,4.35rem)] lg:max-w-4xl">
+                                {project.title}
+                            </h1>
+                            <p className="mt-5 max-w-[21rem] text-base leading-7 text-brand-cream-dark sm:max-w-2xl md:text-lg">
+                                {project.subtitle}
+                            </p>
 
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-                    {/* Left Column: Title & Subtitle */}
-                    <div className="lg:col-span-8 flex flex-col gap-6">
-                        {/* Premium Pulsing Neon Green Badge */}
-                        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-accent/10 border border-brand-accent/30 text-brand-dark font-sans font-black text-[9px] uppercase tracking-widest shadow-[0_4px_16px_rgba(41,208,103,0.08)] max-w-fit">
-                            <span className="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
-                            CASE STUDY & UX DESIGN / {project.metadata["Industry"] || "Product Design"}
-                        </div>
-
-                        {/* H1 Gigante - detailed with neon green accent period */}
-                        <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl text-brand-dark leading-[1.08] tracking-tighter">
-                            {project.title}<span className="text-brand-accent">.</span>
-                        </h1>
-                        
-                        {/* Elegant italic summary */}
-                        <p className="font-serif text-xl md:text-2xl text-brand-dark/80 italic leading-relaxed font-normal max-w-3xl mt-2 border-l-2 border-brand-accent pl-6">
-                            {project.subtitle}
-                        </p>
-                    </div>
-
-                    {/* Right Column: Metadata details in an elegant editorial sheet */}
-                    <div className="lg:col-span-4 lg:border-l lg:border-brand-dark/10 lg:pl-10 flex flex-col gap-8 w-full">
-                        <div className="flex flex-col gap-6">
-                            <div className="flex flex-col gap-1.5 pb-4 border-b border-brand-dark/5">
-                                <span className="font-sans text-[9px] uppercase tracking-[0.25em] font-black text-brand-dark/50">Rol Técnico</span>
-                                <span className="font-serif text-lg text-brand-dark font-semibold">{project.metadata["My Role"]}</span>
-                            </div>
-                            <div className="flex flex-col gap-1.5 pb-4 border-b border-brand-dark/5">
-                                <span className="font-sans text-[9px] uppercase tracking-[0.25em] font-black text-brand-dark/50">Sector / Industria</span>
-                                <span className="font-serif text-lg text-brand-dark font-semibold">{project.metadata["Industry"]}</span>
-                            </div>
-                            <div className="flex flex-col gap-1.5 pb-4 border-b border-brand-dark/5">
-                                <span className="font-sans text-[9px] uppercase tracking-[0.25em] font-black text-brand-dark/50">Línea de Trabajo</span>
-                                <span className="font-serif text-lg text-brand-dark font-semibold leading-relaxed">{project.metadata["Deliverables"]}</span>
-                            </div>
-                        </div>
-
-                        {/* Live URL CTA - Beautifully integrated as an editorial button */}
-                        {project.liveUrl && (
-                            <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="block w-full cursor-none">
-                                <PillButton
-                                    variant="accent"
-                                    iconRight={<ArrowUpRight size={16} strokeWidth={3} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />}
-                                    className="w-full justify-between text-[10px] uppercase tracking-widest font-black py-4 px-8 shadow-lg shadow-brand-accent/15 group hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
+                            {project.liveUrl && (
+                                <a
+                                    href={project.liveUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="mt-7 inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-brand-accent px-5 py-3 text-sm font-semibold text-brand-dark transition-transform hover:scale-[1.02] active:scale-[0.98]"
                                 >
-                                    Ver en Vivo
-                                </PillButton>
-                            </a>
-                        )}
+                                    Ver proyecto
+                                    <ExternalLink size={17} strokeWidth={2.3} />
+                                </a>
+                            )}
+                        </div>
+
+                        <div className="overflow-hidden rounded-2xl border border-brand-cream/10 bg-brand-panel p-2 lg:max-w-[520px] lg:justify-self-end">
+                            <button
+                                type="button"
+                                onClick={() => setSelectedImage({ src: heroImage, title: project.title })}
+                                className="group relative block w-full overflow-hidden rounded-2xl bg-brand-dark text-left"
+                                aria-label={`Ampliar imagen principal de ${project.title}`}
+                            >
+                                <img
+                                    src={heroImage}
+                                    alt={`Imagen principal del caso ${project.title}`}
+                                    className={`h-[260px] w-full transition-transform duration-700 group-hover:scale-[1.03] md:h-[320px] ${heroIsPortrait ? 'object-contain p-3' : 'object-cover'}`}
+                                    loading="eager"
+                                    fetchPriority="high"
+                                    onError={(e) => {
+                                        const target = e.target as HTMLImageElement;
+                                        target.src = `https://placehold.co/1280x900/07100c/e8efe7?text=${encodeURIComponent(project.title)}`;
+                                    }}
+                                />
+                                <div className="absolute inset-x-0 bottom-0 flex items-center justify-between gap-4 bg-linear-to-t from-brand-dark via-brand-dark/72 to-transparent p-4 pt-16">
+                                    <span className="text-xs font-semibold text-brand-cream">Abrir evidencia</span>
+                                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-accent text-brand-dark">
+                                        <ArrowUpRight size={17} strokeWidth={2.4} />
+                                    </span>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div className="mt-8 flex flex-wrap gap-x-2 gap-y-1 border-t border-brand-cream/10 pt-5 text-sm leading-6 text-brand-cream-dark">
+                        <span className="font-semibold text-brand-accent">{project.metadata['My Role']}</span>
+                        <span className="text-brand-cream/28">/</span>
+                        <span>{project.metadata.Deliverables}</span>
+                        <span className="text-brand-cream/28">/</span>
+                        <span>{project.metadata.Timeline}</span>
                     </div>
                 </div>
-            </div>
+            </section>
 
-
-
-            {/* Main Content Component */}
             <CaseStudy id={projectId} onImageClick={setSelectedImage} />
-
-            {/* Siguientes Casos Navigation */}
             <NextProjects currentProjectId={projectId} />
 
-            {/* Full-screen Image Viewer (Lightbox) */}
             <AnimatePresence>
                 {selectedImage && (
                     <div
-                        className="fixed inset-0 z-100 flex items-center justify-center p-6 md:p-12 lg:p-20"
+                        className="fixed inset-0 z-100 flex items-center justify-center p-5 sm:p-8"
                         role="dialog"
                         aria-modal="true"
-                        aria-label="Image viewer"
+                        aria-label={`Vista ampliada de ${selectedImage.title}`}
                     >
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             onClick={() => setSelectedImage(null)}
-                            className="absolute inset-0 bg-brand-dark/95 backdrop-blur-md cursor-zoom-out"
+                            className="absolute inset-0 bg-brand-dark/94 backdrop-blur-md"
                         />
 
                         <motion.button
-                            initial={{ opacity: 0, scale: 0.8 }}
+                            initial={{ opacity: 0, scale: 0.92 }}
                             animate={{ opacity: 1, scale: 1 }}
-                            exit={{ opacity: 0, scale: 0.8 }}
+                            exit={{ opacity: 0, scale: 0.92 }}
                             onClick={() => setSelectedImage(null)}
-                            className="absolute top-8 right-8 text-white/50 hover:text-white transition-colors z-110 cursor-none"
+                            className="absolute right-5 top-5 z-110 flex h-11 w-11 items-center justify-center rounded-full bg-brand-cream text-brand-dark transition-transform hover:scale-[1.03] active:scale-[0.98]"
                             aria-label="Cerrar"
                         >
-                            <X size={32} />
+                            <X size={22} />
                         </motion.button>
 
-                        <motion.div className="relative z-105 flex flex-col items-center justify-center p-4 max-w-7xl w-full pointer-events-none">
-                            <motion.img
-                                layoutId={`image-${selectedImage.src}`}
+                        <motion.div
+                            initial={{ opacity: 0, y: 24 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 24 }}
+                            transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }}
+                            className="relative z-105 grid max-h-[88vh] w-full max-w-7xl gap-5"
+                        >
+                            <img
                                 src={selectedImage.src}
                                 alt={selectedImage.title}
-                                className="h-auto max-h-[80vh] w-auto max-w-full rounded-2xl shadow-2xl pointer-events-auto"
-                                onError={(e) => {
-                                    const target = e.target as HTMLImageElement;
-                                    target.src = `https://placehold.co/1280x720/1a1a1b/e9e3d5?text=${encodeURIComponent('En construcción...')}`;
-                                }}
+                                className="mx-auto max-h-[78vh] w-auto max-w-full rounded-2xl border border-brand-cream/10 shadow-[0_32px_90px_rgba(0,0,0,0.5)]"
                             />
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: 20 }}
-                                className="mt-8 text-center"
-                            >
-                                <h3 className="font-serif text-2xl text-brand-cream tracking-tight">
-                                    {selectedImage.title}
-                                </h3>
-                            </motion.div>
+                            <h3 className="text-center text-xl font-semibold tracking-[-0.02em] text-brand-cream">
+                                {selectedImage.title}
+                            </h3>
                         </motion.div>
                     </div>
                 )}

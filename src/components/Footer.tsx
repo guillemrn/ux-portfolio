@@ -3,73 +3,51 @@ import { ArrowUpRight } from 'lucide-react';
 
 export const Footer: React.FC = () => {
     return (
-        <footer data-theme="dark" className="w-full bg-brand-dark text-white py-32 px-6 md:px-12 flex flex-col justify-center min-h-[70vh] relative" id="contact">
-            <div className="max-w-7xl mx-auto w-full flex flex-col grow justify-between">
-
-                {/* Main Content Area: Split 50/50 Desktop, Stack Mobile */}
-                <div className="flex flex-col lg:flex-row justify-between items-start gap-16 lg:gap-24 mb-32">
-
-                    {/* Left Column - Elegant Serif Typography */}
-                    <div className="w-full lg:w-1/2 flex flex-col items-start gap-6">
-                        <span className="font-sans text-[10px] uppercase tracking-[0.2em] font-black text-brand-accent/80 flex items-center gap-2 mb-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
-                            Abierto a nuevas oportunidades
-                        </span>
-                        <h2 className="text-4xl md:text-5xl lg:text-7xl leading-[1.12] tracking-tighter font-serif text-white w-full animate-fade-in-up">
-                            ¿Hablamos de tu próximo reto de producto<span className="text-brand-accent">?</span>
+        <footer data-theme="dark" className="w-full px-5 pb-8 pt-14 sm:px-6 md:px-10 lg:px-12" id="contact">
+            <div className="mx-auto max-w-7xl border-t border-brand-cream/10 pt-10">
+                <div className="grid gap-8 lg:grid-cols-[1.05fr_0.55fr] lg:items-end">
+                    <div>
+                        <h2 className="max-w-3xl text-4xl font-semibold leading-[1.02] tracking-[-0.035em] text-brand-cream md:text-5xl">
+                            Hablemos de producto.
                         </h2>
+                        <p className="mt-5 max-w-2xl text-base leading-7 text-brand-cream-dark">
+                            UX, sistemas accesibles e interfaces listas para probarse.
+                        </p>
                     </div>
 
-                    {/* Right Column - Conversion and Contact */}
-                    <div className="w-full lg:w-1/2 flex flex-col items-start lg:pt-8">
-                        <p className="font-sans text-brand-cream-dark text-lg md:text-xl font-light leading-relaxed mb-10 max-w-lg">
-                            Si buscas escalar tu producto digital con UX estratégico, o necesitas un Product Designer con habilidades Frontend para tu próximo proyecto B2B/SaaS, hablemos.
-                        </p>
-
-                        <div className="flex flex-col items-start w-full">
-                            <a
-                                href="https://calendar.app.google/XMitpYAAxeGATFc28"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="w-full md:w-fit bg-brand-accent text-brand-dark px-10 py-5 rounded-full font-sans text-sm uppercase tracking-widest font-black inline-flex items-center justify-center gap-3 hover:bg-brand-cream hover:scale-[1.02] transition-all duration-300 no-underline shadow-xl shadow-brand-accent/20"
-                            >
-                                Agendar una videollamada <ArrowUpRight className="hidden md:inline w-5 h-5" />
-                            </a>
-
-                            <p className="font-sans text-brand-cream-dark/80 text-sm md:text-base mt-6 text-center md:text-left w-full">
-                                O escríbeme directo a:{' '}
-                                <a
-                                    href="mailto:hola@guillermoml.com"
-                                    className="text-white underline decoration-brand-accent/30 hover:decoration-brand-accent hover:text-brand-accent transition-colors duration-300 ml-1 font-medium"
-                                >
-                                    hola@guillermoml.com
-                                </a>
-                            </p>
-                        </div>
+                    <div className="grid gap-4">
+                        <a
+                            href="https://calendar.app.google/XMitpYAAxeGATFc28"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex min-h-14 items-center justify-center gap-3 rounded-full bg-brand-accent px-7 py-4 text-center font-semibold text-brand-dark transition-transform duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                        >
+                            Agendar llamada
+                            <ArrowUpRight size={18} strokeWidth={2.4} />
+                        </a>
+                        <a
+                            href="mailto:hola@guillermoml.com"
+                            className="text-center text-sm font-semibold text-brand-cream-dark transition-colors hover:text-brand-cream lg:text-left"
+                        >
+                            hola@guillermoml.com
+                        </a>
                     </div>
                 </div>
 
-                {/* Bottom Bar */}
-                <div className="border-t border-brand-cream/10 pt-10 flex flex-col md:flex-row justify-between items-center md:items-start gap-8 font-sans">
-                    {/* Left: Links */}
-                    <div className="flex gap-8 md:gap-12 flex-wrap justify-center text-[11px] tracking-[0.2em] uppercase font-bold text-brand-cream/80">
-                        <a href="mailto:hola@guillermoml.com" className="hover:text-brand-accent transition-colors duration-300 no-underline">
-                            Email
-                        </a>
-                        <a href="https://linkedin.com/in/guillemrn" target="_blank" rel="noopener noreferrer" className="hover:text-brand-accent transition-colors duration-300 no-underline">
+                <div className="mt-10 flex flex-col gap-6 border-t border-brand-cream/10 pt-8 text-sm text-brand-cream-dark md:flex-row md:items-center md:justify-between">
+                    <div className="flex flex-wrap gap-5">
+                        <a href="https://linkedin.com/in/guillemrn" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-brand-cream">
                             LinkedIn
                         </a>
-                        <a href="/cv-guillermo-moreno.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-brand-accent transition-colors duration-300 no-underline">
-                            Resume
+                        <a href="/cv-guillermo-moreno.pdf" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-brand-cream">
+                            CV
+                        </a>
+                        <a href="#work" className="transition-colors hover:text-brand-cream">
+                            Proyectos
                         </a>
                     </div>
-
-                    {/* Right: Copyright */}
-                    <div className="text-brand-cream/40 text-[10px] md:text-xs text-center font-medium tracking-wide">
-                        © {new Date().getFullYear()}. DISEÑO POR GUILLERMO MORENO.
-                    </div>
+                    <p>© {new Date().getFullYear()} Guillermo Moreno.</p>
                 </div>
-
             </div>
         </footer>
     );

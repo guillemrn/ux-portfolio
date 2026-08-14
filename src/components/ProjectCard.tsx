@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { ArrowUpRight } from 'lucide-react';
 
 export interface ProjectData {
     id: string;
@@ -7,8 +8,7 @@ export interface ProjectData {
     category: string;
     description: string;
     imageUrl: string;
-    tags: string[];
-    layout: 'horizontal' | 'vertical';
+    signal: string;
 }
 
 interface ProjectCardProps {
@@ -17,87 +17,58 @@ interface ProjectCardProps {
 }
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
-    const isHorizontal = project.layout === 'horizontal';
-
     return (
-        <motion.div
-            initial={{ opacity: 0, y: 30 }}
+        <motion.article
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.1, duration: 0.8, ease: [0.215, 0.61, 0.355, 1] }}
-            className={`${isHorizontal ? 'col-span-12' : 'col-span-12 md:col-span-6'} group`}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ delay: index * 0.08, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="group"
         >
             <Link
                 to={`/project/${project.id}`}
-                className={`block h-full bg-white rounded-[2.5rem] p-4 md:p-5 border border-brand-cream-dark/10 transition-all duration-500 hover:border-brand-accent/40 hover:shadow-[0_24px_64px_-16px_rgba(41,208,103,0.08)] group no-underline text-inherit`}
+                className="grid h-full overflow-hidden rounded-2xl border border-brand-cream/10 bg-brand-panel transition-all duration-500 hover:-translate-y-1 hover:border-brand-accent/35 hover:shadow-[0_24px_64px_rgba(0,0,0,0.34)] lg:h-[520px]"
             >
-                <div className={`flex flex-col ${isHorizontal ? 'lg:flex-row' : ''} h-full gap-8 md:gap-12`}>
-
-                    {/* Visual Element / Mockup */}
-                    <div className={`${isHorizontal ? 'lg:w-[45%] aspect-4/3 lg:aspect-auto' : 'w-full aspect-square'} relative overflow-hidden rounded-3xl md:rounded-4xl flex items-center justify-center ${project.id === 'ecovis' ? 'bg-brand-cream/10' : 'bg-brand-dark p-6 md:p-8'}`}>
-                        {project.id === 'ecovis' ? (
-                            <motion.img
-                                src={project.imageUrl}
-                                alt={`Thumbnail for ${project.title}`}
-                                loading={index === 0 ? "eager" : "lazy"}
-                                {...(index === 0 ? { fetchpriority: "high" } : {})}
-                                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                                onError={(e) => {
-                                    const target = e.target as HTMLImageElement;
-                                    target.src = `https://placehold.co/1280x720/1a1a1b/e9e3d5?text=${encodeURIComponent('En construcción...')}`;
-                                }}
-                            />
-                        ) : (
-                            <motion.img
-                                src={project.imageUrl}
-                                alt={`Thumbnail for ${project.title}`}
-                                loading={index === 0 ? "eager" : "lazy"}
-                                {...(index === 0 ? { fetchpriority: "high" } : {})}
-                                className="max-h-full max-w-full object-contain rounded-2xl shadow-[0_12px_28px_rgba(0,0,0,0.35)] transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                                onError={(e) => {
-                                    const target = e.target as HTMLImageElement;
-                                    target.src = `https://placehold.co/1280x720/1a1a1b/e9e3d5?text=${encodeURIComponent('En construcción...')}`;
-                                }}
-                            />
-                        )}
-                        {/* Subtle overlay */}
-                        <div className="absolute inset-0 bg-brand-dark/0 group-hover:bg-brand-dark/5 transition-colors duration-500 pointer-events-none" />
+                <div className="grid h-full grid-rows-[240px_1fr] lg:grid-rows-[260px_260px]">
+                    <div className="relative overflow-hidden bg-brand-dark">
+                        <img
+                            src={project.imageUrl}
+                            alt={`Vista del proyecto ${project.title}`}
+                            loading={index === 0 ? 'eager' : 'lazy'}
+                            {...(index === 0 ? { fetchPriority: 'high' } : {})}
+                            className={`h-full w-full transition-transform duration-700 ease-out group-hover:scale-[1.035] ${project.id === 'ecovis' ? 'object-cover' : 'object-contain p-4 sm:p-5'}`}
+                            onError={(e) => {
+                                const target = e.target as HTMLImageElement;
+                                target.src = `https://placehold.co/1280x720/07100c/e8efe7?text=${encodeURIComponent('Imagen pendiente')}`;
+                            }}
+                        />
+                        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_0%,rgba(155,255,114,0.2),transparent_42%)] opacity-80" />
+                        <div className="absolute bottom-4 left-4 rounded-full border border-brand-cream/12 bg-brand-dark/72 px-3 py-1.5 text-sm font-semibold text-brand-cream backdrop-blur-md">
+                            {project.signal}
+                        </div>
                     </div>
 
-                    {/* Content Section */}
-                    <div className={`flex flex-col py-4 md:py-6 ${isHorizontal ? 'lg:w-[55%] lg:justify-center pr-4 md:pr-6' : 'grow px-2 md:px-4 pb-4'}`}>
-                        {/* Meta Category */}
-                        <span className="font-sans text-[10px] uppercase tracking-[0.2em] font-black text-brand-dark/70 mb-3 block">
-                            {project.category}
-                        </span>
+                    <div className="flex min-h-0 flex-col justify-between gap-5 p-5 sm:p-6">
+                        <div>
+                            <p className="mb-3 text-xs font-semibold text-brand-accent">{project.category}</p>
+                            <h3 className="text-2xl font-semibold leading-[1.03] tracking-[-0.03em] text-brand-cream">
+                                {project.title}
+                            </h3>
+                            <p className="mt-3 line-clamp-2 text-sm leading-6 text-brand-cream-dark">
+                                {project.description}
+                            </p>
+                        </div>
 
-                        {/* Title - Slids in elegant neon green arrow on hover */}
-                        <h3 className="font-serif text-xl md:text-2xl lg:text-3xl text-brand-dark tracking-tighter leading-tight mb-4 flex items-baseline justify-between gap-4 transition-colors duration-500">
-                            <span>{project.title}</span>
-                            <span className="text-brand-accent opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-500 ease-out font-sans font-bold text-lg md:text-xl lg:text-2xl shrink-0">
-                                →
+                        <div className="flex flex-col items-start gap-3 border-t border-brand-cream/10 pt-4 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+                            <span className="text-xs font-semibold text-brand-cream-dark">Caso completo</span>
+                            <span className="inline-flex h-10 shrink-0 items-center gap-2 rounded-full bg-brand-accent px-3.5 text-xs font-semibold text-brand-dark transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1">
+                                Ver caso
+                                <ArrowUpRight size={18} strokeWidth={2.4} />
                             </span>
-                        </h3>
-
-                        {/* Description */}
-                        <p className="font-sans text-brand-dark/70 text-sm md:text-base leading-relaxed mb-6 max-w-sm">
-                            {project.description}
-                        </p>
-
-                        {/* Tags */}
-                        <div className="flex flex-wrap gap-2 mt-auto">
-                            {project.tags.map((tag, i) => (
-                                <span
-                                    key={i}
-                                    className="px-4 py-1.5 rounded-full bg-brand-dark/95 border border-brand-accent/20 text-brand-accent text-[9px] md:text-[10px] uppercase font-black tracking-widest transition-colors duration-300 hover:bg-brand-dark hover:border-brand-accent"
-                                >
-                                    {tag}
-                                </span>
-                            ))}
                         </div>
                     </div>
                 </div>
             </Link>
-        </motion.div>
+        </motion.article>
     );
 };

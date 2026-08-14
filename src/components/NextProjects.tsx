@@ -4,64 +4,25 @@ import { ArrowUpRight } from 'lucide-react';
 import { PROJECTS } from './ProjectsGrid';
 
 export const NextProjects: React.FC<{ currentProjectId: string }> = ({ currentProjectId }) => {
-    // Filter out the current project and limit to 2 for the grid
-    const nextProjects = PROJECTS.filter(p => p.id !== currentProjectId).slice(0, 2);
+    const nextProject = PROJECTS.find((project) => project.id !== currentProjectId);
 
-    if (nextProjects.length === 0) return null;
+    if (!nextProject) return null;
 
     return (
-        <section
-            data-theme="light"
-            className="w-full pt-16 pb-24 md:py-32 bg-brand-cream border-t border-brand-dark/10 relative z-10"
-        >
-            <div className="max-w-5xl mx-auto px-6 md:px-12">
-                <h3 className="font-serif text-3xl md:text-5xl text-brand-dark mb-12 md:mb-16 tracking-tighter">
-                    Sigue explorando
-                </h3>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-                    {nextProjects.map((project) => (
-                        <Link
-                            key={project.id}
-                            to={`/project/${project.id}`}
-                            className="group flex flex-col gap-6 no-underline"
-                        >
-                            {/* Image Container with subtle hover scale */}
-                            <div className="w-full aspect-video bg-brand-dark/5 rounded-2xl overflow-hidden relative border border-brand-dark/10">
-                                <img
-                                    src={project.imageUrl}
-                                    alt={project.title}
-                                    loading="lazy"
-                                    className="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.33,1,0.68,1)] group-hover:scale-105"
-                                    onError={(e) => {
-                                        const target = e.target as HTMLImageElement;
-                                        target.src = `https://placehold.co/1280x720/1a1a1b/e9e3d5?text=${encodeURIComponent('En construcción...')}`;
-                                    }}
-                                />
-                                <div className="absolute inset-0 bg-brand-dark/0 transition-colors duration-500 group-hover:bg-brand-dark/5 pointer-events-none" />
-                            </div>
-
-                            {/* Text Content */}
-                            <div className="flex flex-col gap-3">
-                                {/* Category Badge/Label */}
-                                <span className="font-sans text-xs uppercase tracking-widest font-black text-brand-accent">
-                                    {project.category}
-                                </span>
-
-                                {/* Title */}
-                                <h4 className="font-serif text-2xl md:text-3xl text-brand-dark leading-tight group-hover:text-brand-accent transition-colors duration-300">
-                                    {project.title}
-                                </h4>
-
-                                {/* Link Prompt */}
-                                <div className="flex items-center gap-2 mt-2 text-brand-dark/70 font-sans text-sm tracking-widest uppercase font-bold group-hover:text-brand-dark transition-colors duration-300">
-                                    <span>Leer caso completo</span>
-                                    <ArrowUpRight size={14} className="group-hover:translate-x-1 transition-transform duration-300" strokeWidth={3} />
-                                </div>
-                            </div>
-                        </Link>
-                    ))}
-                </div>
+        <section data-theme="dark" className="w-full bg-brand-dark px-5 pb-20 sm:px-6 md:px-10 lg:px-12">
+            <div className="mx-auto max-w-7xl border-t border-brand-cream/10 pt-10">
+                <Link
+                    to={`/project/${nextProject.id}`}
+                    className="group grid gap-4 py-5 md:grid-cols-[0.35fr_1fr_auto] md:items-center"
+                >
+                    <p className="text-sm font-semibold text-brand-accent">Siguiente caso</p>
+                    <h3 className="max-w-3xl text-3xl font-semibold leading-tight tracking-[-0.03em] text-brand-cream md:text-4xl">
+                        {nextProject.title}
+                    </h3>
+                    <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-brand-accent text-brand-dark transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1">
+                        <ArrowUpRight size={18} strokeWidth={2.4} />
+                    </span>
+                </Link>
             </div>
         </section>
     );
