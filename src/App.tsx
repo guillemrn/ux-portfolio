@@ -7,6 +7,7 @@ import { ProjectDetail } from './pages/ProjectDetail';
 import { useEffect } from 'react';
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/react"
+import { SEO } from './components/SEO';
 
 // Scroll to top on route change
 const AnimatedRoutes = () => {
@@ -31,6 +32,7 @@ function App() {
     <Router>
       <MotionConfig reducedMotion="user">
         <div data-theme="dark" className="min-h-screen bg-brand-dark text-brand-cream font-sans font-normal selection:bg-brand-accent selection:text-brand-dark flex flex-col">
+          <SEO />
           <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-110 focus:bg-brand-accent focus:text-brand-dark focus:px-4 focus:py-2 focus:rounded-full focus:font-sans focus:font-bold focus:outline-none focus:ring-2 focus:ring-brand-accent">
             Saltar al contenido principal
           </a>
