@@ -38,7 +38,7 @@ export const UIArchive: React.FC = () => {
                         Archivo visual.
                     </h2>
                     <p className="max-w-2xl text-base leading-7 text-brand-cream-dark lg:justify-self-end">
-                        Una muestra corta de UI, flujos, dashboards y microinteracciones.
+                        Una muestra corta de UI, flujos y dashboards.
                     </p>
                 </div>
 
@@ -51,9 +51,8 @@ export const UIArchive: React.FC = () => {
                             viewport={{ once: true, margin: '-70px' }}
                             transition={{ delay: index * 0.04, duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
                             onClick={() => setSelectedItem(item)}
-                            className={`group relative min-h-[230px] overflow-hidden rounded-2xl border border-brand-cream/10 bg-brand-panel text-left transition-all duration-500 hover:-translate-y-1 hover:border-brand-accent/35 ${
-                                index === 0 ? 'lg:col-span-6 lg:row-span-2 lg:min-h-[480px]' : 'lg:col-span-3'
-                            }`}
+                            className={`group relative min-h-[230px] overflow-hidden rounded-2xl border border-brand-cream/10 bg-brand-panel text-left transition-all duration-500 hover:-translate-y-1 hover:border-brand-accent/35 ${index === 0 ? 'lg:col-span-6 lg:row-span-2 lg:min-h-[480px]' : 'lg:col-span-3'
+                                }`}
                             aria-label={`Ver exploración ${item.title}`}
                         >
                             <img

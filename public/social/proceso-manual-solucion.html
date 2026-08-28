@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Proceso manual a solución medible</title>
+  <style>
+    :root {
+      --dark: #07100c;
+      --panel: #0f1512;
+      --soft: #17211d;
+      --line: #2b3932;
+      --cream: #e8efe7;
+      --muted: #b6c3b8;
+      --green: #9bff72;
+      --amber: #f0b35b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 1080px;
+      height: 1350px;
+      margin: 0;
+      overflow: hidden;
+      background: var(--dark);
+      font-family: Aptos, "Helvetica Neue", Arial, sans-serif;
+      color: var(--cream);
+    }
+
+    .canvas {
+      position: relative;
+      width: 1080px;
+      height: 1350px;
+      padding: 56px;
+      background:
+        radial-gradient(circle at 88% 8%, rgba(155, 255, 114, 0.14), transparent 34%),
+        radial-gradient(circle at 10% 96%, rgba(155, 255, 114, 0.08), transparent 32%),
+        var(--dark);
+    }
+
+    .shell {
+      position: relative;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      width: 100%;
+      height: 100%;
+      padding: 36px 44px;
+      border: 1px solid var(--line);
+      border-radius: 32px;
+      background: rgba(15, 21, 18, 0.92);
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 26px;
+      border-bottom: 1px solid rgba(232, 239, 231, 0.1);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 22px;
+      font-weight: 760;
+      letter-spacing: -0.02em;
+    }
+
+    .mark {
+      display: grid;
+      width: 52px;
+      height: 52px;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--green);
+      color: var(--dark);
+      font-size: 17px;
+      font-weight: 840;
+      letter-spacing: -0.04em;
+    }
+
+    .tag {
+      color: var(--muted);
+      font-size: 18px;
+      font-weight: 640;
+    }
+
+    .content {
+      display: grid;
+      align-content: center;
+      gap: 24px;
+      padding: 38px 0 28px;
+    }
+
+    h1 {
+      max-width: 830px;
+      margin: 0;
+      font-size: 62px;
+      font-weight: 780;
+      line-height: 0.98;
+      letter-spacing: -0.038em;
+    }
+
+    .highlight {
+      color: var(--green);
+    }
+
+    .signals {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .quote {
+      min-height: 82px;
+      padding: 17px 20px;
+      border: 1px solid rgba(232, 239, 231, 0.1);
+      border-radius: 18px;
+      background: rgba(23, 33, 29, 0.76);
+      color: var(--cream);
+      font-size: 21px;
+      font-weight: 650;
+      line-height: 1.16;
+      letter-spacing: -0.018em;
+    }
+
+    .quote:nth-child(5) {
+      grid-column: span 2;
+      min-height: 68px;
+    }
+
+    .note {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      max-width: 800px;
+      color: var(--muted);
+      font-size: 21px;
+      font-weight: 560;
+      line-height: 1.28;
+      letter-spacing: -0.018em;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      margin-top: 11px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 8px rgba(155, 255, 114, 0.1);
+      flex: 0 0 auto;
+    }
+
+    .thesis {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .block {
+      padding: 22px 24px;
+      border: 1px solid rgba(155, 255, 114, 0.18);
+      border-radius: 22px;
+      background: rgba(7, 16, 12, 0.52);
+    }
+
+    .block strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--green);
+      font-size: 21px;
+      font-weight: 780;
+      letter-spacing: -0.02em;
+    }
+
+    .block p {
+      margin: 0;
+      color: var(--cream);
+      font-size: 25px;
+      font-weight: 720;
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+    }
+
+    .process {
+      display: grid;
+      gap: 0;
+      border-top: 1px solid rgba(232, 239, 231, 0.1);
+      border-bottom: 1px solid rgba(232, 239, 231, 0.1);
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 124px 1fr;
+      gap: 20px;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(232, 239, 231, 0.08);
+    }
+
+    .step:last-child {
+      border-bottom: 0;
+    }
+
+    .step span {
+      color: var(--green);
+      font-size: 18px;
+      font-weight: 760;
+    }
+
+    .step p {
+      margin: 0;
+      color: var(--cream);
+      font-size: 25px;
+      font-weight: 730;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+
+    .footer {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding-top: 24px;
+      border-top: 1px solid rgba(232, 239, 231, 0.1);
+    }
+
+    .question {
+      max-width: 680px;
+      margin: 0;
+      color: var(--cream);
+      font-size: 31px;
+      font-weight: 760;
+      line-height: 1.08;
+      letter-spacing: -0.032em;
+    }
+
+    .handle {
+      color: var(--green);
+      font-size: 22px;
+      font-weight: 760;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+  <main class="canvas">
+    <section class="shell">
+      <header class="topbar">
+        <div class="brand">
+          <div class="mark">gm</div>
+          <span>Guillermo Moreno</span>
+        </div>
+        <div class="tag">Product Design / Automatización</div>
+      </header>
+
+      <div class="content">
+        <h1>¿Tu negocio tiene un proceso que ya te cansaste de hacer <span class="highlight">a mano?</span></h1>
+
+        <div class="signals">
+          <div class="quote">“Paso las ventas a Excel cuando llego a casa.”</div>
+          <div class="quote">“Las citas las llevo por WhatsApp.”</div>
+          <div class="quote">“Siempre tengo que recordar quién ya pagó.”</div>
+          <div class="quote">“No sé realmente cuánto estoy ganando.”</div>
+          <div class="quote">“Tengo la misma información en tres lugares.”</div>
+        </div>
+
+        <div class="note">
+          <span class="dot"></span>
+          <span>Estas frases salen de conversaciones reales con emprendedores. No son problemas inventados para venderte “una app”.</span>
+        </div>
+
+        <div class="thesis">
+          <div class="block">
+            <strong>No siempre necesitas una app.</strong>
+            <p>A veces basta con conectar lo que ya usas.</p>
+          </div>
+          <div class="block">
+            <strong>Otras veces sí conviene construir algo propio.</strong>
+            <p>Cuando el proceso ya limita tu operación.</p>
+          </div>
+        </div>
+
+        <div class="process">
+          <div class="step">
+            <span>01</span>
+            <p>Entiendo el problema</p>
+          </div>
+          <div class="step">
+            <span>02</span>
+            <p>Simplifico el proceso</p>
+          </div>
+          <div class="step">
+            <span>03</span>
+            <p>Construyo la solución</p>
+          </div>
+          <div class="step">
+            <span>04</span>
+            <p>Medimos si funcionó</p>
+          </div>
+        </div>
+      </div>
+
+      <footer class="footer">
+        <p class="question">¿Tienes un proceso así en tu negocio? Cuéntamelo.</p>
+        <div class="handle">guillermoml.com</div>
+      </footer>
+    </section>
+  </main>
+</body>
+</html>

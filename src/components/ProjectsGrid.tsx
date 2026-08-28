@@ -5,11 +5,11 @@ import { ProjectCard, type ProjectData } from './ProjectCard';
 export const PROJECTS: ProjectData[] = [
     {
         id: 'trustlens',
-        category: 'AI & SaaS',
-        title: 'TrustLens: De "punto ciego" legal a escudo financiero con IA',
-        description: 'Extensión de Chrome impulsada por IA que traduce términos de servicio complejos en insights claros para proteger el capital y la IP.',
+        category: 'LegalTech / AI SaaS',
+        title: 'TrustLens: Entender lo que aceptas antes de dar clic',
+        description: 'Extensión de Chrome con IA para analizar términos y condiciones y señalar cláusulas que podrían afectar datos, dinero o propiedad intelectual.',
         imageUrl: '/projects/trustlens/TrustLens - v1.0 - High risk.png',
-        signal: 'IA, Chrome Extension, Supabase',
+        signal: 'Chrome Extension, LLM, Supabase',
     },
     {
         id: 'maternar',

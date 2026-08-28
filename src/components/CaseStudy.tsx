@@ -31,15 +31,6 @@ const fadeInUp: Variants = {
     }
 };
 
-const scaleIn: Variants = {
-    initial: { opacity: 0, scale: 0.96 },
-    animate: {
-        opacity: 1,
-        scale: 1,
-        transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] }
-    }
-};
-
 // ==========================================
 // PROJECT DATA DEFINITION
 // ==========================================
@@ -67,6 +58,25 @@ interface ProjectData {
         text: string;
         icon: React.ReactNode;
     }[];
+    sectionLabels?: {
+        pivot?: string;
+        process?: string;
+        gallery?: string;
+    };
+    pivotLabels?: {
+        hypothesis?: string;
+        insight?: string;
+        solution?: string;
+    };
+    galleryIntro?: string;
+    reflection?: {
+        title: string;
+        text: string;
+    };
+    seo?: {
+        title?: string;
+        description?: string;
+    };
     testimonial: {
         title: string;
         text: string;
@@ -232,21 +242,30 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
         ]
     },
     "trustlens": {
-        title: "TrustLens: De \"punto ciego\" legal a escudo financiero con IA",
-        subtitle: "Extensión de Chrome impulsada por IA que traduce términos de servicio complejos en alertas de IP y suscripciones abusivas.",
+        title: "TrustLens: Entender lo que aceptas antes de dar clic",
+        subtitle: "Una extensión de Chrome que utiliza IA para analizar términos y condiciones y señalar cláusulas que podrían afectar tus datos, dinero o propiedad intelectual.",
         heroImage: "/projects/trustlens/hero.png",
-        overview: "Millones de usuarios aceptan Términos de Servicio (ToS) de 50 páginas sin leerlos. A los usuarios no les asusta el uso de datos en apps famosas, les aterra el \"Salvaje Oeste\" del internet (nuevas apps de IA, SaaS independientes)",
-        problem: "donde exponen su dinero (renovaciones automáticas ocultas) y su propiedad intelectual (derechos sobre su trabajo) sin saberlo.",
+        overview: "Aceptamos términos y condiciones constantemente, pero leer documentos de decenas de páginas antes de probar una nueva herramienta simplemente no es realista. Con TrustLens quise explorar una pregunta:",
+        problem: "¿Podría una extensión detectar las cláusulas que realmente merecen nuestra atención y explicarlas mientras navegamos?",
         metadata: {
             Industry: "LegalTech / AI SaaS",
             "My Role": "Product Designer & Builder",
-            Deliverables: "AI Engineering, Chrome Extension",
-            Timeline: "MVP (Build in Public)"
+            Deliverables: "AI-assisted development, Chrome Extension",
+            Timeline: "Side Project"
+        },
+        sectionLabels: {
+            pivot: "De la idea al producto.",
+            process: "Cómo lo construí.",
+            gallery: "Evidencia visual."
+        },
+        pivotLabels: {
+            insight: "Lo que encontré",
+            solution: "La propuesta"
         },
         pivot: {
-            hypothesis: "Desarrollar una extensión para proteger la privacidad general de datos contra gigantes como Google y Facebook.",
-            insight: "Los usuarios creativos y early adopters están dispuestos a compartir datos con marcas conocidas, pero temen perder propiedad intelectual (IP) o ser estafados por micro-cobros en nuevas herramientas independientes.",
-            solution: "Crear un detector ágil de micro-cláusulas enfocado en cláusulas de IP, políticas de reembolso secreto y suscripciones ocultas, con alertas visuales rápidas y un Trust Score."
+            hypothesis: "Si los riesgos importantes pudieran identificarse directamente en el navegador, sería más fácil tomar una decisión informada antes de aceptar los términos de un servicio.",
+            insight: "Al compartir la idea en comunidades como Indie Hackers, Reddit y #BuildInPublic, las conversaciones se concentraron especialmente en dos preocupaciones: suscripciones y cargos difíciles de detectar, y derechos sobre el contenido creado por los usuarios.",
+            solution: "Una extensión capaz de analizar los términos de un servicio con un LLM, identificar cláusulas relevantes y resaltarlas directamente sobre el documento original."
         },
         personas: [
             {
@@ -260,30 +279,39 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
         process: [
             {
                 icon: <Search size={20} />,
-                title: "01 Pivot: De Privacidad a Activos",
-                desc: "Originalmente enfocado en la privacidad contra las Big Tech, descubrí que el dolor real radica en las 'Trampas Financieras' y el 'Robo de IP' al probar nuevas apps."
+                title: "01 — Un MVP que realmente funciona",
+                desc: "Construí una extensión de Chrome funcional que analiza una página de términos y condiciones mediante un LLM y devuelve los principales puntos de atención. En lugar de reemplazar el documento, TrustLens inyecta indicadores directamente sobre la página para mantener el contexto original."
             },
             {
                 icon: <Layout size={20} />,
-                title: "02 Escudo Digital ante la Letra Chiquita",
-                desc: "Diseñando la extensión de Chrome bajo la restricción técnica de 400x600px; transformando cláusulas abusivas y riesgos de IP en alertas críticas, un Trust Score y un Dashboard de Ahorro."
+                title: "02 — Diseñar también para el costo de la IA",
+                desc: "Analizar el mismo documento cada vez generaba latencia y consumo innecesario de tokens. Implementé persistencia en Supabase para reutilizar análisis recientes. Si un documento ya había sido procesado, TrustLens podía recuperar el resultado sin volver a llamar al modelo."
             },
             {
                 icon: <Zap size={20} />,
-                title: "03 El Motor Detrás de la Magia",
-                desc: "Para lograr procesar miles de palabras sin congelar la futura extensión, estoy implementando una arquitectura por fragmentos con resultados almacenados en Supabase. Esto evitará llamadas innecesarias a la IA, asegurando que el usuario reciba su Trust Score al instante y sin tiempos de carga frustrantes."
+                title: "03 — El límite que no logré resolver",
+                desc: "Mi objetivo era que TrustLens funcionara desde cualquier página de un producto: entrar a un SaaS, detectar automáticamente sus documentos legales y mostrar el análisis. El MVP no llegó hasta ahí. La versión funcional necesita que el usuario esté directamente en la página de términos y condiciones para realizar el análisis."
             },
             {
                 icon: <Users size={20} />,
-                title: "04 Validación #BuildInPublic",
-                desc: "Lanzamiento y validación temprana en comunidades tech. Creación de landing page con Next.js + Tailwind enfocada en captar leads y recolectar feedback de early adopters."
+                title: "04 — Construir en público",
+                desc: "Publiqué el proyecto y su landing en comunidades de tecnología y emprendimiento para obtener feedback temprano. El proyecto consiguió sus primeros registros y las conversaciones en Indie Hackers me ayudaron a cuestionar el enfoque inicial."
             }
         ],
         outcomes: [
-            { text: "Lanzamiento y validación del MVP funcional con la comunidad indie.", icon: <CheckCircle size={24} /> },
-            { text: "Arquitectura híbrida escalable con Supabase y de salida determinista.", icon: <Zap size={24} /> },
-            { text: "Reducción radical de la fricción cognitiva al probar nuevos SaaS.", icon: <TrendingUp size={24} /> }
+            { text: "Extensión de Chrome funcional conectada a un LLM.", icon: <CheckCircle size={24} /> },
+            { text: "Primeros registros y feedback obtenidos mediante Build in Public.", icon: <Users size={24} /> },
+            { text: "Identificación de una limitación clave antes de continuar desarrollando el producto.", icon: <TrendingUp size={24} /> }
         ],
+        galleryIntro: "Un producto funcional, no solamente un prototipo.",
+        reflection: {
+            title: "Lo que haría diferente hoy.",
+            text: "TrustLens fue uno de mis primeros experimentos construyendo un producto completo con IA. Conseguí llevar la idea hasta un MVP funcional, pero invertí demasiado pronto en la solución antes de validar suficientemente el problema. Si lo retomara hoy, empezaría por entender con mayor profundidad cuándo y por qué las personas sienten la necesidad de revisar los términos de un servicio antes de desarrollar una experiencia más automatizada."
+        },
+        seo: {
+            title: "TrustLens | Caso de estudio LegalTech con IA",
+            description: "Caso de estudio de TrustLens, una extensión de Chrome con IA para analizar términos y condiciones, detectar cláusulas relevantes y validar un MVP en público."
+        },
         testimonial: {
             title: "Visión del Founder",
             text: "\"TrustLens demuestra cómo la IA puede devolverle el poder al usuario. Mi objetivo fue transformar documentos diseñados para confundir en herramientas de protección financiera y creativa, probando que viabilidad técnica y ética van de la mano.\"",
@@ -313,21 +341,15 @@ const ProcessBoard: React.FC<{
 }> = ({ process }) => {
     return (
         <div className="border-y border-brand-cream/10">
-            {process.map((step, idx) => (
+            {process.map((step) => (
                 <div
                     key={step.title}
-                    className="grid gap-4 border-b border-brand-cream/10 py-5 last:border-b-0 md:grid-cols-[56px_1fr]"
+                    className="border-b border-brand-cream/10 py-5 last:border-b-0"
                 >
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-cream/7 text-brand-accent">
-                        {React.isValidElement(step.icon) ? React.cloneElement(step.icon as React.ReactElement<{ size?: number, strokeWidth?: number }>, { size: 16, strokeWidth: 1.9 }) : step.icon}
-                    </span>
-                    <div>
-                        <p className="text-sm font-semibold text-brand-accent">{String(idx + 1).padStart(2, '0')}</p>
-                        <h3 className="mt-1 text-2xl font-semibold leading-tight tracking-[-0.03em] text-brand-cream">
-                            {cleanStepTitle(step.title)}
-                        </h3>
-                        <p className="mt-3 max-w-3xl text-base leading-7 text-brand-cream-dark">{step.desc}</p>
-                    </div>
+                    <h3 className="text-2xl font-semibold leading-tight tracking-[-0.03em] text-brand-cream">
+                        {cleanStepTitle(step.title)}
+                    </h3>
+                    <p className="mt-3 max-w-3xl text-base leading-7 text-brand-cream-dark">{step.desc}</p>
                 </div>
             ))}
         </div>
@@ -340,10 +362,15 @@ export const CaseStudy: React.FC<{
 }> = ({ id, onImageClick }) => {
     const project = PROJECTS_DATA[id] || PROJECTS_DATA.ecovis;
     const keyGallery = project.gallery?.slice(0, 3) || [];
+    const pivotLabels = {
+        hypothesis: project.pivotLabels?.hypothesis || 'Hipótesis',
+        insight: project.pivotLabels?.insight || 'Insight',
+        solution: project.pivotLabels?.solution || 'Solución'
+    };
 
     return (
         <div className="w-full bg-brand-dark">
-            <article className="mx-auto flex w-full max-w-7xl flex-col gap-16 px-5 pb-20 sm:px-6 md:px-10 lg:px-12">
+            <article className="mx-auto flex w-full max-w-7xl flex-col gap-14 px-5 pb-20 sm:px-6 md:px-10 lg:px-12">
                 <motion.section
                     variants={staggerContainer}
                     initial="initial"
@@ -371,15 +398,15 @@ export const CaseStudy: React.FC<{
                     >
                         <div className="max-w-3xl">
                             <h2 className="text-4xl font-semibold leading-[1.02] tracking-[-0.035em] text-brand-cream md:text-5xl">
-                                La decisión que cambió el enfoque.
+                                {project.sectionLabels?.pivot || 'La decisión que cambió el enfoque.'}
                             </h2>
                         </div>
 
                         <div className="grid gap-0 border-y border-brand-cream/10">
                             {[
-                                ['Hipótesis', project.pivot.hypothesis],
-                                ['Insight', project.pivot.insight],
-                                ['Solución', project.pivot.solution]
+                                [pivotLabels.hypothesis, project.pivot.hypothesis],
+                                [pivotLabels.insight, project.pivot.insight],
+                                [pivotLabels.solution, project.pivot.solution]
                             ].map(([label, text]) => (
                                 <motion.div
                                     key={label}
@@ -403,7 +430,7 @@ export const CaseStudy: React.FC<{
                 >
                     <div className="max-w-3xl">
                         <h2 className="text-4xl font-semibold leading-[1.02] tracking-[-0.035em] text-brand-cream md:text-5xl">
-                            Cómo se tomó forma.
+                            {project.sectionLabels?.process || 'Cómo se tomó forma.'}
                         </h2>
                     </div>
                     <ProcessBoard process={project.process} />
@@ -419,10 +446,10 @@ export const CaseStudy: React.FC<{
                     >
                         <div className="grid gap-5 lg:grid-cols-[0.7fr_1fr] lg:items-end">
                             <h2 className="text-4xl font-semibold leading-[1.02] tracking-[-0.035em] text-brand-cream md:text-5xl">
-                                Evidencia visual.
+                                {project.sectionLabels?.gallery || 'Evidencia visual.'}
                             </h2>
                             <p className="max-w-2xl text-base leading-7 text-brand-cream-dark lg:justify-self-end">
-                                Las pantallas necesarias para entender la solución. Se pueden abrir para inspeccionar detalle.
+                                {project.galleryIntro || 'Las pantallas necesarias para entender la solución. Se pueden abrir para inspeccionar detalle.'}
                             </p>
                         </div>
 
@@ -442,7 +469,7 @@ export const CaseStudy: React.FC<{
                                         className="h-full w-full object-contain p-4 transition-transform duration-700 group-hover:scale-[1.035]"
                                         loading="lazy"
                                         onError={(e) => {
-                                             const target = e.target as HTMLImageElement;
+                                            const target = e.target as HTMLImageElement;
                                             target.src = `https://placehold.co/900x700/07100c/e8efe7?text=${encodeURIComponent(item.title)}`;
                                         }}
                                     />
@@ -472,35 +499,29 @@ export const CaseStudy: React.FC<{
                                 variants={fadeInUp}
                                 className="grid gap-4 border-b border-brand-cream/10 py-5 last:border-b-0 md:grid-cols-[140px_1fr]"
                             >
-                                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-accent text-brand-dark">
-                                    {React.isValidElement(outcome.icon) ? React.cloneElement(outcome.icon as React.ReactElement<{ size?: number, strokeWidth?: number }>, { size: 22, strokeWidth: 2 }) : outcome.icon}
-                                </div>
+                                <p className="text-sm font-semibold text-brand-accent">{String(idx + 1).padStart(2, '0')}</p>
                                 <p className="text-base font-semibold leading-7 text-brand-cream">{outcome.text}</p>
                             </motion.div>
                         ))}
                     </div>
                 </motion.section>
 
-                <motion.section
-                    variants={scaleIn}
-                    initial="initial"
-                    whileInView="animate"
-                    viewport={{ once: true, margin: '-80px' }}
-                    className="border-t border-brand-accent/30 pt-8"
-                >
-                    <p className="max-w-5xl text-2xl font-semibold leading-[1.18] tracking-[-0.03em] text-brand-cream md:text-3xl">
-                        “{project.testimonial.text.replace(/"/g, '')}”
-                    </p>
-                    <div className="mt-8 flex items-center gap-4">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-accent text-sm font-semibold text-brand-dark">
-                            {project.testimonial.authorInitials}
-                        </div>
-                        <div>
-                            <p className="font-semibold text-brand-cream">{project.testimonial.author}</p>
-                            <p className="text-sm text-brand-cream-dark">{project.testimonial.company}</p>
-                        </div>
-                    </div>
-                </motion.section>
+                {project.reflection && (
+                    <motion.section
+                        initial={{ opacity: 0, y: 24 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: '-80px' }}
+                        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                        className="border-t border-brand-cream/10 pt-8"
+                    >
+                        <h2 className="max-w-3xl text-4xl font-semibold leading-[1.02] tracking-[-0.035em] text-brand-cream md:text-5xl">
+                            {project.reflection.title}
+                        </h2>
+                        <p className="mt-6 max-w-3xl text-lg leading-8 text-brand-cream-dark">
+                            {project.reflection.text}
+                        </p>
+                    </motion.section>
+                )}
             </article>
         </div>
     );

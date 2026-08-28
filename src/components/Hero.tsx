@@ -2,7 +2,7 @@ import React from 'react';
 import { ArrowDown, FileText } from 'lucide-react';
 import { PillButton } from './PillButton';
 
-const PRACTICE_SIGNALS = ['Estrategia UX', 'Design systems', 'Entrega frontend'];
+const PRACTICE_SIGNALS = ['Producto digital', 'Automatización', 'Desarrollo asistido por IA'];
 
 export const Hero: React.FC = () => {
     return (
@@ -14,11 +14,11 @@ export const Hero: React.FC = () => {
             <div className="relative mx-auto grid max-w-7xl items-center gap-10 lg:min-h-[650px] lg:grid-cols-[1.04fr_0.72fr]">
                 <div className="max-w-4xl">
                     <p className="mb-5 max-w-[21rem] text-base font-medium leading-7 text-brand-cream-dark sm:max-w-lg">
-                        Product Designer para SaaS, HR Tech y ciberseguridad.
+                        Product Designer · Producto, tecnología e IA
                     </p>
 
                     <h1 className="max-w-[21rem] text-[clamp(2.25rem,9.2vw,4rem)] font-semibold leading-[0.98] tracking-[-0.032em] text-brand-cream sm:max-w-5xl sm:text-6xl lg:text-7xl">
-                        Diseño interfaces que vuelven legible lo difícil.
+                        Diseño y construyo soluciones que vuelven simple lo difícil.
                     </h1>
 
                     <div className="mt-7 flex max-w-2xl flex-wrap gap-x-5 gap-y-2 text-sm font-semibold text-brand-cream-dark">
@@ -58,7 +58,7 @@ export const Hero: React.FC = () => {
                             fetchPriority="high"
                         />
                         <p className="mt-3 px-1 text-sm leading-6 text-brand-cream-dark">
-                            5+ años conectando producto, sistemas, accesibilidad y ejecución visual.
+                            5+ años conectando producto, usuarios, negocio y tecnología.
                         </p>
                     </div>
                 </div>

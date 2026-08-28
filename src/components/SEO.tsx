@@ -3,11 +3,11 @@ import { useLocation } from 'react-router-dom';
 import { PROJECTS_DATA } from './CaseStudy';
 
 const SITE_URL = 'https://guillermoml.com';
-const SITE_NAME = 'Guillermo Moreno Portfolio';
+const SITE_NAME = 'Guillermo Moreno';
 const LINKEDIN_URL = 'https://linkedin.com/in/guillemrn';
-const DEFAULT_TITLE = 'Guillermo Moreno | Product Designer UX/UI';
+const DEFAULT_TITLE = 'Guillermo Moreno | Product Designer & Builder';
 const DEFAULT_DESCRIPTION =
-    'Product Designer con más de 5 años de experiencia en SaaS, B2B, diseño de producto, UX/UI, sistemas de diseño y prototipos con IA.';
+    'Product Designer que diseña y construye productos digitales para SaaS, B2B, comunidades y herramientas con IA.';
 const DEFAULT_IMAGE = `${SITE_URL}/og-image.png`;
 
 const normalizeDescription = (text: string) => {
@@ -64,10 +64,10 @@ export const SEO: React.FC = () => {
         const canonicalUrl = `${SITE_URL}${canonicalPath}`;
 
         const title = project
-            ? `${project.title} | Caso de estudio UX - Guillermo Moreno`
+            ? `${project.seo?.title || project.title} - Guillermo Moreno`
             : DEFAULT_TITLE;
         const description = project
-            ? normalizeDescription(`${project.subtitle} ${project.overview} ${project.problem}`)
+            ? normalizeDescription(project.seo?.description || `${project.subtitle} ${project.overview} ${project.problem}`)
             : DEFAULT_DESCRIPTION;
         const image = DEFAULT_IMAGE;
         const type = project ? 'article' : 'website';
@@ -89,13 +89,13 @@ export const SEO: React.FC = () => {
         setMeta('property', 'og:image', image);
         setMeta('property', 'og:image:width', '1200');
         setMeta('property', 'og:image:height', '630');
-        setMeta('property', 'og:image:alt', 'Guillermo Moreno, Product Designer UX/UI');
+        setMeta('property', 'og:image:alt', 'Guillermo Moreno, Product Designer & Builder');
 
         setMeta('name', 'twitter:card', 'summary_large_image');
         setMeta('name', 'twitter:title', title);
         setMeta('name', 'twitter:description', description);
         setMeta('name', 'twitter:image', image);
-        setMeta('name', 'twitter:image:alt', 'Guillermo Moreno, Product Designer UX/UI');
+        setMeta('name', 'twitter:image:alt', 'Guillermo Moreno, Product Designer & Builder');
 
         setStructuredData(project ? {
             '@context': 'https://schema.org',

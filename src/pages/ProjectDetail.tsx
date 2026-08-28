@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
-import { ArrowLeft, ArrowUpRight, ExternalLink, X } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight, X } from 'lucide-react';
 import { CaseStudy, PROJECTS_DATA } from '../components/CaseStudy';
 import { NextProjects } from '../components/NextProjects';
 
@@ -59,20 +59,9 @@ export const ProjectDetail: React.FC = () => {
                                 {project.subtitle}
                             </p>
 
-                            {project.liveUrl && (
-                                <a
-                                    href={project.liveUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="mt-7 inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-brand-accent px-5 py-3 text-sm font-semibold text-brand-dark transition-transform hover:scale-[1.02] active:scale-[0.98]"
-                                >
-                                    Ver proyecto
-                                    <ExternalLink size={17} strokeWidth={2.3} />
-                                </a>
-                            )}
                         </div>
 
-                        <div className="overflow-hidden rounded-2xl border border-brand-cream/10 bg-brand-panel p-2 lg:max-w-[520px] lg:justify-self-end">
+                        <div className="overflow-hidden rounded-2xl bg-brand-panel p-2 lg:max-w-[520px] lg:justify-self-end">
                             <button
                                 type="button"
                                 onClick={() => setSelectedImage({ src: heroImage, title: project.title })}
@@ -90,22 +79,29 @@ export const ProjectDetail: React.FC = () => {
                                         target.src = `https://placehold.co/1280x900/07100c/e8efe7?text=${encodeURIComponent(project.title)}`;
                                     }}
                                 />
-                                <div className="absolute inset-x-0 bottom-0 flex items-center justify-between gap-4 bg-linear-to-t from-brand-dark via-brand-dark/72 to-transparent p-4 pt-16">
-                                    <span className="text-xs font-semibold text-brand-cream">Abrir evidencia</span>
-                                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-accent text-brand-dark">
-                                        <ArrowUpRight size={17} strokeWidth={2.4} />
-                                    </span>
-                                </div>
                             </button>
                         </div>
                     </div>
 
-                    <div className="mt-8 flex flex-wrap gap-x-2 gap-y-1 border-t border-brand-cream/10 pt-5 text-sm leading-6 text-brand-cream-dark">
-                        <span className="font-semibold text-brand-accent">{project.metadata['My Role']}</span>
-                        <span className="text-brand-cream/28">/</span>
-                        <span>{project.metadata.Deliverables}</span>
-                        <span className="text-brand-cream/28">/</span>
-                        <span>{project.metadata.Timeline}</span>
+                    <div className="mt-8 flex flex-col gap-4 border-t border-brand-cream/10 pt-5 md:flex-row md:items-center md:justify-between">
+                        <div className="flex flex-wrap gap-x-2 gap-y-1 text-sm leading-6 text-brand-cream-dark">
+                            <span className="font-semibold text-brand-accent">{project.metadata['My Role']}</span>
+                            <span className="text-brand-cream/28">/</span>
+                            <span>{project.metadata.Deliverables}</span>
+                            <span className="text-brand-cream/28">/</span>
+                            <span>{project.metadata.Timeline}</span>
+                        </div>
+                        {project.liveUrl && (
+                            <a
+                                href={project.liveUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex min-h-11 w-fit shrink-0 items-center justify-center gap-2 rounded-full border border-brand-cream/16 px-4 text-sm font-semibold text-brand-cream transition-colors hover:border-brand-accent/55 hover:bg-brand-cream/6 hover:text-brand-accent"
+                            >
+                                Abrir proyecto
+                                <ArrowUpRight size={16} strokeWidth={2.4} />
+                            </a>
+                        )}
                     </div>
                 </div>
             </section>
