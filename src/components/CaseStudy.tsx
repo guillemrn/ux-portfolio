@@ -79,6 +79,7 @@ interface ProjectData {
     seo?: {
         title?: string;
         description?: string;
+        image?: string;
     };
     testimonial: {
         title: string;
@@ -175,7 +176,8 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
         showTestimonial: true,
         seo: {
             title: "Ecovis México | Caso de estudio B2B en Webflow",
-            description: "Caso de estudio de Ecovis México, rediseño de un sitio B2B en Webflow para unificar la experiencia, comunicar valor comercial y facilitar el contacto con prospectos."
+            description: "Caso de estudio de Ecovis México, rediseño de un sitio B2B en Webflow para unificar la experiencia, comunicar valor comercial y facilitar el contacto con prospectos.",
+            image: "/projects/ecovis/b2b-leads.png"
         },
         testimonial: {
             title: "Validación del Negocio",
@@ -262,7 +264,8 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
         },
         seo: {
             title: "Maternar | Caso de estudio de investigación UX",
-            description: "Caso de estudio de Maternar, una exploración de UX research y estrategia de producto sobre donaciones, comunidad y apoyo entre madres."
+            description: "Caso de estudio de Maternar, una exploración de UX research y estrategia de producto sobre donaciones, comunidad y apoyo entre madres.",
+            image: "/projects/maternar/Home - Dark theme.png"
         },
         testimonial: {
             title: "Impacto Social",
@@ -355,7 +358,8 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
         },
         seo: {
             title: "Artisan | Caso de estudio SaaS para pequeños negocios",
-            description: "Caso de estudio de Artisan, una plataforma para registrar ventas, gastos e inventario, nacida de un problema propio y llevada a producto activo para emprendedores."
+            description: "Caso de estudio de Artisan, una plataforma para registrar ventas, gastos e inventario, nacida de un problema propio y llevada a producto activo para emprendedores.",
+            image: "/projects/artisan/dashboard-demo.png"
         },
         testimonial: {
             title: "Producto en validación",
@@ -440,7 +444,8 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
         },
         seo: {
             title: "TrustLens | Caso de estudio LegalTech con IA",
-            description: "Caso de estudio de TrustLens, una extensión de Chrome con IA para analizar términos y condiciones, detectar cláusulas relevantes y validar un MVP en público."
+            description: "Caso de estudio de TrustLens, una extensión de Chrome con IA para analizar términos y condiciones, detectar cláusulas relevantes y validar un MVP en público.",
+            image: "/projects/trustlens/TrustLens - v1.0 - High risk.png"
         },
         testimonial: {
             title: "Visión del Founder",

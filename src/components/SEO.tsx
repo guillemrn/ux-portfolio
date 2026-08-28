@@ -10,6 +10,12 @@ const DEFAULT_DESCRIPTION =
     'Product Designer que diseña y construye productos digitales para SaaS, B2B, comunidades y herramientas con IA.';
 const DEFAULT_IMAGE = `${SITE_URL}/og-image.png`;
 
+const absoluteImageUrl = (image?: string) => {
+    if (!image) return DEFAULT_IMAGE;
+    if (image.startsWith('http')) return image;
+    return `${SITE_URL}${image.startsWith('/') ? image : `/${image}`}`;
+};
+
 const normalizeDescription = (text: string) => {
     const cleanText = text.replace(/\s+/g, ' ').trim();
     return cleanText.length > 158 ? `${cleanText.slice(0, 155).trim()}...` : cleanText;
@@ -69,7 +75,7 @@ export const SEO: React.FC = () => {
         const description = project
             ? normalizeDescription(project.seo?.description || `${project.subtitle} ${project.overview} ${project.problem}`)
             : DEFAULT_DESCRIPTION;
-        const image = DEFAULT_IMAGE;
+        const image = absoluteImageUrl(project?.seo?.image);
         const type = project ? 'article' : 'website';
 
         document.title = title;
