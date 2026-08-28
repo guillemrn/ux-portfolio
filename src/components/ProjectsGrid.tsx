@@ -12,14 +12,6 @@ export const PROJECTS: ProjectData[] = [
         signal: 'Product Strategy, IA, Supabase',
     },
     {
-        id: 'trustlens',
-        category: 'LegalTech / AI SaaS',
-        title: 'TrustLens: Entender lo que aceptas antes de dar clic',
-        description: 'Extensión de Chrome con IA para analizar términos y condiciones y señalar cláusulas que podrían afectar datos, dinero o propiedad intelectual.',
-        imageUrl: '/projects/trustlens/TrustLens - v1.0 - High risk.png',
-        signal: 'Chrome Extension, LLM, Supabase',
-    },
-    {
         id: 'maternar',
         category: 'Social / HealthTech',
         title: 'Maternar: Más allá de una app de donaciones',
@@ -34,6 +26,14 @@ export const PROJECTS: ProjectData[] = [
         description: 'Rediseño B2B para comunicar mejor el valor de sus soluciones y facilitar el contacto con nuevos prospectos.',
         imageUrl: '/projects/ecovis/b2b-leads.png',
         signal: 'UX/UI, Webflow, B2B',
+    },
+    {
+        id: 'trustlens',
+        category: 'LegalTech / AI SaaS',
+        title: 'TrustLens: Entender lo que aceptas antes de dar clic',
+        description: 'Extensión de Chrome con IA para analizar términos y condiciones y señalar cláusulas que podrían afectar datos, dinero o propiedad intelectual.',
+        imageUrl: '/projects/trustlens/TrustLens - v1.0 - High risk.png',
+        signal: 'Chrome Extension, LLM, Supabase',
     },
 ];
 

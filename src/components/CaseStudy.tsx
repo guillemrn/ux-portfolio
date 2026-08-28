@@ -309,7 +309,7 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
         pivot: {
             hypothesis: "Registrar una venta fuera de casa implicaba recordarla o anotarla para capturarla nuevamente después.",
             insight: "Si pudiera registrar cada movimiento desde el celular en el momento en que ocurre, podría eliminar el doble trabajo y mantener ventas, gastos e inventario actualizados.",
-            solution: "Construir una herramienta sencilla que concentrara la operación diaria del negocio y me permitiera registrar movimientos en segundos. Job To Be Done: cuando estoy entregando mercancía o realizando una venta, quiero registrar el movimiento en segundos desde mi celular, para mantener mis números actualizados sin depender de mi memoria ni capturar todo nuevamente al final del día."
+            solution: "Construir una herramienta sencilla que concentrara la operación diaria del negocio y me permitiera registrar movimientos en segundos, especialmente durante entregas y ventas fuera de casa."
         },
         personas: [
             {
