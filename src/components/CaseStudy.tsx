@@ -55,10 +55,12 @@ interface ProjectData {
         desc: string;
     }[];
     outcomes: {
+        label?: string;
         text: string;
         icon: React.ReactNode;
     }[];
     sectionLabels?: {
+        challenge?: string;
         pivot?: string;
         process?: string;
         gallery?: string;
@@ -73,6 +75,7 @@ interface ProjectData {
         title: string;
         text: string;
     };
+    showTestimonial?: boolean;
     seo?: {
         title?: string;
         description?: string;
@@ -101,21 +104,32 @@ interface ProjectData {
 // eslint-disable-next-line react-refresh/only-export-components
 export const PROJECTS_DATA: Record<string, ProjectData> = {
     "ecovis": {
-        title: "Ecovis México: Optimizando la Conversión B2B",
-        subtitle: "Sector Industrial",
+        title: "Ecovis México: De sitio corporativo a herramienta comercial",
+        subtitle: "Rediseño de un sitio B2B para comunicar mejor el valor de sus soluciones y facilitar el contacto con nuevos prospectos.",
         heroImage: "/projects/ecovis/b2b-leads.png",
-        overview: "Ecovis México, empresa especializada en el diseño y manufactura de soluciones energéticas industriales, me contactó inicialmente para una mejora táctica en su blog. Tras realizar una Auditoría UX profunda, identifiqué que el sitio enfrentaba un reto mayor:",
-        problem: "un lenguaje excesivamente técnico y una navegación inconsistente que generaban fricción y no lograban convertir el tráfico B2B en prospectos reales.",
+        overview: "Años después de haber desarrollado el primer sitio de Ecovis, el equipo de Marketing volvió a contactarme por algunos problemas con el blog. La solicitud parecía puntual, pero al revisar el sitio completo encontré un problema mayor:",
+        problem: "años de modificaciones habían dejado navegaciones diferentes, estilos inconsistentes, problemas de rendimiento y una experiencia fragmentada entre páginas. La oportunidad dejó de ser reparar el blog y pasó a ser replantear cómo Ecovis utilizaba su sitio para presentar sus soluciones y generar oportunidades comerciales.",
         metadata: {
             Industry: "Industrial / Energía",
-            "My Role": "Lead Product Designer",
-            Deliverables: "UX Audit, Arquitectura de Información, UI/UX, CRO (Optimización de Tasa de Conversión), SEO Técnico",
-            Timeline: "Sprint Ágil"
+            "My Role": "Product Designer & Webflow Developer",
+            Deliverables: "UX/UI, Information Architecture, Web Design",
+            Timeline: "Rediseño"
+        },
+        sectionLabels: {
+            challenge: "Un sitio que había crecido sin una dirección clara.",
+            pivot: "Entender qué necesitaba comunicar el sitio.",
+            process: "Cómo tomó forma.",
+            gallery: "Evidencia visual."
+        },
+        pivotLabels: {
+            hypothesis: "Lo que tenía",
+            insight: "Lo que aprendí",
+            solution: "La oportunidad"
         },
         pivot: {
-            hypothesis: "El cliente corporativo busca catálogos técnicos masivos y especificaciones duras en formato PDF.",
-            insight: "Los directores de compras B2B buscan validar la viabilidad energética de forma extremadamente rápida, sin fricciones en los primeros 10 segundos.",
-            solution: "Simplificar la propuesta de valor hacia el ahorro de costos y eficiencia, implementando flujos de contacto optimizados (CRO) y SEO semántico."
+            hypothesis: "El sitio estaba centrado principalmente en Ecovis: quiénes eran, qué fabricaban y las características técnicas de sus soluciones.",
+            insight: "En una sesión con Marketing entendí mejor cómo ocurría la decisión de compra: quien investigaba y preparaba una propuesta no siempre era quien tomaba la decisión final dentro de la empresa.",
+            solution: "Ecovis ya tenía argumentos comerciales fuertes: ahorro, eficiencia energética y resultados de sus soluciones. La propuesta fue llevar ese valor al frente de la experiencia y facilitar el camino desde entender una solución hasta contactar al equipo."
         },
         personas: [
             {
@@ -129,42 +143,52 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
         process: [
             {
                 icon: <Search size={20} />,
-                title: "01 Definición del User Persona",
-                desc: "Trabajamos en definir al cliente ideal industrial para alinear el lenguaje y diseño, comunicando valor (eficiencia energética, seguridad) en los primeros segundos."
+                title: "01 — Entender el proceso comercial",
+                desc: "Trabajé con la responsable de Marketing para entender qué tipo de empresas buscaba Ecovis, quién investigaba sus soluciones y quién participaba en la decisión de compra. Con esa información construí un perfil inicial que sirvió para orientar la comunicación y la jerarquía del sitio."
             },
             {
                 icon: <Layout size={20} />,
-                title: "02 Arquitectura de Información y Navegación",
-                desc: "Diseñé un flujo global intuitivo que guía al usuario corporativo sin confusiones hacia la toma de contacto."
+                title: "02 — Unificar la experiencia",
+                desc: "Reorganicé la arquitectura y navegación para eliminar inconsistencias acumuladas y crear una estructura común entre las distintas áreas del sitio. El objetivo era que una persona pudiera entender qué resuelve Ecovis, explorar sus soluciones y saber qué hacer después."
             },
             {
                 icon: <Zap size={20} />,
-                title: "03 Optimización de CTAs y Conversión",
-                desc: "Reemplazamos botones genéricos por micro-copy persuasivo diseñado para capturar la intención de compra del sector B2B."
+                title: "03 — Hablar primero del problema del cliente",
+                desc: "La comunicación pasó de estar centrada principalmente en la empresa y sus productos a destacar el resultado que sus soluciones podían generar: ahorro, eficiencia energética y modernización de procesos industriales. Los CTAs y formularios se reorganizaron alrededor de esa intención."
             },
             {
                 icon: <BarChart size={20} />,
-                title: "04 SEO y Rendimiento",
-                desc: "Estructuración técnica para asegurar el posicionamiento orgánico en un nicho altamente competitivo."
+                title: "04 — Implementación en Webflow",
+                desc: "Además del rediseño, implementé la nueva experiencia en Webflow manteniendo una necesidad importante del proyecto original: que Marketing pudiera administrar y publicar contenido sin depender de desarrollo."
             }
         ],
         outcomes: [
-            { text: "Aumento tangible en la captación de leads cualificados.", icon: <TrendingUp size={24} /> },
-            { text: "Transformación de catálogo a herramienta de generación de leads.", icon: <Zap size={24} /> },
-            { text: "Mejora en el posicionamiento orgánico (SEO) y de la marca corporativa.", icon: <CheckCircle size={24} /> }
+            { label: "Experiencia", text: "Unificamos navegación, estructura y comunicación de un sitio que se había fragmentado con los años.", icon: <CheckCircle size={24} /> },
+            { label: "Posicionamiento", text: "El cliente reportó una mejora significativa en el posicionamiento digital después del rediseño y trabajo de SEO.", icon: <Zap size={24} /> },
+            { label: "Negocio", text: "Aproximadamente mes y medio después, Marketing reportó un aumento real en la llegada de prospectos cualificados.", icon: <TrendingUp size={24} /> }
         ],
+        galleryIntro: "Algunas de las decisiones que transformaron la experiencia y comunicación del sitio.",
+        reflection: {
+            title: "Lo que haría diferente hoy.",
+            text: "El feedback posterior confirmó una señal positiva de negocio, pero no definimos una línea base ni tuve acceso directo a las métricas comerciales. Hoy establecería esos indicadores antes de comenzar para poder medir el impacto del rediseño más allá del feedback cualitativo."
+        },
+        showTestimonial: true,
+        seo: {
+            title: "Ecovis México | Caso de estudio B2B en Webflow",
+            description: "Caso de estudio de Ecovis México, rediseño de un sitio B2B en Webflow para unificar la experiencia, comunicar valor comercial y facilitar el contacto con prospectos."
+        },
         testimonial: {
             title: "Validación del Negocio",
-            text: "\"Guillermo nos apoyó con el rediseño con un enfoque estratégico y muy profesional. Su visión nos permitió transformar la plataforma en un sitio funcional con mejor experiencia de usuario y optimizar el SEO. Lo más importante: hemos notado un aumento real en la llegada de prospectos cualificados. Su capacidad para entender necesidades, proponer soluciones y ejecutar con eficiencia hizo el proceso muy fluido.\"",
+            text: "\"Guillermo nos apoyó con el rediseño del sitio web de Ecovis con un enfoque estratégico y muy profesional. Su visión y capacidad técnica nos permitieron transformar la plataforma en un sitio funcional con mejor experiencia de usuario y optimizar el SEO, fortaleciendo significativamente el posicionamiento digital de la marca en el sector industrial. Lo más importante: hemos notado un aumento real en la llegada de prospectos cualificados.\"",
             author: "Estefanía",
             authorInitials: "E",
             company: "Ecovis México"
         },
         liveUrl: "https://ecovismexico.com",
         gallery: [
-            { image: "/projects/ecovis/ecovis-hero.png", title: "Propuesta de Valor Principal B2B", category: "UI Landing" },
-            { image: "/projects/ecovis/navbar.png", title: "Sitemap y Flujo de Máquinas", category: "Arquitectura" },
-            { image: "/projects/ecovis/contact-footer.png", title: "Formulario de Registro Optimizado", category: "Conversión (CRO)" }
+            { image: "/projects/ecovis/ecovis-hero.png", title: "De producto industrial a beneficio para el cliente", category: "Propuesta de valor" },
+            { image: "/projects/ecovis/navbar.png", title: "Una navegación consistente para todo el sitio", category: "Arquitectura" },
+            { image: "/projects/ecovis/contact-footer.png", title: "Un camino más claro hacia el equipo comercial", category: "Contacto" }
         ]
     },
     "maternar": {
@@ -398,7 +422,7 @@ export const CaseStudy: React.FC<{
                 >
                     <motion.div variants={fadeInUp}>
                         <h2 className="max-w-3xl text-4xl font-semibold leading-[1.02] tracking-[-0.035em] text-brand-cream md:text-5xl">
-                            El reto real detrás de la pantalla.
+                            {project.sectionLabels?.challenge || 'El reto real detrás de la pantalla.'}
                         </h2>
                         <p className="mt-6 max-w-3xl text-lg leading-8 text-brand-cream-dark">
                             {project.overview} <strong className="font-semibold text-brand-cream">{project.problem}</strong>
@@ -408,10 +432,10 @@ export const CaseStudy: React.FC<{
 
                 {project.pivot && (
                     <motion.section
-                        variants={staggerContainer}
-                        initial="initial"
-                        whileInView="animate"
+                        initial={{ opacity: 0, y: 24 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: '-80px' }}
+                        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
                         className="grid gap-6"
                     >
                         <div className="max-w-3xl">
@@ -426,14 +450,13 @@ export const CaseStudy: React.FC<{
                                 [pivotLabels.insight, project.pivot.insight],
                                 [pivotLabels.solution, project.pivot.solution]
                             ].map(([label, text]) => (
-                                <motion.div
+                                <div
                                     key={label}
-                                    variants={fadeInUp}
                                     className="grid gap-3 border-b border-brand-cream/10 py-5 last:border-b-0 md:grid-cols-[160px_1fr]"
                                 >
                                     <p className="text-sm font-semibold text-brand-accent">{label}</p>
                                     <p className="text-base leading-7 text-brand-cream-dark">{text}</p>
-                                </motion.div>
+                                </div>
                             ))}
                         </div>
                     </motion.section>
@@ -517,12 +540,32 @@ export const CaseStudy: React.FC<{
                                 variants={fadeInUp}
                                 className="grid gap-4 border-b border-brand-cream/10 py-5 last:border-b-0 md:grid-cols-[140px_1fr]"
                             >
-                                <p className="text-sm font-semibold text-brand-accent">{String(idx + 1).padStart(2, '0')}</p>
+                                <p className="text-sm font-semibold text-brand-accent">
+                                    {String(idx + 1).padStart(2, '0')}{outcome.label ? ` — ${outcome.label}` : ''}
+                                </p>
                                 <p className="text-base font-semibold leading-7 text-brand-cream">{outcome.text}</p>
                             </motion.div>
                         ))}
                     </div>
                 </motion.section>
+
+                {project.showTestimonial && (
+                    <motion.section
+                        initial={{ opacity: 0, y: 24 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: '-80px' }}
+                        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                        className="border-t border-brand-cream/10 pt-8"
+                    >
+                        <p className="max-w-4xl text-2xl font-semibold leading-[1.18] tracking-[-0.03em] text-brand-cream md:text-3xl">
+                            “{project.testimonial.text.replace(/"/g, '')}”
+                        </p>
+                        <div className="mt-7">
+                            <p className="font-semibold text-brand-cream">{project.testimonial.author}</p>
+                            <p className="text-sm text-brand-cream-dark">{project.testimonial.company}</p>
+                        </div>
+                    </motion.section>
+                )}
 
                 {project.reflection && (
                     <motion.section
