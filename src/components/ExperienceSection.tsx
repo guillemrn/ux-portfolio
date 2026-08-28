@@ -28,7 +28,7 @@ export const ExperienceSection: React.FC = () => {
                             Experiencia en producto real.
                         </h2>
                         <p className="mt-5 max-w-xl text-base leading-7 text-brand-cream-dark">
-                            SaaS, HR Tech, ciberseguridad, sistemas escalables y prototipado con IA.
+                            5+ años diseñando productos digitales junto a equipos de Producto e Ingeniería.
                         </p>
                     </div>
 

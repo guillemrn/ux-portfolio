@@ -14,10 +14,10 @@ export interface ProjectData {
 interface ProjectCardProps {
     project: ProjectData;
     index: number;
-    variant?: 'featured' | 'compact';
+    variant?: 'standard' | 'compact';
 }
 
-export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, variant = 'featured' }) => {
+export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, variant = 'standard' }) => {
     const isCompact = variant === 'compact';
 
     return (
@@ -30,9 +30,9 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, varian
         >
             <Link
                 to={`/project/${project.id}`}
-                className={`grid h-full overflow-hidden rounded-2xl border border-brand-cream/10 bg-brand-panel transition-all duration-500 hover:-translate-y-1 hover:border-brand-accent/35 hover:shadow-[0_24px_64px_rgba(0,0,0,0.34)] ${isCompact ? 'lg:min-h-[178px]' : 'lg:min-h-[600px]'}`}
+                className={`grid h-full overflow-hidden rounded-2xl border border-brand-cream/10 bg-brand-panel transition-all duration-500 hover:-translate-y-1 hover:border-brand-accent/35 hover:shadow-[0_24px_64px_rgba(0,0,0,0.34)] ${isCompact ? 'lg:min-h-[178px]' : 'lg:h-[520px]'}`}
             >
-                <div className={`grid h-full ${isCompact ? 'grid-rows-[220px_1fr] lg:grid-cols-[230px_1fr] lg:grid-rows-1' : 'grid-rows-[260px_1fr] lg:grid-rows-[340px_1fr]'}`}>
+                <div className={`grid h-full ${isCompact ? 'grid-rows-[220px_1fr] lg:grid-cols-[230px_1fr] lg:grid-rows-1' : 'grid-rows-[240px_1fr] lg:grid-rows-[260px_260px]'}`}>
                     <div className="relative overflow-hidden bg-brand-dark">
                         <img
                             src={project.imageUrl}
@@ -54,7 +54,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, varian
                     <div className={`flex min-h-0 flex-col justify-between p-5 sm:p-6 ${isCompact ? 'gap-4 lg:p-5' : 'gap-5'}`}>
                         <div>
                             <p className="mb-3 text-xs font-semibold text-brand-accent">{project.category}</p>
-                            <h3 className={`font-semibold leading-[1.03] tracking-[-0.03em] text-brand-cream ${isCompact ? 'text-xl lg:text-2xl' : 'text-3xl md:text-4xl'}`}>
+                            <h3 className={`font-semibold leading-[1.03] tracking-[-0.03em] text-brand-cream ${isCompact ? 'text-xl lg:text-2xl' : 'text-2xl'}`}>
                                 {project.title}
                             </h3>
                             <p className={`mt-3 text-sm leading-6 text-brand-cream-dark ${isCompact ? 'line-clamp-2' : 'line-clamp-3'}`}>

@@ -54,27 +54,14 @@ export const ProjectsGrid: React.FC = () => {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 gap-4 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:items-stretch lg:gap-5">
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:gap-6">
                     {PROJECTS.map((project, index) => (
-                        index === 0 ? (
-                            <ProjectCard
-                                key={project.id}
-                                project={project}
-                                index={index}
-                                variant="featured"
-                            />
-                        ) : null
+                        <ProjectCard
+                            key={project.id}
+                            project={project}
+                            index={index}
+                        />
                     ))}
-                    <div className="grid gap-4 lg:gap-5">
-                        {PROJECTS.slice(1).map((project, index) => (
-                            <ProjectCard
-                                key={project.id}
-                                project={project}
-                                index={index + 1}
-                                variant="compact"
-                            />
-                        ))}
-                    </div>
                 </div>
 
             </div>
