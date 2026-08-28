@@ -4,6 +4,14 @@ import { ProjectCard, type ProjectData } from './ProjectCard';
 // eslint-disable-next-line react-refresh/only-export-components
 export const PROJECTS: ProjectData[] = [
     {
+        id: 'artisan',
+        category: 'SaaS / Small Business',
+        title: 'Artisan: De Excel a herramienta para emprendedores',
+        description: 'Producto activo para registrar ventas, gastos e inventario y entender mejor cómo funciona un pequeño negocio.',
+        imageUrl: '/projects/artisan/dashboard-demo.png',
+        signal: 'Product Strategy, IA, Supabase',
+    },
+    {
         id: 'trustlens',
         category: 'LegalTech / AI SaaS',
         title: 'TrustLens: Entender lo que aceptas antes de dar clic',
@@ -42,11 +50,11 @@ export const ProjectsGrid: React.FC = () => {
                         Casos donde la claridad tuvo consecuencias.
                     </h2>
                     <p className="max-w-xl text-base leading-7 text-brand-cream-dark">
-                        Tres piezas para leer estrategia, criterio visual y ejecución de producto sin rodeos.
+                        Cuatro piezas para leer estrategia, criterio visual y ejecución de producto sin rodeos.
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-5">
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4 xl:gap-5">
                     {PROJECTS.map((project, index) => (
                         <ProjectCard
                             key={project.id}

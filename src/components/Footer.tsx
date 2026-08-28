@@ -11,7 +11,7 @@ export const Footer: React.FC = () => {
                             Hablemos de producto.
                         </h2>
                         <p className="mt-5 max-w-2xl text-base leading-7 text-brand-cream-dark">
-                            UX, sistemas accesibles e interfaces listas para probarse.
+                            De entender el problema a construir una solución.
                         </p>
                     </div>
 

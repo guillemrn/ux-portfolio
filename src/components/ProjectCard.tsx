@@ -36,7 +36,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
                             alt={`Vista del proyecto ${project.title}`}
                             loading={index === 0 ? 'eager' : 'lazy'}
                             {...(index === 0 ? { fetchPriority: 'high' } : {})}
-                            className={`h-full w-full transition-transform duration-700 ease-out group-hover:scale-[1.035] ${project.id === 'ecovis' ? 'object-cover' : 'object-contain p-4 sm:p-5'}`}
+                            className={`h-full w-full transition-transform duration-700 ease-out group-hover:scale-[1.035] ${project.id === 'ecovis' || project.id === 'artisan' ? 'object-cover' : 'object-contain p-4 sm:p-5'}`}
                             onError={(e) => {
                                 const target = e.target as HTMLImageElement;
                                 target.src = `https://placehold.co/1280x720/07100c/e8efe7?text=${encodeURIComponent('Imagen pendiente')}`;

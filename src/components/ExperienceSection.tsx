@@ -15,13 +15,6 @@ const EXPERIENCE = [
         role: 'UI Designer',
         summary: 'Interfaces y prototipos para HR Tech, con documentación de comportamiento y handoff.',
         proof: 'Librería de 30+ componentes y handoff accesible.'
-    },
-    {
-        company: 'Artisan',
-        period: 'Proyecto en iteración',
-        role: 'Product Design & Development',
-        summary: 'Aplicación web para ventas, inventario y métricas de pequeños productores.',
-        proof: 'Arquitectura de información, Supabase e IA aplicada.'
     }
 ];
 

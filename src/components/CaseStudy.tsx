@@ -283,6 +283,94 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
             { image: "/projects/maternar/Onboarding - Step 3.png", title: "Onboarding - Paso 3", category: "UI Onboarding", aspectRatio: 'portrait' }
         ]
     },
+    "artisan": {
+        title: "Artisan: De llevar mi negocio en Excel a construir una herramienta para emprendedores",
+        subtitle: "Una plataforma para registrar ventas, gastos e inventario y entender mejor cómo está funcionando un pequeño negocio.",
+        heroImage: "/projects/artisan/dashboard-demo.png",
+        overview: "Cuando comenzamos Almara necesitábamos llevar control de ventas, gastos, inventario y costos. Excel funcionaba, hasta que el negocio empezó a crecer. Durante las entregas registraba lo que ocurría en notas o mensajes de WhatsApp y, al regresar a casa, tenía que pasar nuevamente todo a Excel.",
+        problem: "El problema no era tener mejores reportes. Era registrar la operación sin hacer el trabajo dos veces y poder confiar en los números al final del día.",
+        metadata: {
+            Industry: "SaaS / Small Business",
+            "My Role": "Product Designer & Builder",
+            Deliverables: "Product Strategy, User Research, AI-assisted Development",
+            Timeline: "Producto activo"
+        },
+        sectionLabels: {
+            challenge: "Todo empezó con nuestro propio negocio.",
+            pivot: "De problema propio a hipótesis de producto.",
+            process: "Construir antes que diseñar de más.",
+            gallery: "Evidencia visual."
+        },
+        pivotLabels: {
+            hypothesis: "Problema inicial",
+            insight: "Hipótesis",
+            solution: "Primera solución"
+        },
+        pivot: {
+            hypothesis: "Registrar una venta fuera de casa implicaba recordarla o anotarla para capturarla nuevamente después.",
+            insight: "Si pudiera registrar cada movimiento desde el celular en el momento en que ocurre, podría eliminar el doble trabajo y mantener ventas, gastos e inventario actualizados.",
+            solution: "Construir una herramienta sencilla que concentrara la operación diaria del negocio y me permitiera registrar movimientos en segundos. Job To Be Done: cuando estoy entregando mercancía o realizando una venta, quiero registrar el movimiento en segundos desde mi celular, para mantener mis números actualizados sin depender de mi memoria ni capturar todo nuevamente al final del día."
+        },
+        personas: [
+            {
+                name: "Emprendedor local",
+                role: "Operador de un pequeño negocio",
+                phrase: "Necesito registrar lo que pasa durante el día sin volver a capturarlo todo cuando llego a casa.",
+                goals: "Registrar ventas, gastos, inventario y cobros pendientes en el momento en que ocurren.",
+                frustrations: "Doble captura, números poco confiables al final del día y procesos repartidos entre Excel, notas y WhatsApp."
+            }
+        ],
+        process: [
+            {
+                icon: <Zap size={20} />,
+                title: "01 — Llevar decisiones de producto a software funcionando",
+                desc: "Artisan pasó poco tiempo en Figma. En lugar de desarrollar primero un prototipo completo, utilicé IA y herramientas de desarrollo para llevar rápidamente las decisiones de producto a una versión funcional y probarla en la operación real de Almara."
+            },
+            {
+                icon: <Search size={20} />,
+                title: "02 — Salir de mi propio problema",
+                desc: "Que Artisan funcionara para Almara no significaba que otros negocios lo necesitaran. Empecé a conversar con emprendedores en mercados y eventos para entender cómo llevaban sus ventas, inventario y costos, encontrando problemas similares y otros que no había considerado."
+            },
+            {
+                icon: <Target size={20} />,
+                title: "03 — Convertir conversaciones en decisiones",
+                desc: "El feedback empezó a cuestionar mis propias suposiciones. Artisan comenzó pensando en productos artesanales, pero usuarios de servicios revelaron necesidades distintas. En lugar de convertir cada petición en una funcionalidad, empecé a separar lo que pedían del problema que necesitaban resolver."
+            },
+            {
+                icon: <BarChart size={20} />,
+                title: "04 — Del uso a la evidencia",
+                desc: "Los primeros usuarios plantearon una nueva pregunta: registrarse no significa haber encontrado valor. Instrumenté Artisan para observar qué utilizan, dónde abandonan y qué comportamientos pueden indicar que la herramienta empieza a formar parte de su operación."
+            }
+        ],
+        outcomes: [
+            { text: "Construir rápidamente puede acercarme antes al problema, siempre que no confunda tener software funcionando con haber validado un producto.", icon: <Zap size={24} /> },
+            { text: "Lo que un usuario pide y el problema que necesita resolver no siempre son lo mismo.", icon: <Search size={24} /> },
+            { text: "Los registros importan menos que descubrir por qué alguien incorpora una herramienta a su trabajo y decide volver.", icon: <TrendingUp size={24} /> },
+            { text: "Diseño, tecnología y negocio dejan de ser disciplinas separadas cuando eres responsable del producto completo.", icon: <CheckCircle size={24} /> }
+        ],
+        galleryIntro: "Producto real en uso y evidencia visual de cómo Artisan traduce operación diaria en una experiencia más clara.",
+        reflection: {
+            title: "Lo que todavía no sé.",
+            text: "Artisan sigue siendo un producto en validación. Todavía quiero entender qué tipo de negocio obtiene mayor valor de la plataforma, cuáles son las acciones que predicen uso recurrente y si el principal valor está en registrar la operación o en entender mejor el negocio a partir de esos datos. No tener todavía esas respuestas forma parte del proyecto. El siguiente paso es aprender lo suficiente de usuarios reales para decidir hacia dónde debe crecer Artisan."
+        },
+        seo: {
+            title: "Artisan | Caso de estudio SaaS para pequeños negocios",
+            description: "Caso de estudio de Artisan, una plataforma para registrar ventas, gastos e inventario, nacida de un problema propio y llevada a producto activo para emprendedores."
+        },
+        testimonial: {
+            title: "Producto en validación",
+            text: "\"Artisan me está enseñando a distinguir entre construir software, validar un problema y entender qué hace que una persona vuelva a usar una herramienta en su negocio.\"",
+            author: "Guillermo Moreno",
+            authorInitials: "GM",
+            company: "Product Designer & Builder"
+        },
+        liveUrl: "https://artisan.guillermoml.com",
+        gallery: [
+            { image: "/projects/artisan/dashboard-demo.png", title: "Dashboard operativo con datos demo", category: "Producto activo", aspectRatio: 'video' },
+            { image: "/projects/artisan/metrics-demo.png", title: "Ventas, costos, ganancia e inventario en una sola vista", category: "Métricas", aspectRatio: 'video' },
+            { image: "/projects/artisan/sales-demo.png", title: "Historial de ventas y cobros pendientes", category: "Operación diaria", aspectRatio: 'video' }
+        ]
+    },
     "trustlens": {
         title: "TrustLens: Entender lo que aceptas antes de dar clic",
         subtitle: "Una extensión de Chrome que utiliza IA para analizar términos y condiciones y señalar cláusulas que podrían afectar tus datos, dinero o propiedad intelectual.",
@@ -376,7 +464,7 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
     }
 };
 
-const cleanStepTitle = (title: string) => title.replace(/^\d+\s*/, '').trim();
+const cleanStepTitle = (title: string) => title.replace(/^\d+\s*(?:[—-]\s*)?/, '').trim();
 
 const ProcessBoard: React.FC<{
     process: ProjectData['process'];
@@ -501,7 +589,7 @@ export const CaseStudy: React.FC<{
                                     variants={fadeInUp}
                                     type="button"
                                     onClick={() => onImageClick({ src: item.image, title: item.title })}
-                                    className="group relative aspect-[4/5] min-h-[320px] overflow-hidden rounded-2xl border border-brand-cream/10 bg-brand-panel text-left transition-all duration-500 hover:-translate-y-1 hover:border-brand-accent/35 sm:min-h-0"
+                                    className={`group relative overflow-hidden rounded-2xl border border-brand-cream/10 bg-brand-panel text-left transition-all duration-500 hover:-translate-y-1 hover:border-brand-accent/35 ${item.aspectRatio === 'video' ? 'aspect-video min-h-[240px] sm:min-h-0' : 'aspect-[4/5] min-h-[320px] sm:min-h-0'}`}
                                     aria-label={`Ampliar pantalla: ${item.title}`}
                                 >
                                     <img
