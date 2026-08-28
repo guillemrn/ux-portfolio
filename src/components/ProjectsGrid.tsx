@@ -13,11 +13,11 @@ export const PROJECTS: ProjectData[] = [
     },
     {
         id: 'maternar',
-        category: 'UX Research & Social',
-        title: 'Maternar: Diseñando una Red de Apoyo para Madres',
-        description: 'Pivote estratégico de una app de donaciones a un ecosistema de apoyo para resolver la soledad materna.',
+        category: 'Social / HealthTech',
+        title: 'Maternar: Más allá de una app de donaciones',
+        description: 'Exploración de investigación y estrategia sobre cómo conectar apoyo material, comunidad y maternidad.',
         imageUrl: '/projects/maternar/Home - Dark theme.png',
-        signal: 'Discovery, entrevistas, Figma',
+        signal: 'User Research, Strategy, Figma',
     },
     {
         id: 'ecovis',

@@ -168,21 +168,30 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
         ]
     },
     "maternar": {
-        title: "Maternar: Diseñando una Red de Apoyo para Madres",
-        subtitle: "De app de donaciones a ecosistema de apoyo para la soledad materna.",
+        title: "Maternar: Más allá de una app de donaciones",
+        subtitle: "Una exploración sobre cómo el diseño podía conectar apoyo material, comunidad y maternidad.",
         heroImage: "/projects/maternar/Home - Dark theme.png",
-        overview: "La oportunidad inicial parecía material: madres con artículos de bebé en buen estado y otras madres sin canales seguros para recibirlos.",
-        problem: "La investigación mostró algo más profundo: las redes existentes resolvían objetos, pero no dignidad, seguridad ni pertenencia.",
+        overview: "Maternar comenzó con una observación sencilla: muchos artículos de bebé dejan de utilizarse rápidamente, mientras otras familias podrían necesitarlos. La primera idea fue crear una forma más segura y digna de donarlos.",
+        problem: "Pero antes de construirla, necesitábamos entender si ese era realmente el problema que valía la pena resolver.",
         metadata: {
             Industry: "Social / HealthTech",
             "My Role": "Product Designer & Líder de Proyecto",
-            Deliverables: "UX Strategy, User Research, Prototyping",
-            Timeline: "3 Meses"
+            Deliverables: "User Research, Product Strategy, Prototyping",
+            Timeline: "3 meses"
+        },
+        sectionLabels: {
+            pivot: "La investigación cambió la pregunta.",
+            process: "Cómo tomó forma.",
+            gallery: "Evidencia visual."
+        },
+        pivotLabels: {
+            insight: "Lo que escuchamos",
+            solution: "Nueva dirección"
         },
         pivot: {
-            hypothesis: "Una plataforma centralizada de donaciones seguras podía mejorar el bienestar material de la comunidad.",
-            insight: "El problema real no era material, sino emocional y social: soledad, vulnerabilidad y pérdida de identidad tras la maternidad.",
-            solution: "Redefinir Maternar como ecosistema de apoyo: material, emocional y profesional."
+            hypothesis: "Facilitar la donación segura de artículos de bebé podía generar valor para madres que querían darles una segunda vida.",
+            insight: "Entrevisté a cinco madres mediante conversaciones semiestructuradas. Incluso cuando los artículos no formaban parte de la pregunta, aparecían espontáneamente temas como soledad, pérdida de identidad y necesidad de conectar con otras madres.",
+            solution: "Las donaciones seguían teniendo valor, pero parecían formar parte de una necesidad más amplia. Maternar pasó de explorar el intercambio de artículos a explorar una red de apoyo entre madres."
         },
         personas: [
             {
@@ -203,25 +212,34 @@ export const PROJECTS_DATA: Record<string, ProjectData> = {
         process: [
             {
                 icon: <Search size={20} />,
-                title: "01 Investigación cualitativa",
-                desc: "Las entrevistas validaron el valor emocional de donar, pero revelaron una urgencia mayor: muchas madres necesitaban sentirse acompañadas y comprendidas."
+                title: "01 — Cinco conversaciones, una señal inesperada",
+                desc: "Preparamos una guía para las entrevistas, pero mantuve las conversaciones abiertas para poder profundizar en lo que cada participante consideraba importante. Los artículos aparecieron en las conversaciones, pero no eran el tema más urgente. La necesidad de sentirse acompañadas apareció repetidamente."
             },
             {
                 icon: <Target size={20} />,
-                title: "02 Pivote estratégico",
-                desc: "La visión cambió de intercambio de artículos a una red donde pedir, donar, conectar y ofrecer servicios pudiera suceder sin estigma."
+                title: "02 — Replantear la propuesta",
+                desc: "En lugar de abandonar la idea original, la integramos dentro de una propuesta más amplia con tres dimensiones: apoyo material para donar y recibir artículos, apoyo emocional para conectar con otras madres, y apoyo profesional para ofrecer servicios y recuperar espacios de independencia."
             },
             {
                 icon: <Zap size={20} />,
-                title: "03 Prototipo en Figma",
-                desc: "El prototipo permitió probar una solución multifacética: apoyo material, comunidad emocional y espacios para independencia profesional."
+                title: "03 — Volver con las participantes",
+                desc: "Diseñé un prototipo interactivo en Figma y regresamos con las mismas cinco madres para poner la propuesta frente a ellas. Las sesiones nos permitieron observar cómo entendían esta combinación de donar, recibir, conectar y ofrecer servicios, y detectar oportunidades para seguir refinando la experiencia."
             }
         ],
         outcomes: [
-            { text: "El caso dejó de centrarse en objetos y pasó a resolver pertenencia, seguridad y apoyo.", icon: <TrendingUp size={24} /> },
-            { text: "El prototipo validó perfiles flexibles: donar, recibir, conectar y ofrecer servicios.", icon: <Layout size={24} /> },
-            { text: "La propuesta redujo el estigma al convertir la ayuda en participación activa dentro de una comunidad.", icon: <Users size={24} /> }
+            { text: "La investigación cambió el problema que inicialmente queríamos resolver.", icon: <TrendingUp size={24} /> },
+            { text: "Cinco participantes entrevistadas volvieron para probar la propuesta.", icon: <Users size={24} /> },
+            { text: "El proyecto evolucionó de una experiencia de donaciones hacia una hipótesis más amplia de comunidad y apoyo.", icon: <Layout size={24} /> }
         ],
+        galleryIntro: "Del concepto a una experiencia que pudiéramos poner frente a las participantes.",
+        reflection: {
+            title: "Lo que me dejó Maternar.",
+            text: "Maternar fue uno de los primeros proyectos en los que una conversación con usuarios cambió significativamente la dirección que tenía en mente. También me enseñó algo que hoy aplicaría con mayor rigor: encontrar evidencia de un problema no significa haber validado su solución. El siguiente paso habría sido ampliar la investigación y realizar nuevas rondas de prueba antes de avanzar hacia un producto real."
+        },
+        seo: {
+            title: "Maternar | Caso de estudio de investigación UX",
+            description: "Caso de estudio de Maternar, una exploración de UX research y estrategia de producto sobre donaciones, comunidad y apoyo entre madres."
+        },
         testimonial: {
             title: "Impacto Social",
             text: "\"La maternidad no se diseñó para vivirse en aislamiento. Maternar evolucionó para ser el ecosistema donde el apoyo material y la contención emocional por fin se encuentran.\"",
