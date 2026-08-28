@@ -14,9 +14,12 @@ export interface ProjectData {
 interface ProjectCardProps {
     project: ProjectData;
     index: number;
+    variant?: 'featured' | 'compact';
 }
 
-export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
+export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, variant = 'featured' }) => {
+    const isCompact = variant === 'compact';
+
     return (
         <motion.article
             initial={{ opacity: 0, y: 24 }}
@@ -27,9 +30,9 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
         >
             <Link
                 to={`/project/${project.id}`}
-                className="grid h-full overflow-hidden rounded-2xl border border-brand-cream/10 bg-brand-panel transition-all duration-500 hover:-translate-y-1 hover:border-brand-accent/35 hover:shadow-[0_24px_64px_rgba(0,0,0,0.34)] lg:h-[520px]"
+                className={`grid h-full overflow-hidden rounded-2xl border border-brand-cream/10 bg-brand-panel transition-all duration-500 hover:-translate-y-1 hover:border-brand-accent/35 hover:shadow-[0_24px_64px_rgba(0,0,0,0.34)] ${isCompact ? 'lg:min-h-[178px]' : 'lg:min-h-[600px]'}`}
             >
-                <div className="grid h-full grid-rows-[240px_1fr] lg:grid-rows-[260px_260px]">
+                <div className={`grid h-full ${isCompact ? 'grid-rows-[220px_1fr] lg:grid-cols-[230px_1fr] lg:grid-rows-1' : 'grid-rows-[260px_1fr] lg:grid-rows-[340px_1fr]'}`}>
                     <div className="relative overflow-hidden bg-brand-dark">
                         <img
                             src={project.imageUrl}
@@ -43,18 +46,18 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
                             }}
                         />
                         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_0%,rgba(155,255,114,0.2),transparent_42%)] opacity-80" />
-                        <div className="absolute bottom-4 left-4 rounded-full border border-brand-cream/12 bg-brand-dark/72 px-3 py-1.5 text-sm font-semibold text-brand-cream backdrop-blur-md">
+                        <div className={`absolute bottom-4 left-4 max-w-[calc(100%-2rem)] rounded-full border border-brand-cream/12 bg-brand-dark/72 px-3 py-1.5 font-semibold text-brand-cream backdrop-blur-md ${isCompact ? 'text-xs' : 'text-sm'}`}>
                             {project.signal}
                         </div>
                     </div>
 
-                    <div className="flex min-h-0 flex-col justify-between gap-5 p-5 sm:p-6">
+                    <div className={`flex min-h-0 flex-col justify-between p-5 sm:p-6 ${isCompact ? 'gap-4 lg:p-5' : 'gap-5'}`}>
                         <div>
                             <p className="mb-3 text-xs font-semibold text-brand-accent">{project.category}</p>
-                            <h3 className="text-2xl font-semibold leading-[1.03] tracking-[-0.03em] text-brand-cream">
+                            <h3 className={`font-semibold leading-[1.03] tracking-[-0.03em] text-brand-cream ${isCompact ? 'text-xl lg:text-2xl' : 'text-3xl md:text-4xl'}`}>
                                 {project.title}
                             </h3>
-                            <p className="mt-3 line-clamp-2 text-sm leading-6 text-brand-cream-dark">
+                            <p className={`mt-3 text-sm leading-6 text-brand-cream-dark ${isCompact ? 'line-clamp-2' : 'line-clamp-3'}`}>
                                 {project.description}
                             </p>
                         </div>

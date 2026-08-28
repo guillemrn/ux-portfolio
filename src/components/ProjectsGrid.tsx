@@ -47,21 +47,34 @@ export const ProjectsGrid: React.FC = () => {
             <div className="mx-auto max-w-7xl">
                 <div className="mb-7 grid gap-4 lg:grid-cols-[0.95fr_0.65fr] lg:items-end">
                     <h2 className="max-w-3xl text-4xl font-semibold leading-[1.02] tracking-[-0.035em] text-brand-cream md:text-5xl">
-                        Casos donde la claridad tuvo consecuencias.
+                        Casos de producto.
                     </h2>
                     <p className="max-w-xl text-base leading-7 text-brand-cream-dark">
-                        Cuatro piezas para leer estrategia, criterio visual y ejecución de producto sin rodeos.
+                        Problemas reales, decisiones, aprendizajes y lo que construí en el camino.
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4 xl:gap-5">
+                <div className="grid grid-cols-1 gap-4 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:items-stretch lg:gap-5">
                     {PROJECTS.map((project, index) => (
-                        <ProjectCard
-                            key={project.id}
-                            project={project}
-                            index={index}
-                        />
+                        index === 0 ? (
+                            <ProjectCard
+                                key={project.id}
+                                project={project}
+                                index={index}
+                                variant="featured"
+                            />
+                        ) : null
                     ))}
+                    <div className="grid gap-4 lg:gap-5">
+                        {PROJECTS.slice(1).map((project, index) => (
+                            <ProjectCard
+                                key={project.id}
+                                project={project}
+                                index={index + 1}
+                                variant="compact"
+                            />
+                        ))}
+                    </div>
                 </div>
 
             </div>

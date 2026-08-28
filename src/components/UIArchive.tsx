@@ -35,10 +35,10 @@ export const UIArchive: React.FC = () => {
             <div className="mx-auto max-w-7xl">
                 <div className="mb-8 grid gap-5 lg:grid-cols-[0.75fr_1fr] lg:items-end">
                     <h2 className="text-4xl font-semibold leading-[1.02] tracking-[-0.035em] text-brand-cream md:text-5xl">
-                        Archivo visual.
+                        Archivo de producto.
                     </h2>
                     <p className="max-w-2xl text-base leading-7 text-brand-cream-dark lg:justify-self-end">
-                        Una muestra corta de UI, flujos y dashboards.
+                        Interfaces, experimentos y cosas que he construido a lo largo del camino.
                     </p>
                 </div>
 
